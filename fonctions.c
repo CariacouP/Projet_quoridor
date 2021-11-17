@@ -27,7 +27,7 @@ SetConsoleCursorPosition( GetStdHandle( STD_OUTPUT_HANDLE ), mycoord );
 
 
 char* saisirChaine()
-///tenvoie le pointeur de la chaine de caractère saisie allouée dynamiquement
+///renvoie le pointeur de la chaine de caractï¿½re saisie allouï¿½e dynamiquement
 {
     char* chaine;
     char temp[NC];
@@ -52,7 +52,7 @@ void lancerNouvellePartie()
     /// saisie des noms des joueurs
     char *nomJoueur1=NULL;
     char *nomJoueur2=NULL;
-    char jetons[8]=[0x40,0x2A,0x23,0x26,0x25,0xA3,0x24,0x3F]; ///Listes des différents jetons possible pour les joueurs
+    char jetons[8]=[0x40,0x2A,0x23,0x26,0x25,0xA3,0x24,0x3F]; ///Listes des diffï¿½rents jetons possible pour les joueurs
     int numeroJetonJ1=0;
     int numeroJetonJ2=0;
 
@@ -62,7 +62,7 @@ void lancerNouvellePartie()
     nomJoueur2=saisirChaine;
 
     numeroJetonJ1=rand()% 9;
-    do      ///on verifie que les deux jetons sont les même.
+    do      ///on verifie que les deux jetons sont les mï¿½me.
     {
         numeroJetonJ2=rand()% ;
     }while numeroJetonJ2==numeroJetonJ1;
