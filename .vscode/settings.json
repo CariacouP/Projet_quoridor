@@ -1,5 +1,5 @@
 {
-  "C_Cpp_Runner.cCompilerPath": "gcc",
+  "C_Cpp_Runner.cCompilerPath": "/usr/bin/clang",
   "C_Cpp_Runner.cppCompilerPath": "/usr/bin/clang++",
   "C_Cpp_Runner.debuggerPath": "/usr/bin/lldb",
   "C_Cpp_Runner.warnings": [
@@ -8,14 +8,14 @@
     "-Wpedantic"
   ],
   "C_Cpp_Runner.compilerArgs": [],
-  "C_Cpp_Runner.includePaths": [],
+  "C_Cpp_Runner.includePaths": [
+    "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1"
+  ],
   "C_Cpp_Runner.linkerArgs": [],
   "C_Cpp_Runner.cStandard": "",
   "C_Cpp_Runner.cppStandard": "",
   "C_Cpp_Runner.excludeSearch": [],
   "C_Cpp_Runner.enableWarnings": true,
-  "C_Cpp_Runner.warningsAsError": false
-  
-  
-   
+  "C_Cpp_Runner.warningsAsError": false,
+  "C_Cpp.errorSquiggles": "Disabled"
 }
