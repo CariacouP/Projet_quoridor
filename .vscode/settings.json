@@ -1,7 +1,4 @@
 {
-  "C_Cpp_Runner.cCompilerPath": "/usr/bin/clang",
-  "C_Cpp_Runner.cppCompilerPath": "/usr/bin/clang++",
-  "C_Cpp_Runner.debuggerPath": "/usr/bin/lldb",
   "C_Cpp_Runner.warnings": [
     "-Wall",
     "-Wextra",
@@ -9,13 +6,12 @@
   ],
   "C_Cpp_Runner.compilerArgs": [],
   "C_Cpp_Runner.includePaths": [
-    "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1"
+    "C:\\Program Files\\CodeBlocks\\MinGW\\include"
   ],
   "C_Cpp_Runner.linkerArgs": [],
   "C_Cpp_Runner.cStandard": "",
   "C_Cpp_Runner.cppStandard": "",
   "C_Cpp_Runner.excludeSearch": [],
   "C_Cpp_Runner.enableWarnings": true,
-  "C_Cpp_Runner.warningsAsError": false,
-  "C_Cpp.errorSquiggles": "Disabled"
+  "C_Cpp_Runner.warningsAsError": false
 }

@@ -1,21 +1,21 @@
 {
-    "configurations": [
-        {
-            "name": "windows-clang-x64",
-            "includePath": [
-                "${workspaceFolder}/**",
-                "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1"
-            ],
-            "compilerPath": "C:\\Program Files\\CodeBlocks\\MinGW",
-            "cStandard": "${default}",
-            "cppStandard": "${default}",
-            "intelliSenseMode": "${default}",
-            "compilerArgs": [
-                "-Wall",
-                "-Wextra",
-                "-Wpedantic"
-            ]
-        }
-    ],
-    "version": 4
+  "configurations": [
+    {
+      "name": "windows-gcc-x64",
+      "includePath": [
+        "${workspaceFolder}/**",
+        "C:\\Program Files\\CodeBlocks\\MinGW\\include"
+      ],
+      "compilerPath": "C:\\Program Files\\CodeBlocks\\MinGW\\bin\\gcc.exe",
+      "cStandard": "${default}",
+      "cppStandard": "${default}",
+      "intelliSenseMode": "windows-gcc-x64",
+      "compilerArgs": [
+        "-Wall",
+        "-Wextra",
+        "-Wpedantic"
+      ]
+    }
+  ],
+  "version": 4
 }

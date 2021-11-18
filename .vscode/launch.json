@@ -11,8 +11,8 @@
       "environment": [],
       "program": "c:\\Users\\macbook\\Documents\\Projet_quoridor\\build\\Debug\\outDebug",
       "internalConsoleOptions": "openOnSessionStart",
-      "MIMode": "lldb",
-      "miDebuggerPath": "/usr/bin/lldb",
+      "MIMode": "gdb",
+      "miDebuggerPath": "gdb",
       "externalConsole": false,
       "setupCommands": [
         {
