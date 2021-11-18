@@ -21,13 +21,13 @@ int main()
     afficherGrille(p);*/
 
 
-/// affichage du menu d'entrée
+/// affichage du menu d'entrï¿½e
     system("cls");
     color(0,15);
     printf("Bienvenu dans Quoridor !");
     printf("\n -- Menu -- \n");
     printf("1 - Lancer une nouvelle partie\n");
-    printf("2 - reprendre une partie sauvegardée\n");
+    printf("2 - reprendre une partie sauvegardï¿½e\n");
     printf("3 - Afficher l'aide\n");
     printf("4 - Afficher les scores des joueurs\n");
     printf("5 - Quitter le jeu\n");
@@ -35,6 +35,7 @@ int main()
     switch (choixMenu)
     {
     case 1:// appel de lancerNouvellePartie
+        afficherGrille(12,12);
         break;
     case 2: // appel de lancerPartiesauvegardee
         break;
@@ -45,7 +46,7 @@ int main()
     case 5: //
         break;
     default:
-        printf("le chox selectionné n'existe pas ");
+        printf("le chox selectionnï¿½ n'existe pas ");
         break;
 
     }
