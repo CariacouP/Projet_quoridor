@@ -12,7 +12,7 @@ int main()
 
 
 
-    srand(time(NULL))
+    srand(time(NULL));
 
     /*Plateau *p;
     p=malloc(sizeof(*p));
@@ -31,7 +31,9 @@ int main()
     printf("3 - Afficher l'aide\n");
     printf("4 - Afficher les scores des joueurs\n");
     printf("5 - Quitter le jeu\n");
+    printf("6 - afficher tableau\n");
 
+    scanf("%d",&choixMenu);
     switch (choixMenu)
     {
     case 1:// appel de lancerNouvellePartie
@@ -44,6 +46,9 @@ int main()
     case 4:  //appel de afficherScores
         break;
     case 5: //
+        break;
+    case 6:
+        afficherGrille(12,12);
         break;
     default:
         printf("le chox selectionn� n'existe pas ");
