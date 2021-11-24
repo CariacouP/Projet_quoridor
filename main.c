@@ -38,6 +38,7 @@ int main()
     {
     case 1:// appel de lancerNouvellePartie
         afficherGrille(12,12);
+        
         break;
     case 2: // appel de lancerPartiesauvegardee
         break;

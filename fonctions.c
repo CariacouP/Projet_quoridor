@@ -94,7 +94,7 @@ void afficherScores()
 void afficherGrille(int m_tailleX,int m_tailleY)
 {
     system("cls");
-    int i,j;
+    int i,j,l,k;
     color(0,15);
     //LIGNE DU PLATEAU
     for (i=0; i<m_tailleY*2+2; i+=2)
@@ -133,21 +133,34 @@ void afficherGrille(int m_tailleX,int m_tailleY)
     printf("%c",217);
     ///On fait les contours speciaux du cadre
     //Cote Gauche et droite
+    l=65;
     for (i=0; i<m_tailleY*2-2; i+=2)
     {
-        gotoligcol(4+i,1);
+        gotoligcol(3+i,0);
+        printf("%c",l); // on ajoute la lettre correspndante a la ligne à gauche du tableau
+        gotoligcol(4+i,1); 
         printf("%c",195);
         //Droite
         gotoligcol(4+i,m_tailleX*3+1);
         printf("%c",180);
+        l++;
     }
+    
+    gotoligcol(3+i,0);      //on ajoute la dernière lettre manquante
+    printf("%c",l);
 //Haut et bas
+    k=1;
     for (i=0; i<m_tailleX*3-3; i+=3)
     {
         gotoligcol(2+m_tailleY*2,3+i+1);
         printf("%c",193);
         //Haut
+        gotoligcol(1,2+i); //On ajoute le chiffre correspondant aux collones en haut du tableau
+        printf("%d",k);
         gotoligcol(2,3+i+1);
         printf("%c",194);
+        k++;
     }
+    gotoligcol(1,2+i); //On ajoute le dernier  chiffre correspondant à la dernière collone en haut du tableau
+    printf("%d",k);
 }
