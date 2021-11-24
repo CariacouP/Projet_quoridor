@@ -8,7 +8,7 @@
 int main()
 {
     int choixMenu;
-
+    char t;
 
 
 
@@ -37,7 +37,8 @@ int main()
     switch (choixMenu)
     {
     case 1:// appel de lancerNouvellePartie
-        afficherGrille(12,12);
+        
+        
         
         break;
     case 2: // appel de lancerPartiesauvegardee
@@ -50,13 +51,14 @@ int main()
         break;
     case 6:
         afficherGrille(12,12);
+        placerBarriere('F',8,4);
         break;
     default:
         printf("le chox selectionn� n'existe pas ");
         break;
 
     }
-
-
+    fflush(stdin);
+    scanf("%c",&t);
     return 0;
 }

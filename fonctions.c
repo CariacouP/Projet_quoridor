@@ -164,3 +164,37 @@ void afficherGrille(int m_tailleX,int m_tailleY)
     gotoligcol(1,2+i); //On ajoute le dernier  chiffre correspondant à la dernière collone en haut du tableau
     printf("%d",k);
 }
+
+void allerCase(char ligne, int colonne){
+    int l;
+    l=(int) ligne-64;
+    gotoligcol(l*2+1,colonne*3);
+    printf("%c",64);
+}
+
+void placerBarriere(char ligne, int colonne,int sens){
+// place une barrière en fonction de la valeur du sens choisi (attention à bien blinder la saisie) en haut (1), à droite (2), en bas (3), gauche(4)
+    int l;
+    l=(int) ligne-64;
+    switch(sens){
+        case 1:
+            gotoligcol(l*2,colonne*3);
+            printf("B");
+            break;
+        case 2:
+            gotoligcol(l*2+1,colonne*3+1);
+            printf("B");
+            break;
+        case 3:
+            gotoligcol(l*2+2,colonne*3);
+            printf("B");
+            break;
+        case 4:
+            gotoligcol(l*2+1,colonne*3-2);
+            printf("B");
+            break;
+        default:
+            printf("erreur dans la saisie du sens");
+            break;
+    }
+}

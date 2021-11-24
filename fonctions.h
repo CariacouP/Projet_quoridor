@@ -9,3 +9,5 @@ void lancerNouvellePartie();
 
 void gotoligcol( int lig, int col );
 
+void allerCase(char ligne, int colonne);
+void placerBarriere(char ligne, int colonne,int sens);
