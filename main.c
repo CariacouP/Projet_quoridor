@@ -4,6 +4,7 @@
 #include <time.h>
 
 
+#include "alexis.h"
 #include "fonctions.h"
 int main()
 {
