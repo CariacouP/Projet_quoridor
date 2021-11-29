@@ -32,6 +32,7 @@ int main()
     printf("4 - Afficher les scores des joueurs\n");
     printf("5 - Quitter le jeu\n");
     printf("6 - afficher tableau\n");
+    printf("7 - test programme alexis\n");
 
     scanf("%d",&choixMenu);
     switch (choixMenu)
@@ -53,9 +54,25 @@ int main()
         afficherGrille(12,12);
         placerBarriere('F',8,4);
         break;
+    case 7:{
+        int *plateau[17][17];
+        //Demander la taille
+        initialiserPlateau(plateau);
+        int i,j;
+        for (i=0;i<17;i++)
+        {
+            for (j=0;j<17;j++)
+            {
+                printf("%d",*(plateau[i][j]));
+            }
+            printf("\n");
+        }
+        break;
+        }
     default:
         printf("le chox selectionn� n'existe pas ");
         break;
+
 
     }
     fflush(stdin);
