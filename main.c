@@ -7,8 +7,7 @@
 #include "alexis.h"
 #include "fonctions.h"
 int main()
-{
-    int choixMenu;
+{   int choixMenu;
     char t;
 
 
@@ -55,8 +54,9 @@ int main()
         afficherGrille(12,12);
         placerBarriere('F',8,4);
         break;
+
     case 7:{
-        int *plateau[17][17];
+        int plateau[17][17];
         //Demander la taille
         initialiserPlateau(plateau);
         int i,j;
@@ -64,14 +64,14 @@ int main()
         {
             for (j=0;j<17;j++)
             {
-                printf("%d",*(plateau[i][j]));
+                printf("%d",(plateau[i][j]));
             }
             printf("\n");
         }
         break;
         }
     default:
-        printf("le chox selectionn� n'existe pas ");
+        printf("le choix selectionne n'existe pas ");
         break;
 
 

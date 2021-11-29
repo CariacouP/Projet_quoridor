@@ -2,14 +2,14 @@
 #include <stdlib.h>
 
 
-void initialiserPlateau (int* plateau[17][17])
+void initialiserPlateau (int plateau[17][17])
 {
     int i,j;
     for (i=0;i<17;i++)
     {
         for (j=0;j<17;j++)
         {
-            *(plateau[i][j])=0;
+            (plateau[i][j])=0;
            // printf("Ici\n");
         }
     }
