@@ -77,6 +77,7 @@ int main()
 
     }
     fflush(stdin);
+
     scanf("%c",&t);
     return 0;
 }

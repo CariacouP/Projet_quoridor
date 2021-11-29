@@ -9,7 +9,7 @@ void initialiserPlateau (int* plateau[17][17])
     {
         for (j=0;j<17;j++)
         {
-            plateau[i][j]=0;
+            *(plateau[i][j])=0;
            // printf("Ici\n");
         }
     }
