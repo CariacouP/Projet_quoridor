@@ -101,3 +101,4 @@ void allerCase(char ligne, int colonne)
         
     }
 }
+// A voir ensemble
