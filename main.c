@@ -59,15 +59,8 @@ int main()
         int plateau[17][17];
         //Demander la taille
         initialiserPlateau(plateau);
-        int i,j;
-        for (i=0;i<17;i++)
-        {
-            for (j=0;j<17;j++)
-            {
-                printf("%d",(plateau[i][j]));
-            }
-            printf("\n");
-        }
+        deplacerPion(0,0,1,1,plateau);
+        afficher(plateau);
         break;
         }
     default:
