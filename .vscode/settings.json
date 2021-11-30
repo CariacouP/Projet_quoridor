@@ -12,5 +12,6 @@
   "C_Cpp_Runner.excludeSearch": [],
   "C_Cpp_Runner.enableWarnings": true,
   "C_Cpp_Runner.warningsAsError": false,
-  "C_Cpp_Runner.cCompilerPath": "C:/Users/macbook/Documents/MinGW64/bin/gcc.exe"
+  "C_Cpp_Runner.cCompilerPath": "C:/Users/macbook/Documents/MinGW64/bin/gcc.exe",
+  "C_Cpp.errorSquiggles": "Disabled"
 }
