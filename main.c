@@ -4,10 +4,10 @@
 #include <time.h>
 
 
+#include "alexis.h"
 #include "fonctions.h"
 int main()
-{
-    int choixMenu;
+{   int choixMenu;
     char t;
 
 
@@ -32,6 +32,7 @@ int main()
     printf("4 - Afficher les scores des joueurs\n");
     printf("5 - Quitter le jeu\n");
     printf("6 - afficher tableau\n");
+    printf("7 - test programme alexis\n");
 
     scanf("%d",&choixMenu);
     switch (choixMenu)
@@ -53,12 +54,23 @@ int main()
         afficherGrille(12,12);
         placerBarriere('F',8,4);
         break;
-    default:
-        printf("le chox selectionn� n'existe pas ");
+
+    case 7:{
+        int plateau[17][17];
+        //Demander la taille
+        initialiserPlateau(plateau);
+        deplacerPion(0,0,1,1,plateau);
+        afficher(plateau);
         break;
+        }
+    default:
+        printf("le choix selectionne n'existe pas ");
+        break;
+
 
     }
     fflush(stdin);
+
     scanf("%c",&t);
     return 0;
 }
