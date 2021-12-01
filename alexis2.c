@@ -2,7 +2,7 @@
 #include <stdlib.h>
 
 
-void initialiserPlateau (int* plateau[17][17])
+void initialiserPlateau (int plateau[17][17])
 {
     int i,j;
     for (i=0;i<17;i++)
@@ -16,13 +16,13 @@ void initialiserPlateau (int* plateau[17][17])
 }
 
 
-void deplacerPion(int i,int j,int i1,int j1,int* plateau[17][17])
+void deplacerPion(int i,int j,int i1,int j1,int plateau[17][17])
 {
     plateau[i1][j1]=1;
     plateau[i][j]=0;
 }
 
-void afficher(int* plateau[17][17])
+void afficher(int plateau[17][17])
 {
     int i,j;
     for (i=0;i<17;i++)
@@ -39,7 +39,7 @@ void afficher(int* plateau[17][17])
 
 int main()
 {
-    int* plateau[17][17];
+    int plateau[17][17];
     //Demander la taille
     initialiserPlateau(plateau);
     int i,j;
@@ -58,9 +58,9 @@ void placerBarriere(char ligne, int colonne)
 {
     if((ligne%2!=0)&&(colonne%2!=0)&&(ligne<17)&&(colonne!=17))
     {
-        if (plateau[ligne][colonne]!=0)
+        if (plateau[ligne][colonne]!=1)
         {
-            plateau[ligne][colonne]=0;
+            plateau[ligne][colonne]=1;
         }
         else
         {
@@ -88,7 +88,7 @@ void allerCase(char ligne, int colonne)
             while (i>0)
             {
                 allerCase(ligne1,colonne1);
-                if((abs(ligne1-ligne)>1)||(abs(colonne1-colonne)>1)||((abs(ligne1-ligne)+abs(colonne1-colonne)>1)))
+                if((abs(ligne1-ligne)>2)||(abs(colonne1-colonne)>2)||((abs(ligne1-ligne)+abs(colonne1-colonne)>2)))
                 {
                     printf("saisie incorrecte la case est trop eloignee");
                 }
@@ -102,3 +102,14 @@ void allerCase(char ligne, int colonne)
     }
 }
 // A voir ensemble
+
+typedef_struct joueur
+{
+    char nom[20];
+    int pion;
+    int positionI;
+    int positionJ;
+    int score;
+    int barriere_posees;
+    int nbCoupAnnule;
+}
