@@ -165,36 +165,90 @@ void afficherGrille(int m_tailleX,int m_tailleY)
     printf("%d",k);
 }
 
-void allerCase(char ligne, int colonne){
+void allerCase(t_coordonneeG coor){
     int l;
-    l=(int) ligne-64;
-    gotoligcol(l*2+1,colonne*3);
+    l=(int) coor.ligne-64;
+    gotoligcol(l*2+1,coor.colonne*3);
     printf("%c",64);
 }
 
-void placerBarriere(char ligne, int colonne,int sens){
+void placerBarriere(t_coordonneeG coor,int sens){
 // place une barrière en fonction de la valeur du sens choisi (attention à bien blinder la saisie) en haut (1), à droite (2), en bas (3), gauche(4)
     int l;
-    l=(int) ligne-64;
+    l=(int) coor.ligne -64;
+    col=coor.colonne
     switch(sens){
         case 1:
-            gotoligcol(l*2,colonne*3);
+            gotoligcol(l*2,col*3);
             printf("B");
             break;
         case 2:
-            gotoligcol(l*2+1,colonne*3+1);
+            gotoligcol(l*2+1,col*3+1);
             printf("B");
             break;
         case 3:
-            gotoligcol(l*2+2,colonne*3);
+            gotoligcol(l*2+2,col*3);
             printf("B");
             break;
         case 4:
-            gotoligcol(l*2+1,colonne*3-2);
+            gotoligcol(l*2+1,col*3-2);
             printf("B");
             break;
         default:
             printf("erreur dans la saisie du sens");
             break;
     }
+}
+
+void coordonneGrilleVersCoordMatrice(t_coordonneeG coorG,t_coordonneeM * coorM){
+*(coorM->ligne)=((int coorG->ligne)-65)*2
+*(coorM->colonne)= coorG->colonne*2
+}
+
+
+void coordoneeMatriceversCoordGrille(t_coordonneeM  coorM,t_coordonneeG * coorG){
+*(coorG->ligne)=((int coor)-65)*2
+*(cooG->colonne)= colonneGrille*2
+}
+
+
+void afficherPiondepuisMatrice(t_coordonneeM coorM, t_joueur *joueur, ){
+ int pion;
+ t_coordonneeG coorG;
+ coorG=void coordoneeMatriceversCoordGrille(coorM,coorG);
+ allerCase(coorG);
+ pion=*(joueur->pion);
+ printf("%c", pion);
+*(joueur->coordoneeGrille)=coorG;
+}
+
+t_joueur créerJoueur(char listePionUtilise[8]){
+    int i
+    t_joueur joueur;
+    char listePions[8]=[0x40,0x2A,0x23,0x26,0x25,0xA3,0x24,0x3F];
+    int pion ;
+    printf("saisissez votre nom");
+    jouer.nom=saisirChaine();
+    joueur.score=0;
+    joueur.barrière=20;
+    do     // on veut attriber un jeton aléatoirement tout en verifiant qu'il n'a pas déjà été attribué
+    {
+       pion=listePions[rand()%9] ;
+    }while (pionestUtilise(char[8] listePionsUtilise,pion)==1);
+    while (listePionUtilise[i]=0){
+        i++;
+    }
+    listePionsUtilise[i]=pion;
+    joueur.nbCoupAnnule=1;
+    
+}
+
+int pionestUtilise(char[8] listePionsUtilise,pion){
+    
+    for(int i=0;i<;i++){
+        if (pion==listePionUtilise[i]){
+            return 1;
+        }
+    }
+    return 0;
 }
