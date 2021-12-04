@@ -200,37 +200,46 @@ void placerBarriere(t_coordonneeG coor,int sens){
     }
 }
 
-void coordonneGrilleVersCoordMatrice(t_coordonneeG coorG,t_coordonneeM * coorM){
-*(coorM->ligne)=((int coorG->ligne)-65)*2
-*(coorM->colonne)= coorG->colonne*2
+t_coordonneeM coordonneGrilleVersCoordMatrice(t_coordonneeG coorG){
+t_coordonneeM  coorM;
+coorM.ligne=((int coorG->ligne)-65)*2
+coorM.colonne= coorG->colonne*2
+return coorM;
 }
 
 
-void coordoneeMatriceversCoordGrille(t_coordonneeM  coorM,t_coordonneeG * coorG){
-*(coorG->ligne)=((int coor)-65)*2
-*(cooG->colonne)= colonneGrille*2
+t_coordonneeG coordoneeMatriceversCoordGrille(t_coordonneeM  coorM){
+    t_coordonneeG  coorG;
+    coorG.ligne=(coorM+65)/2;
+    cooG.colonne= colonneGrille/2;
+    return coorG;
 }
 
 
-void afficherPiondepuisMatrice(t_coordonneeM coorM, t_joueur *joueur, ){
- int pion;
- t_coordonneeG coorG;
- coorG=void coordoneeMatriceversCoordGrille(coorM,coorG);
- allerCase(coorG);
- pion=*(joueur->pion);
- printf("%c", pion);
-*(joueur->coordoneeGrille)=coorG;
+void afficherPiondepuisMatrice(t_coordonneeM coorM, t_joueur *joueur ){
+    int pion;
+    t_coordonneeG coorG;
+    coorG=void coordoneeMatriceversCoordGrille(coorM,coorG);
+    allerCase(coorG);
+    pion=*(joueur->pion);
+    printf("%c", pion);
+    *(joueur->coordoneeGrille)=coorG;
 }
 
-t_joueur créerJoueur(char listePionUtilise[8]){
+t_joueur créerJoueur(int iemejoueur, char listePionUtilise[8], taillePlateau){ 
+    // on crée la fonction qui va définir un joueur intialement et lui donner ca position initial la variable "ième joueur" sers à décider à quel poisition il débute
     int i
     t_joueur joueur;
     char listePions[8]=[0x40,0x2A,0x23,0x26,0x25,0xA3,0x24,0x3F];
     int pion ;
+    t_coordonneeG coorG;
+    t_coordonneeM coorM;
+
+
     printf("saisissez votre nom");
-    jouer.nom=saisirChaine();
-    joueur.score=0;
-    joueur.barrière=20;
+    jouer->nom=saisirChaine();
+    joueur->score=0;
+    joueur->barrière=20;
     do     // on veut attriber un jeton aléatoirement tout en verifiant qu'il n'a pas déjà été attribué
     {
        pion=listePions[rand()%9] ;
@@ -240,6 +249,63 @@ t_joueur créerJoueur(char listePionUtilise[8]){
     }
     listePionsUtilise[i]=pion;
     joueur.nbCoupAnnule=1;
+    switch (iemejoueur)
+    {
+    case 1 :
+        coorG->ligne="A";
+        cooreG->colonne= "5";
+        joueur->coordonneegrillee=coorG;
+        coorM=coordonneGrilleVersCoordMatrice(coorG);
+        joueur->coordonneMatrice=coorM;
+
+        break;
+    case 2 
+        coorG->ligne="I";
+        cooreG->colonne= "5";
+        joueur->coordonneegrillee=coorG;
+        coorM=coordonneGrilleVersCoordMatrice(coorG);
+        joueur->coordonneMatrice=coorM;
+    case 3 :
+        if (taillePlateau==9)  {
+            coorG->ligne="E";
+            cooreG->colonne= "1";
+            joueur->coordonneegrillee=coorG;
+            coorM=coordonneGrilleVersCoordMatrice(coorG);
+            joueur->coordonneMatrice=coorM;
+        }
+        else if (taillePlateau==12){
+            coorG->ligne="F";
+            cooreG->colonne= "1";
+            joueur->coordonneegrillee=coorG;
+            coorM=coordonneGrilleVersCoordMatrice(coorG);
+            joueur->coordonneMatrice=coorM;
+        }
+        else {
+            printf("erreur de taille du tableau");
+        }
+        break;
+    case 4:
+         if (taillePlateau==9)  {
+            coorG->ligne="E";
+            cooreG->colonne= "12";
+            joueur->coordonneegrillee=coorG;
+            coorM=coordonneGrilleVersCoordMatrice(coorG);
+            joueur->coordonneMatrice=coorM;
+        }
+
+        else if (taillePlateau==12){
+            coorG->ligne="F";
+            cooreG->colonne= "12";
+            joueur->coordonneegrillee=coorG;
+            coorM=coordonneGrilleVersCoordMatrice(coorG);
+            joueur->coordonneMatrice=coorM;
+
+        else {
+            printf("erreur de taille du tableau");
+        }
+    default:
+        break;
+    }
     
 }
 

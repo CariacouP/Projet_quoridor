@@ -11,8 +11,10 @@ void gotoligcol( int lig, int col );
 
 void allerCase(char ligne, int colonne);
 void placerBarriere(char ligne, int colonne,int sens);
-void coordonneGrilleVersCoordMatrice(char ligneGrille, int colonneGrille,t_coordoneeM * coor);
-void coordoneeMtriceversCoordGrille(char ligneGrille, int colonneGrille,t_coordoneeM * coor)
+t_coordonneeM coordonneGrilleVersCoordMatrice(t_coordonneeG coorG);
+t_coordonneeG coordoneeMatriceversCoordGrille(t_coordonneeM  coorM);
+void afficherPiondepuisMatrice(t_coordonneeM coorM, t_joueur *joueur );
+t_joueur créerJoueur(int iemejoueur, char listePionUtilise[8], taillePlateau);
 
 typedef struct coordoneeM{
     int ligne;
