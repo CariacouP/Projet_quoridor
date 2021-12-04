@@ -309,7 +309,7 @@ t_joueur créerJoueur(int iemejoueur, char listePionUtilise[8], taillePlateau){
     
 }
 
-int pionestUtilise(char[8] listePionsUtilise,pion){
+int pionestUtilise(char[8] listePionsUtilise,int pion){
     
     for(int i=0;i<;i++){
         if (pion==listePionUtilise[i]){

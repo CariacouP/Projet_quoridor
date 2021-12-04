@@ -30,6 +30,7 @@ typedef struct joueur
 {
     char nom[20];
     int pion;
+    int pionM;
     t_coordonneeM coordonneeMatrice;
     t_coordonneeG coordoneeGrille;
     int score;

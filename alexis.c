@@ -1,17 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include<math.h>
+#include "fonctions.h"
 
-typedef struct joueur
-{
-    char nom[20];
-    int pion;
-    int positionI;
-    int positionJ;
-    int score;
-    int barriere_posees;
-    int nbCoupAnnule;
-}t_joueur;
 
 void initialiserPlateau (int plateau[17][17])
 {
@@ -53,8 +44,10 @@ void deplacerPion(int i1,int j1,int plateau[17][17])
 {
     int i,j;
     t_joueur joueur;
-    i=joueur.positionI;
-    j=joueur.positionJ;
+    t_coordonneeM coor=joueur.coordonneeMatrice;
+
+    i=coor.ligne;
+    j=coor.colonne;
     plateau[i1][j1]=joueur.pion;
     plateau[i][j]=0;
 }
