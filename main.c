@@ -64,9 +64,18 @@ int main()
         break;
     case 5: //
         break;
-    case 6:
-        afficherGrilleVide(12,12);
-        //placerBarriere('F',8,4);
+    case 6:{
+            t_coordonneeG *coorG;
+            t_coordonneeM *coorM;
+            coorG->ligne="A";
+            coorG->colonne=5;
+            coorM=coordonneGrilleVersCoordMatrice(coorG);
+            printf("\nligne :");
+            printf("%d\n",coorM->ligne);
+            printf("colonne :");
+            printf("%d",coorM->colonne);
+    }
+
         break;
 
     case 7:{

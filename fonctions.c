@@ -339,12 +339,13 @@ void lancerNouvellePartie(int nombreJoueur,int taillePlateau,t_joueur *joueur[4]
 }
 
 void afficherJeu9(int matrice[17][17],t_joueur *listejoueurs[4]){
+    // fonction qui parcours la matrice pour un jeu de 9*9 et qui affiche le jeu sur la grille
     t_coordonneeM *coorM,*coorMpourPlacerBarriere;
     t_coordonneeG *coorG;
     t_joueur *joueurAPlacer;
     int i,j;
 
-// afficheage des pions des joueurs sur la grilles
+// affichage des pions des joueurs sur la grilles
     for (i=0;i<17;i+=2){
         for(j=0;j<17;j+=2){
             if (matrice[i][j]==1){
