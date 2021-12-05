@@ -1,32 +1,32 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include<math.h>
-#include "fonctions.h"
+#include"fonctions.h"
 
 
-void initialiserPlateau (int plateau[17][17])
+void initialiserMatrice (int matrice[17][17])
 {
     int i,j;
     for (i=0;i<17;i++)
     {
         for (j=0;j<17;j++)
         {
-            plateau[i][j]=0;
+            matrice[i][j]=0;
            // printf("Ici\n");
         }
     }
 }
 
-void afficher(int plateau[17][17])//nécessaire ou pas ?
+void afficher(int matrice[17][17])//nécessaire ou pas ?
 {
     //Demander la taille
-    initialiserPlateau(plateau);
+    initialiserMatrice(matrice);
     int i,j;
     for (i=0;i<17;i++)
     {
         for (j=0;j<17;j++)
         {
-            printf("%d",plateau[i][j]);
+            printf("%d",matrice[i][j]);
         }
         printf("\n");
     }
@@ -40,25 +40,24 @@ void afficher(int plateau[17][17])//nécessaire ou pas ?
     scanf("%d",&(Ptjoueur->positionJ));
 }*/
 
-void deplacerPion(int i1,int j1,int plateau[17][17])
+void deplacerPion(int i1,int j1,int matrice[17][17])
 {
     int i,j;
-    t_joueur *joueur;
-    t_coordonneeM *coor=joueur->coordonneeMatrice;
-
-    i=coor->ligne;
-    j=coor->colonne;
-    plateau[i1][j1]=joueur->pion;
-    plateau[i][j]=0;
+    t_joueur joueur;
+    t_coordonneeM coor;
+    i=coor.ligne;
+    j=coor.colonne;
+    matrice[i1][j1]=joueur.pion;
+    matrice[i][j]=0;
 }
 
-int verificationDeplacement(int i1,int j1,int plateau[17][17])// explique qui est i1 et j1 en commentaire
+int verificationDeplacement(int i1,int j1,int matrice[17][17])
 {
-    t_joueur *joueur;
-    t_coordonneeM *coor=joueur->coordonneeMatrice;
+    t_joueur joueur;
+    t_coordonneeM coor;
     int i,j;
-    i=coor->ligne;
-    j=coor->colonne;
+    i=coor.ligne;
+    j=coor.colonne;
     if ((i1%2==0)||(j1%2==0))
     {
         printf("le pion est dans la case barriere");
@@ -85,7 +84,7 @@ int verificationDeplacement(int i1,int j1,int plateau[17][17])// explique qui es
         printf("un pion ne peut pas se deplacer en diagonale");
         return(1);//Le pion ne se deplace pas en diagonale
     }
-    if(verifierBarriere(i,j,i1,j1,plateau)==1)
+    if(verifierBarriere(i,j,i1,j1,matrice)==1)
     {
         printf("une barriere empeche le deplacement");
         return(1);
@@ -93,19 +92,19 @@ int verificationDeplacement(int i1,int j1,int plateau[17][17])// explique qui es
     return(0);//Si les conditions non valables ne sont pas verifiees, alors on valide la faisabilite
 }
 
-int verifierBarriere(int i,int j,int i1,int j1,int plateau[17][17])// va dans lee programme verificationDeplacement
+int verifierBarriere(int i,int j,int i1,int j1,int matrice[17][17])// va dans lee programme verificationDeplacement
 {
-    if (i!=i1)  // si le changement de case horizontal
+    if (i!=i1)
     {
-        if (plateau[(i+i1)/2]==1)//S il y a une barriere entre les deux cases
+        if (matrice[(i+i1)/2]==1)//S il y a une barriere entre les deux cases
         {
             printf("il y a une barriere\n");
             return(1);
         }
     }
-    if (j!=j1)  // si le changement de case est vertical
+    if (j!=j1)
     {
-        if (plateau[(j+j1)/2]==1)//S il y a une barriere entre les deux cases
+        if (matrice[(j+j1)/2]==1)//S il y a une barriere entre les deux cases
         {
             printf("il y a une barriere\n");
             return(1);
@@ -114,8 +113,21 @@ int verifierBarriere(int i,int j,int i1,int j1,int plateau[17][17])// va dans le
     return(0);
 }
 
-int pionDansCase(int i1,int j1,int plateau[17][17])
+int PionDansCase(int i1,int j1,int matrice[17][17])
 {
     //si il y a un pion dans la case, il faut re saisir un endroit ou se deplacer et tout re verifier
     //Donc on va mettre verificationDeplacement ici
+    if ((i1%2==0)||(j1%2==0))
+    {
+        printf("pas possible de placer un pion a ces coordonnees de barrierre");
+        return(1);
+    }
+    else
+    {
+        if ((matrice[i1][j1]>=2)&&(matrice[i1][j1]<=4))
+        {
+            printf("il y a un pion dans la case");
+            return(0);
+        }
+    }
 }
