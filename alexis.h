@@ -3,11 +3,12 @@
 
 
 
-void initialiserPlateau (int plateau[17][17]);
-void afficher(int plateau[17][17]);
-void deplacerPion(int i,int j,int i1,int j1,int plateau[17][17]);
+void initialiserMatrice (int matrice[17][17]);
+void afficher(int matrice[17][17]);
+void deplacerPion(int i,int j,int i1,int j1,int matrice[17][17]);
 
 
 //void saisieEmplacementJoueur(t_joueur *Ptjoueur);
-int verificationDeplacement(int i1,int j1,int plateau[17][17]);
-int verifierBarriere(int i,int j,int i1,int j1,int plateau[17][17]);
+int verificationDeplacement(int i1,int j1,int matrice[17][17]);
+int verifierBarriere(int i,int j,int i1,int j1,int matrice[17][17]);
+int PionDansCase(int i1,int j1,int matrice[17][17]);
