@@ -52,6 +52,8 @@ int main()
             scanf("%d",&taillePlateau);
         }
         lancerNouvellePartie(nombreJoueur, taillePlateau, joueurs);
+
+        printf("\n ---C'est parti--- \n");
     }
         break;
     case 2: // appel de lancerPartiesauvegardee
@@ -63,7 +65,7 @@ int main()
     case 5: //
         break;
     case 6:
-        afficherGrille(12,12);
+        afficherGrilleVide(12,12);
         //placerBarriere('F',8,4);
         break;
 

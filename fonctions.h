@@ -27,7 +27,7 @@ typedef struct joueur
 
 
 
-void afficherGrille(int m_tailleX,int m_tailleY);
+void afficherGrilleVide(int m_tailleX,int m_tailleY);
 void color(int couleurDuTexte,int couleurDeFond);
 char* saisirChaine();
 void lancerNouvellePartie();
@@ -40,5 +40,6 @@ t_coordonneeM *coordonneGrilleVersCoordMatrice(t_coordonneeG *coorG);
 t_coordonneeG* coordoneeMatriceversCoordGrille(t_coordonneeM * coorM);
 void afficherPiondepuisMatrice(t_coordonneeM* coorM, t_joueur *joueur );
 t_joueur *creerJoueur(int iemejoueur, int listePionUtilise[8], int taillePlateau);
+t_coordonneeG *remplircoordonneeG(int taillePlateau);
 
 void lancerNouvellePartie(int nombreJoueur,int taillePlateau,t_joueur *joueur[4]);

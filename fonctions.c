@@ -65,7 +65,7 @@ void afficherScores()
 }
 
 
-void afficherGrille(int m_tailleX,int m_tailleY)
+void afficherGrilleVide(int m_tailleX,int m_tailleY)
 {
     system("cls");
     int i,j,l,k;
@@ -190,6 +190,22 @@ t_coordonneeG* coordoneeMatriceversCoordGrille(t_coordonneeM*  coorM){
     return coorG;
 }
 
+t_coordonneeG *remplircoordonneeG(int taillePlateau){
+    // fonction de saisie de coordonees 
+    t_coordonneeG *coor;
+    char lig;
+    int col;
+    printf("Ligne: ");
+    do{
+        scanf("%c", lig);
+    }while ( ( (int) lig<65 )&& ( (int)lig>(65+taillePlateau) ) );// on verifie que les valeurs saisies sont correct
+    do{
+        scanf(col);
+    }while( ( col<1) &&(col>taillePlateau)); //blindage de la saisie 
+    coor->ligne=lig;
+    coor->colonne=col;
+    return coor;
+}
 
 void afficherPiondepuisMatrice(t_coordonneeM *coorM, t_joueur *joueur ){
     int pion;
@@ -322,3 +338,52 @@ void lancerNouvellePartie(int nombreJoueur,int taillePlateau,t_joueur *joueur[4]
 
 }
 
+void afficherJeu9(int matrice[17][17],t_joueur *listejoueurs[4]){
+    t_coordonneeM *coorM,*coorMpourPlacerBarriere;
+    t_coordonneeG *coorG;
+    t_joueur *joueurAPlacer;
+    int i,j;
+
+// afficheage des pions des joueurs sur la grilles
+    for (i=0;i<17;i+=2){
+        for(j=0;j<17;j+=2){
+            if (matrice[i][j]==1){
+                printf("ERREUR UNE BARRIERE EST A L'INTERRIEUR D'UNE CASE");
+            }
+            else if (matrice[i][j]!=0){
+                joueurAPlacer=listejoueurs[matrice[i][j]-2];
+                coorM->ligne=i;
+                coorM->colonne=j;
+                afficherPiondepuisMatrice(coorM,joueurAPlacer);
+            }
+
+        }
+    }
+
+// affichage des barrières sur la grille
+    for (i=0;i<17;i++){
+        for (j=1;j<17;j+=2){
+            if (matrice[i][j]!=1 && matrice[i][j]!=0){
+                printf("ERREUR UN pion  EST sur une barrière");
+            }
+            else if (matrice[i][j]==1){
+                if (i%2==0){//si la barrière est vertical
+                    coorMpourPlacerBarriere->ligne=i;
+                    coorMpourPlacerBarriere->colonne=j-1;
+                    coorG=coordoneeMatriceversCoordGrille(coorMpourPlacerBarriere);
+                    placerBarriere(coorG,2);
+                } 
+            
+                else if (i%2!=0){ // si la barrière est horizontal
+                    coorMpourPlacerBarriere->ligne=i-1;
+                    coorMpourPlacerBarriere->colonne=j;
+                    coorG=coordoneeMatriceversCoordGrille(coorMpourPlacerBarriere);
+                    placerBarriere(coorG,1);
+                }
+
+            }
+        }
+
+    }
+    
+} 
