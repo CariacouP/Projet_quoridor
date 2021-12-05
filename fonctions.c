@@ -47,33 +47,7 @@ char* saisirChaine()
 }
 
 
-void lancerNouvellePartie()
-///Lance une nouvelle partie
-{
-    /*
-    /// saisie des noms des joueurs
-    char nomJoueur1=NULL;
-    char nomJoueur2=NULL;
-    char jetons[8]=[0x40,0x2A,0x23,0x26,0x25,0xA3,0x24,0x3F]; ///Listes des diff�rents jetons possible pour les joueurs
-    int numeroJetonJ1=0;
-    int numeroJetonJ2=0;
 
-    printf("\nNom joueur 1: ");
-    nomJoueur1=saisirChaine;
-    printf("\nNom joueur 2: ");
-    nomJoueur2=saisirChaine;
-
-    numeroJetonJ1=rand()% 9;
-    do      ///on verifie que les deux jetons sont les m�me.
-    {
-        numeroJetonJ2=rand()%9 ;
-    }while (numeroJetonJ2==numeroJetonJ1);
-
-    printf("joueur 1 : %s (%c)",nomJoueur1,jetons[numeroJetonJ1]);
-
-*/
-
-}
 
 void lancerPartiesauvegardee()
 {
@@ -226,7 +200,7 @@ void afficherPiondepuisMatrice(t_coordonneeM coorM, t_joueur *joueur ){
     *(joueur->coordoneeGrille)=coorG;
 }
 
-t_joueur créerJoueur(int iemejoueur, char listePionUtilise[8], taillePlateau){ 
+t_joueur creerJoueur(int iemejoueur, char listePionUtilise[8], int taillePlateau){ 
     // on crée la fonction qui va définir un joueur intialement et lui donner ca position initial la variable "ième joueur" sers à décider à quel poisition il débute
     int i
     t_joueur joueur;
@@ -249,6 +223,7 @@ t_joueur créerJoueur(int iemejoueur, char listePionUtilise[8], taillePlateau){
     }
     listePionsUtilise[i]=pion;
     joueur.nbCoupAnnule=1;
+    joueur.pionM=iemejoueur+1;
     switch (iemejoueur)
     {
     case 1 :
@@ -318,3 +293,20 @@ int pionestUtilise(char[8] listePionsUtilise,int pion){
     }
     return 0;
 }
+
+void lancerNouvellePartie(int nombreJoueur,int taillePlateau){
+///Lance une nouvelle partie
+    system("cls");
+    color(0,15);
+    t_joueur joueur[nombreJoueur];
+    char listePionUtilise[8]
+    for (int i=1;i<nombrejoueur,i++){
+        joueur[i-1]=creerJoueur(i, listePionUtilise[8],  taillePlateau);
+        listePionUtilise[i_1]= joueur[i-1].pion
+
+    }
+     
+     
+
+}
+

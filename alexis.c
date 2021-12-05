@@ -52,7 +52,7 @@ void deplacerPion(int i1,int j1,int plateau[17][17])
     plateau[i][j]=0;
 }
 
-int verificationDeplacement(int i1,int j1,int plateau[17][17])
+int verificationDeplacement(int i1,int j1,int plateau[17][17])// explique qui est i1 et j1 en commentaire
 {
     t_joueur joueur;
     int i,j;
@@ -94,7 +94,7 @@ int verificationDeplacement(int i1,int j1,int plateau[17][17])
 
 int verifierBarriere(int i,int j,int i1,int j1,int plateau[17][17])// va dans lee programme verificationDeplacement
 {
-    if (i!=i1)
+    if (i!=i1)  // si le changement de case horizontal
     {
         if (plateau[(i+i1)/2]==1)//S il y a une barriere entre les deux cases
         {
@@ -102,7 +102,7 @@ int verifierBarriere(int i,int j,int i1,int j1,int plateau[17][17])// va dans le
             return(1);
         }
     }
-    if (j!=j1)
+    if (j!=j1)  // si le changement de case est vertical
     {
         if (plateau[(j+j1)/2]==1)//S il y a une barriere entre les deux cases
         {
