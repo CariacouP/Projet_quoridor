@@ -37,10 +37,22 @@ int main()
     scanf("%d",&choixMenu);
     switch (choixMenu)
     {
-    case 1:// appel de lancerNouvellePartie
-        
-        
-        
+    case 1:{// appel de lancerNouvellePartie
+        int nombreJoueur;
+        int taillePlateau;
+        t_joueur* joueurs[4];
+        system("cls");
+        color(0,15);
+        printf("Combien de joueurs pour cette partie ?\n");
+        fflush(stdin);
+        scanf("%d",&nombreJoueur);
+        if (nombreJoueur==4){
+            printf("Quelle taille pour le plateau ?\n");
+            fflush(stdin);
+            scanf("%d",&taillePlateau);
+        }
+        lancerNouvellePartie(nombreJoueur, taillePlateau, joueurs);
+    }
         break;
     case 2: // appel de lancerPartiesauvegardee
         break;
@@ -52,7 +64,7 @@ int main()
         break;
     case 6:
         afficherGrille(12,12);
-        placerBarriere('F',8,4);
+        //placerBarriere('F',8,4);
         break;
 
     case 7:{

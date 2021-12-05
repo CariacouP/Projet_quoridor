@@ -43,21 +43,22 @@ void afficher(int plateau[17][17])//nécessaire ou pas ?
 void deplacerPion(int i1,int j1,int plateau[17][17])
 {
     int i,j;
-    t_joueur joueur;
-    t_coordonneeM coor=joueur.coordonneeMatrice;
+    t_joueur *joueur;
+    t_coordonneeM *coor=joueur->coordonneeMatrice;
 
-    i=coor.ligne;
-    j=coor.colonne;
-    plateau[i1][j1]=joueur.pion;
+    i=coor->ligne;
+    j=coor->colonne;
+    plateau[i1][j1]=joueur->pion;
     plateau[i][j]=0;
 }
 
 int verificationDeplacement(int i1,int j1,int plateau[17][17])// explique qui est i1 et j1 en commentaire
 {
-    t_joueur joueur;
+    t_joueur *joueur;
+    t_coordonneeM *coor=joueur->coordonneeMatrice;
     int i,j;
-    i=joueur.positionI;
-    j=joueur.positionJ;
+    i=coor->ligne;
+    j=coor->colonne;
     if ((i1%2==0)||(j1%2==0))
     {
         printf("le pion est dans la case barriere");
