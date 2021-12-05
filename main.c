@@ -79,11 +79,11 @@ int main()
         break;
 
     case 7:{
-        int plateau[17][17];
+        int matrice[17][17];
         //Demander la taille
-        initialiserPlateau(plateau);
-        deplacerPion(0,0,1,1,plateau);
-        afficher(plateau);
+        initialiserMatrice(matrice);
+        deplacerPion(0,0,1,1,matrice);
+        afficher(matrice);
         break;
         }
     default:
@@ -97,3 +97,4 @@ int main()
     scanf("%c",&t);
     return 0;
 }
+
