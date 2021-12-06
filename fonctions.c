@@ -334,19 +334,19 @@ void lancerNouvellePartie(int nombreJoueur,int taillePlateau,t_joueur joueur[4])
     switch (nombreJoueur)
     {
     case 2 :
-        printf(" \n création du 1er joueur ");
+        printf(" \n creation du 1er joueur ");
         joueur[0]=creerJoueur(1, listePionUtilise,  taillePlateau);
         printf(" \n création du éème joueur ");
         joueur[1]=creerJoueur(2, listePionUtilise,  taillePlateau);
-=        break;
+       break;
     case 4 :
-        printf(" \n création du 1er joueur ");
+        printf(" \n creation du 1er joueur ");
         joueur[0]=creerJoueur(1, listePionUtilise,  taillePlateau);
-        printf(" \n création du éème joueur ");
+        printf(" \n creation du éème joueur ");
         joueur[1]=creerJoueur(2, listePionUtilise,  taillePlateau);
-         printf(" \n création du 3eme joueur ");
+         printf(" \n creation du 3eme joueur ");
         joueur[2]=creerJoueur(1, listePionUtilise,  taillePlateau);
-        printf(" \n création du 4eme joueur ");
+        printf(" \n creation du 4eme joueur ");
         joueur[3]=creerJoueur(2, listePionUtilise,  taillePlateau);
         break;
     default:
