@@ -40,7 +40,7 @@ int main()
     case 1:{// appel de lancerNouvellePartie
         int nombreJoueur;
         int taillePlateau;
-        t_joueur* joueurs[4];
+        t_joueur joueurs[4];
         system("cls");
         color(0,15);
         printf("Combien de joueurs pour cette partie ?\n");
@@ -65,25 +65,24 @@ int main()
     case 5: //
         break;
     case 6:{
-            t_coordonneeG *coorG;
-            t_coordonneeM *coorM;
-            coorG->ligne="A";
-            coorG->colonne=5;
-            coorM=coordonneGrilleVersCoordMatrice(coorG);
-            printf("\nligne :");
-            printf("%d\n",coorM->ligne);
-            printf("colonne :");
-            printf("%d",coorM->colonne);
-    }
+            t_coordonneeG coorG;
+            t_coordonneeM coorM;
+            t_joueur joueurs[4];
+            lancerNouvellePartie(2,9,joueurs);
+            printf("\n Nom joueur 1: ");
+            puts(joueurs[0].nom);
+            printf("\n Nom joueur 2: ");
+            puts(joueurs[1].nom);
+
 
         break;
-
+        }
     case 7:{
-        int matrice[17][17];
+        int plateau[17][17];
         //Demander la taille
-        initialiserMatrice(matrice);
-        deplacerPion(0,0,1,1,matrice);
-        afficher(matrice);
+        initialiserMatrice(plateau);
+        deplacerPion(0,0,1,1,plateau);
+        afficher(plateau);
         break;
         }
     default:
@@ -97,4 +96,3 @@ int main()
     scanf("%c",&t);
     return 0;
 }
-

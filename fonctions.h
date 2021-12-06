@@ -15,8 +15,8 @@ typedef struct joueur
     char nom[20];
     int pion;
     int pionM;
-    t_coordonneeM *coordonneeMatrice;
-    t_coordonneeG *coordonneeGrille;
+    t_coordonneeM coordonneeMatrice;
+    t_coordonneeG coordonneeGrille;
     int score;
     int barriere_posees;
     int nbCoupAnnule;
@@ -34,12 +34,18 @@ void lancerNouvellePartie();
 
 void gotoligcol( int lig, int col );
 
-void allerCase(t_coordonneeG *coor);
-void placerBarriere(t_coordonneeG *coor,int sens);
-t_coordonneeM *coordonneGrilleVersCoordMatrice(t_coordonneeG *coorG);
-t_coordonneeG* coordoneeMatriceversCoordGrille(t_coordonneeM * coorM);
-void afficherPiondepuisMatrice(t_coordonneeM* coorM, t_joueur *joueur );
-t_joueur *creerJoueur(int iemejoueur, int listePionUtilise[8], int taillePlateau);
-t_coordonneeG *remplircoordonneeG(int taillePlateau);
+void allerCase(t_coordonneeG coor);
+void placerBarriere(t_coordonneeG coor,int sens);
+t_coordonneeM coordonneGrilleVersCoordMatrice(t_coordonneeG coorG);
+t_coordonneeG coordoneeMatriceversCoordGrille(t_coordonneeM  coorM);
+void afficherPiondepuisMatrice(t_coordonneeM coorM, t_joueur joueur );
+t_joueur creerJoueur(int iemejoueur, int listePionUtilise[8], int taillePlateau);
+t_coordonneeG remplircoordonneeG(int taillePlateau);
 
-void lancerNouvellePartie(int nombreJoueur,int taillePlateau,t_joueur *joueur[4]);
+void lancerNouvellePartie(int nombreJoueur,int taillePlateau,t_joueur joueur[4]);
+void afficherJeu9(int matrice[17][17],t_joueur listejoueurs[4]);
+int pionsUtilise(int listePionsUtilise[8],int pion);
+
+
+
+
