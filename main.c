@@ -40,6 +40,8 @@ int main()
     case 1:{// appel de lancerNouvellePartie
         int nombreJoueur;
         int taillePlateau;
+        int matrice9[17][17];
+        int matrice12[23][23];
         t_joueur joueurs[4];
         system("cls");
         color(0,15);
@@ -58,25 +60,28 @@ int main()
         }
         
         lancerNouvellePartie(nombreJoueur, taillePlateau, joueurs);
-        printf("coordonnee du 2eme joeur dans la matrice: ligne : %d colonne: %d, son pion :%d \n",joueurs[1].coordonneeMatrice.ligne,joueurs[1].coordonneeMatrice.colonne, joueurs[1].pionM);
-
+        //intitialiation de la matrice dans laquelle seront géréer les deplacements
         if (taillePlateau==9){
-            int matrice[17][17];
-            initialiserMatrice9(matrice,joueurs);
-            afficher9(matrice);
+            
+            initialiserMatrice9(matrice9,joueurs);
+            
             }
         else if (taillePlateau==12) {
-            int matrice[23][23];
-            initialiserMatrice12(matrice,joueurs);
-            afficher12(matrice);
+            
+            initialiserMatrice12(matrice12,joueurs);
             }
-        
-        //intitialiation de la matrice dans laquelle seront géréer les deplacements
-        
+        afficherGrilleVide(taillePlateau,taillePlateau);
+        if (taillePlateau==9){
+            afficherJeu9(matrice9,joueurs);
         }
+        else if (taillePlateau==12){
+            afficherJeu12(matrice12,joueurs);
 
+        }
+    }
 
-        printf("\n ---C'est parti--- \n");
+        
+        
         break;
     
         
@@ -89,14 +94,17 @@ int main()
     case 5: //
         break;
     case 6:{
-            t_coordonneeG coorG;
-            t_coordonneeM coorM;
-            t_joueur joueurs[4];
-            lancerNouvellePartie(2,9,joueurs);
-            printf("\n Nom joueur 1: ");
-            puts(joueurs[0].nom);
-            printf("\n Nom joueur 2: ");
-            puts(joueurs[1].nom);
+        t_coordonneeG coorG;
+        t_coordonneeM coorM;
+        t_joueur joueurs[4];
+        int taillePlateau=9;
+        afficherGrilleVide(taillePlateau,taillePlateau);
+        coorG.ligne='A';
+        coorG.colonne=5;
+        allerCase(coorG);
+        fflush(stdin);
+        printf("%c",0x40);
+
 
 
         break;

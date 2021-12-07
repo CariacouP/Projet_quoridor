@@ -136,7 +136,7 @@ void allerCase(t_coordonneeG coor){
     char lig=(coor.ligne);
     l=(int)lig-64;
     gotoligcol(l*2+1,(coor.colonne)*3);
-    printf("%c",64);
+    
 }
 
 void placerBarriere(t_coordonneeG coor,int sens){
@@ -178,7 +178,7 @@ t_coordonneeM coordonneGrilleVersCoordMatrice(t_coordonneeG coorG){
 t_coordonneeG coordoneeMatriceversCoordGrille(t_coordonneeM  coorM){
     t_coordonneeG  coorG;
     (coorG.ligne)=(char)(((coorM.ligne)/2)+65);
-    (coorG.colonne)= (coorM.colonne)/2+1;
+    (coorG.colonne)= ((coorM.colonne)/2)+1;
     return coorG;
 }
 
@@ -354,16 +354,16 @@ void lancerNouvellePartie(int nombreJoueur,int taillePlateau,t_joueur joueur[4])
     case 4 :
         printf(" \n creation du 1er joueur ");
         joueur[0]=creerJoueur(1, listePionUtilise,  taillePlateau);
-        printf("coordonnee matrice : ligne : %d, colonnne: %d, pion matrice : %d \n",joueur[0].coordonneeMatrice.ligne,joueur[0].coordonneeMatrice.colonne,joueur[0].pionM);
+        
         printf(" \n creation du 2eme joueur ");
         joueur[1]=creerJoueur(2, listePionUtilise,  taillePlateau);
-         printf("coordonnee matrice : ligne : %d, colonnne: %d, pion matrice : %d \n",joueur[1].coordonneeMatrice.ligne,joueur[1].coordonneeMatrice.colonne,joueur[1].pionM);
+
          printf(" \n creation du 3eme joueur ");
         joueur[2]=creerJoueur(3, listePionUtilise,  taillePlateau);
-         printf("coordonnee matrice : ligne : %d, colonnne: %d, pion matrice : %d \n",joueur[2].coordonneeMatrice.ligne,joueur[2].coordonneeMatrice.colonne,joueur[2].pionM);
+         
         printf(" \n creation du 4eme joueur ");
         joueur[3]=creerJoueur(4, listePionUtilise,  taillePlateau);
-         printf("coordonnee matrice : ligne : %d, colonnne: %d, pion matrice : %d \n",joueur[3].coordonneeMatrice.ligne,joueur[3].coordonneeMatrice.colonne,joueur[3].pionM);
+        
         break;
     default:
         break;
@@ -391,6 +391,13 @@ void afficherJeu9(int matrice[17][17],t_joueur listejoueurs[4]){
                 coorM.ligne=i;
                 coorM.colonne=j;
                 afficherPiondepuisMatrice(coorM,joueurAPlacer);
+            }
+            else {
+                coorM.ligne=i;
+                coorM.colonne=j;
+                coorG=coordoneeMatriceversCoordGrille(coorM);
+                allerCase(coorG);
+                printf(" ");
             }
 
         }
