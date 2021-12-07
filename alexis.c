@@ -40,16 +40,7 @@ void afficher(int matrice[17][17])//nécessaire ou pas ?
     scanf("%d",&(Ptjoueur->positionJ));
 }*/
 
-void deplacerPion(int i1,int j1,int matrice[17][17])
-{
-    int i,j;
-    t_joueur joueur;
-    t_coordonneeM coor;
-    i=coor.ligne;
-    j=coor.colonne;
-    matrice[i1][j1]=joueur.pion;
-    matrice[i][j]=0;
-}
+
 
 int verificationDeplacement(int i1,int j1,int matrice[17][17])
 {
@@ -128,6 +119,60 @@ int PionDansCase(int i1,int j1,int matrice[17][17])
         {
             printf("il y a un pion dans la case");
             return(0);
+        }
+    }
+}
+
+int verifiePassage(int i, int j, int matrice[17][17])//vérifie si  le pion est entoure de pion ou de barriere
+{
+    if ((i%2==1)&&(j%2==1))// si le pion est dans une case pion
+    {
+        if (((matrice[i+1][j]==1)||(matrice[i+2][j]>=2))&&((matrice[i-1][j]==1)||(matrice[i-2][j]>=2))&&((matrice[i][j+1]==1)||(matrice[i][j+2]>=2))&&((matrice[i][j-1]==1)||(matrice[i][j-2]>=2)))
+            {//si le pion est entoure de barriere ou pion
+                printf("le pion est entoure le deplacement ne peut pas se faire ici");
+                return(1);
+            }
+        else
+        {
+            printf("le deplacement peut se faire");
+            return(0);
+        }
+    }
+
+}
+
+void deplacerPion(int i1,int j1,int matrice[17][17])
+{
+    int i,j,j2,i2;
+    t_joueur joueur;
+    t_coordonneeM coor;
+    i=coor.ligne;
+    j=coor.colonne;
+    if (verificationDeplacement(i1,j1,matrice))
+    {
+        if (verifierBarriere(i,j,i1,j1,matrice))
+        {
+            if (PionDansCase(i1,j1,matrice))
+            {
+                if (verifiePassage(i1,j1,matrice))//verifie si le pion peut sauter le joueur et a une case ou atterir
+                {
+                    do
+                    {
+                        printf("entrer des cooedonnees\n");
+                        scanf("%d",&i2);
+                        scanf("%d",&j2);
+                        i=i1;
+                        j=j1;
+                        matrice[i][j]=0;//le pion n est plus dans sa case de depart ,ni dans celle du pion car il le saute
+                    }while ((verificationDeplacement(i2,j2,matrice)!=0)&&(matrice[i2][j2]!=0));//deplacement dans la seconde cellule apres le saut du pion
+                    matrice[i2][j2]=joueur.pion;
+                }
+            }
+            else
+            {
+                matrice[i1][j1]=joueur.pion;
+                matrice[i][j]=0;
+            }
         }
     }
 }
