@@ -12,3 +12,5 @@ void deplacerPion(int i,int j,int i1,int j1,int matrice[17][17]);
 int verificationDeplacement(int i1,int j1,int matrice[17][17]);
 int verifierBarriere(int i,int j,int i1,int j1,int matrice[17][17]);
 int PionDansCase(int i1,int j1,int matrice[17][17]);
+
+int verifiePassage(int i, int j, int matrice[17][17]);
