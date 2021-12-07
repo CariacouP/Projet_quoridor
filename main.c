@@ -80,7 +80,10 @@ int main()
         }
     }
 
-        
+        gotoligcol(2,60); // garder ces coordoonées en mémoir elles se toruve à l'extérieur à droite du plateau
+        printf("test position");
+        gotoligcol(4,60);
+        printf(" test de la deuxième ligne");
         
         break;
     

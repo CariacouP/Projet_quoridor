@@ -244,7 +244,7 @@ t_joueur creerJoueur(int iemejoueur, int listePionUtilise[8], int taillePlateau)
        pion=listePions[rand()%9] ;
     }while (pionsUtilise(listePionUtilise,pion)==1);
     
-    while (listePionUtilise[i]=0){
+    while (listePionUtilise[i]==0){
         i++;
     }
     listePionUtilise[i]=pion;
