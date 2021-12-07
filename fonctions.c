@@ -170,7 +170,7 @@ void placerBarriere(t_coordonneeG coor,int sens){
 t_coordonneeM coordonneGrilleVersCoordMatrice(t_coordonneeG coorG){
     t_coordonneeM  coorM;
     (coorM.ligne)=((int) (coorG.ligne)-65)*2;
-    (coorM.colonne)= (coorG.colonne)*2;
+    (coorM.colonne)= (coorG.colonne)*2-2;
     return coorM;
 }
 
@@ -178,7 +178,7 @@ t_coordonneeM coordonneGrilleVersCoordMatrice(t_coordonneeG coorG){
 t_coordonneeG coordoneeMatriceversCoordGrille(t_coordonneeM  coorM){
     t_coordonneeG  coorG;
     (coorG.ligne)=(char)(((coorM.ligne)/2)+65);
-    (coorG.colonne)= (coorM.colonne)/2;
+    (coorG.colonne)= (coorM.colonne)/2+1;
     return coorG;
 }
 
@@ -243,6 +243,7 @@ t_joueur creerJoueur(int iemejoueur, int listePionUtilise[8], int taillePlateau)
     {
        pion=listePions[rand()%9] ;
     }while (pionsUtilise(listePionUtilise,pion)==1);
+    
     while (listePionUtilise[i]=0){
         i++;
     }
@@ -261,11 +262,22 @@ t_joueur creerJoueur(int iemejoueur, int listePionUtilise[8], int taillePlateau)
 
         break;
     case 2 :
-        coorG.ligne='I';
-        coorG.colonne= 5;
-        joueur.coordonneeGrille=coorG;
-        coorM=coordonneGrilleVersCoordMatrice(coorG);
-        joueur.coordonneeMatrice=coorM;
+       if (taillePlateau==9){
+            coorG.ligne='I';
+            coorG.colonne= 5;
+            joueur.coordonneeGrille=coorG;
+            coorM=coordonneGrilleVersCoordMatrice(coorG);
+            joueur.coordonneeMatrice=coorM;
+       }
+       else if (taillePlateau==12){
+            coorG.ligne='L';
+            coorG.colonne= 6;
+            joueur.coordonneeGrille=coorG;
+            coorM=coordonneGrilleVersCoordMatrice(coorG);
+            joueur.coordonneeMatrice=coorM;
+
+       }
+       break;
     case 3 :
         if (taillePlateau==9)  {
             coorG.ligne='E';
@@ -288,7 +300,7 @@ t_joueur creerJoueur(int iemejoueur, int listePionUtilise[8], int taillePlateau)
     case 4:
          if (taillePlateau==9)  {
             coorG.ligne='E';
-            coorG.colonne= 12;
+            coorG.colonne= 9;
             joueur.coordonneeGrille=coorG;
             coorM=coordonneGrilleVersCoordMatrice(coorG);
             joueur.coordonneeMatrice=coorM;
@@ -336,18 +348,22 @@ void lancerNouvellePartie(int nombreJoueur,int taillePlateau,t_joueur joueur[4])
     case 2 :
         printf(" \n creation du 1er joueur ");
         joueur[0]=creerJoueur(1, listePionUtilise,  taillePlateau);
-        printf(" \n création du éème joueur ");
+        printf(" \n création du 2eme joueur ");
         joueur[1]=creerJoueur(2, listePionUtilise,  taillePlateau);
        break;
     case 4 :
         printf(" \n creation du 1er joueur ");
         joueur[0]=creerJoueur(1, listePionUtilise,  taillePlateau);
-        printf(" \n creation du éème joueur ");
+        printf("coordonnee matrice : ligne : %d, colonnne: %d, pion matrice : %d \n",joueur[0].coordonneeMatrice.ligne,joueur[0].coordonneeMatrice.colonne,joueur[0].pionM);
+        printf(" \n creation du 2eme joueur ");
         joueur[1]=creerJoueur(2, listePionUtilise,  taillePlateau);
+         printf("coordonnee matrice : ligne : %d, colonnne: %d, pion matrice : %d \n",joueur[1].coordonneeMatrice.ligne,joueur[1].coordonneeMatrice.colonne,joueur[1].pionM);
          printf(" \n creation du 3eme joueur ");
-        joueur[2]=creerJoueur(1, listePionUtilise,  taillePlateau);
+        joueur[2]=creerJoueur(3, listePionUtilise,  taillePlateau);
+         printf("coordonnee matrice : ligne : %d, colonnne: %d, pion matrice : %d \n",joueur[2].coordonneeMatrice.ligne,joueur[2].coordonneeMatrice.colonne,joueur[2].pionM);
         printf(" \n creation du 4eme joueur ");
-        joueur[3]=creerJoueur(2, listePionUtilise,  taillePlateau);
+        joueur[3]=creerJoueur(4, listePionUtilise,  taillePlateau);
+         printf("coordonnee matrice : ligne : %d, colonnne: %d, pion matrice : %d \n",joueur[3].coordonneeMatrice.ligne,joueur[3].coordonneeMatrice.colonne,joueur[3].pionM);
         break;
     default:
         break;
@@ -379,10 +395,58 @@ void afficherJeu9(int matrice[17][17],t_joueur listejoueurs[4]){
 
         }
     }
-
 // affichage des barrières sur la grille
     for (i=0;i<17;i++){
         for (j=1;j<17;j+=2){
+            if (matrice[i][j]!=1 && matrice[i][j]!=0){
+                printf("ERREUR UN pion  EST sur une barrière");
+            }
+            else if (matrice[i][j]==1){
+                if (i%2==0){//si la barrière est vertical
+                    coorMpourPlacerBarriere.ligne=i;
+                    coorMpourPlacerBarriere.colonne=j-1;
+                    coorG=coordoneeMatriceversCoordGrille(coorMpourPlacerBarriere);
+                    placerBarriere(coorG,2);
+                }
+
+                else if (i%2!=0){ // si la barrière est horizontal
+                    coorMpourPlacerBarriere.ligne=i-1;
+                    coorMpourPlacerBarriere.colonne=j;
+                    coorG=coordoneeMatriceversCoordGrille(coorMpourPlacerBarriere);
+                    placerBarriere(coorG,1);
+                }
+
+            }
+        }
+
+    }
+}
+void afficherJeu12(int matrice[23][23],t_joueur listejoueurs[4]){
+    // fonction qui parcours la matrice pour un jeu de 9*9 et qui affiche le jeu sur la grille
+    t_coordonneeM coorM,coorMpourPlacerBarriere;
+    t_coordonneeG coorG;
+    t_joueur joueurAPlacer;
+    int i,j;
+
+// affichage des pions des joueurs sur la grilles
+    for (i=0;i<23;i+=2){
+        for(j=0;j<23;j+=2){
+            if (matrice[i][j]==1){
+                printf("ERREUR UNE BARRIERE EST A L'INTERRIEUR D'UNE CASE");
+            }
+            else if (matrice[i][j]!=0){
+                joueurAPlacer=listejoueurs[matrice[i][j]-2];
+                coorM.ligne=i;
+                coorM.colonne=j;
+                afficherPiondepuisMatrice(coorM,joueurAPlacer);
+            }
+
+        }
+    }
+
+// affichage des barrières sur la grille
+    for (i=0;i<23;i++){
+        for (j=1;j<23;j+=2){
             if (matrice[i][j]!=1 && matrice[i][j]!=0){
                 printf("ERREUR UN pion  EST sur une barrière");
             }
@@ -424,6 +488,7 @@ t_barriereG choixBarrierre(int taillePlateau){
 }
 
 void placerBarriereGdansMatrice(t_barriereG barriere, int matrice[17][17]){
+
     t_coordonneeM coorM1;
     t_coordonneeM coorM2;
     int sens ;
@@ -459,4 +524,46 @@ void placerBarriereGdansMatrice(t_barriereG barriere, int matrice[17][17]){
     matrice[coorM2.ligne][coorM2.colonne]=1;
 
 
+}
+
+void initialiserMatrice9 (int matrice[17][17],t_joueur joueur[4])
+{
+    int i,j;
+    for (i=0;i<17;i++)
+    {
+        for (j=0;j<17;j++)
+        {
+            matrice[i][j]=0;
+           // printf("Ici\n");
+        }
+    }
+    
+    for (i=0;i<4;i++){
+        // On va placer les joueurs qui ont été intialisé et qui sont présent dans la liste de joueurs
+        if (joueur[i].pionM<6 && joueur[i].pionM>1 ){
+            // on verifie que le joueur i existe et été intitialisé correctement avant de traiter le cas
+            matrice[joueur[i].coordonneeMatrice.ligne][joueur[i].coordonneeMatrice.colonne]=joueur[i].pionM;
+        }
+    }
+}
+
+void initialiserMatrice12 (int matrice[23][23],t_joueur joueur[4])
+{
+    int i,j;
+    for (i=0;i<23;i++)
+    {
+        for (j=0;j<23;j++)
+        {
+            matrice[i][j]=0;
+           // printf("Ici\n");
+        }
+    }
+
+    for (i=0;i<4;i++){
+        // On va placer les joueurs qui ont été intialisé et qui sont présent dans la liste de joueurs
+        if (joueur[i].pionM<6 && joueur[i].pionM>1 ){
+            // on verifie que le joueur i existe et été intitialisé correctement avant de traiter le cas
+            matrice[joueur[i].coordonneeMatrice.ligne][joueur[i].coordonneeMatrice.colonne]=joueur[i].pionM;
+        }
+    }
 }

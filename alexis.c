@@ -4,23 +4,12 @@
 #include"fonctions.h"
 
 
-void initialiserMatrice (int matrice[17][17])
-{
-    int i,j;
-    for (i=0;i<17;i++)
-    {
-        for (j=0;j<17;j++)
-        {
-            matrice[i][j]=0;
-           // printf("Ici\n");
-        }
-    }
-}
 
-void afficher(int matrice[17][17])//nécessaire ou pas ?
+
+void afficher9(int matrice[17][17])//nécessaire ou pas ?
 {
     //Demander la taille
-    initialiserMatrice(matrice);
+    //initialiserMatrice(matrice);
     int i,j;
     for (i=0;i<17;i++)
     {
@@ -32,6 +21,20 @@ void afficher(int matrice[17][17])//nécessaire ou pas ?
     }
 }
 
+void afficher12(int matrice[23][23])//nécessaire ou pas ?
+{
+    //Demander la taille
+    //initialiserMatrice(matrice);
+    int i,j;
+    for (i=0;i<23;i++)
+    {
+        for (j=0;j<23;j++)
+        {
+            printf("%d ",matrice[i][j]);
+        }
+        printf("\n");
+    }
+}
 /*void saisieEmplacementJoueur(t_joueur *Ptjoueur)//nouveau
 {
     printf("saisir la position ligne du joueur");

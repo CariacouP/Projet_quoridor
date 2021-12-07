@@ -3,8 +3,9 @@
 
 
 
-void initialiserMatrice (int matrice[17][17]);
-void afficher(int matrice[17][17]);
+void afficher9(int matrice[17][17]);
+void afficher12(int matrice[23][23]);
+
 void deplacerPion(int i,int j,int i1,int j1,int matrice[17][17]);
 
 

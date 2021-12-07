@@ -47,15 +47,39 @@ int main()
         fflush(stdin);
         scanf("%d",&nombreJoueur);
         if (nombreJoueur==4){
-            printf("Quelle taille pour le plateau ?\n");
-            fflush(stdin);
-            scanf("%d",&taillePlateau);
+            do{
+                printf("Quelle taille pour le plateau ?\n");
+                fflush(stdin);
+                scanf("%d",&taillePlateau);
+            }while ( (taillePlateau!=9) && (taillePlateau!=12) ); // verifie que la taille du plateau correspond à 9 ou 12
         }
+        else {
+            taillePlateau=9;
+        }
+        
         lancerNouvellePartie(nombreJoueur, taillePlateau, joueurs);
+        printf("coordonnee du 2eme joeur dans la matrice: ligne : %d colonne: %d, son pion :%d \n",joueurs[1].coordonneeMatrice.ligne,joueurs[1].coordonneeMatrice.colonne, joueurs[1].pionM);
+
+        if (taillePlateau==9){
+            int matrice[17][17];
+            initialiserMatrice9(matrice,joueurs);
+            afficher9(matrice);
+            }
+        else if (taillePlateau==12) {
+            int matrice[23][23];
+            initialiserMatrice12(matrice,joueurs);
+            afficher12(matrice);
+            }
+        
+        //intitialiation de la matrice dans laquelle seront géréer les deplacements
+        
+        }
+
 
         printf("\n ---C'est parti--- \n");
-    }
         break;
+    
+        
     case 2: // appel de lancerPartiesauvegardee
         break;
     case 3: //appel de afficherAide
@@ -79,10 +103,11 @@ int main()
         }
     case 7:{
         int plateau[17][17];
+        t_joueur joueurs[4];
         //Demander la taille
-        initialiserMatrice(plateau);
+        initialiserMatrice9(plateau,joueurs);
         deplacerPion(0,0,1,1,plateau);
-        afficher(plateau);
+        afficher9(plateau);
         break;
         }
     default:
