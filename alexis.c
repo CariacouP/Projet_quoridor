@@ -26,7 +26,7 @@ void afficher(int matrice[17][17])//nécessaire ou pas ?
     {
         for (j=0;j<17;j++)
         {
-            printf("%d",matrice[i][j]);
+            printf("%d ",matrice[i][j]);
         }
         printf("\n");
     }
@@ -49,7 +49,7 @@ int verificationDeplacement(int i1,int j1,int matrice[17][17])
     int i,j;
     i=coor.ligne;
     j=coor.colonne;
-    if ((i1%2==0)||(j1%2==0))
+    if ((i1%2==1)||(j1%2==1))
     {
         printf("le pion est dans la case barriere");
         return(1);//retourne faux si le pion est dans une case barriere
@@ -108,7 +108,7 @@ int PionDansCase(int i1,int j1,int matrice[17][17])
 {
     //si il y a un pion dans la case, il faut re saisir un endroit ou se deplacer et tout re verifier
     //Donc on va mettre verificationDeplacement ici
-    if ((i1%2==0)||(j1%2==0))
+    if ((i1%2==1)||(j1%2==1))
     {
         printf("pas possible de placer un pion a ces coordonnees de barrierre");
         return(1);
