@@ -22,6 +22,16 @@ typedef struct joueur
     int nbCoupAnnule;
 } t_joueur ;
 
+typedef struct barriereG{
+    //objet barrière de de case de long, on donne le couple de coordoonée sur la matrice qui correspond
+    t_coordonneeG coorG1;
+    t_coordonneeG coorG2;
+    int sens     // sens dans lequel sera posé la barrière (en haut (1), à droite (2), en bas (3), gauche(4))
+
+}t_barriereG;
+
+
+
 
 
 
@@ -45,7 +55,8 @@ t_coordonneeG remplircoordonneeG(int taillePlateau);
 void lancerNouvellePartie(int nombreJoueur,int taillePlateau,t_joueur joueur[4]);
 void afficherJeu9(int matrice[17][17],t_joueur listejoueurs[4]);
 int pionsUtilise(int listePionsUtilise[8],int pion);
-
+t_barriereG choixBarrierre(int taillePlateau);
+void placerBarriereGdansMatrice(t_barriereG barriere, int matrice[17][17]);
 
 
 

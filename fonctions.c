@@ -407,3 +407,56 @@ void afficherJeu9(int matrice[17][17],t_joueur listejoueurs[4]){
     }
 
 }
+
+t_barriereG choixBarrierre(int taillePlateau){
+    t_barriereG barriere;
+    int sens;
+    barriere.coorG1=remplircoordonneeG(taillePlateau);
+    barriere.coorG2=remplircoordonneeG(taillePlateau);
+    printf(" Choisissez l'orientation de la barrière par rapport aux 2 cases choisies en haut (1), à droite (2), en bas (3), gauche(4). Attention a choisir un sens possible");
+    do {
+        scanf("%d",&sens);
+    }while ( ( (barriere.coorG1.ligne==barriere.coorG2.ligne) && ((sens==2)||(sens==4)) ) || ( (barriere.coorG1.colonne==barriere.coorG2.colonne) && ((sens==1)||(sens==3)) ) );
+//on verifie que le sens saisie est possible ( si on a pris 2 cases horizontales on ne peut pas poser les barrières verticalement et vice versa)
+    barriere.sens=sens;
+    return barriere;
+
+}
+
+void placerBarriereGdansMatrice(t_barriereG barriere, int matrice[17][17]){
+    t_coordonneeM coorM1;
+    t_coordonneeM coorM2;
+    int sens ;
+    sens=barriere.sens;
+
+    coorM1=coordonneGrilleVersCoordMatrice(barriere.coorG1);
+    coorM2=coordonneGrilleVersCoordMatrice(barriere.coorG2);
+
+    switch (sens){
+        //on décale la barrière dans la bonne case de la matrice en fonction du sens dans lequel on a posé la barrière 
+    case 1:
+        coorM1.ligne-=1;
+        coorM2.ligne-=1;
+        break;
+    case 2:
+        coorM1.colonne+=1;
+        coorM2.colonne+=1;
+        break;
+    case 3:
+        coorM1.ligne+=1;
+        coorM2.ligne+=1;
+        break;
+    case 4:
+        coorM1.colonne-=1;
+        coorM2.colonne-=1;
+        break;
+    
+    default:
+        break;
+    }
+
+    matrice[coorM1.ligne][coorM1.colonne]=1;
+    matrice[coorM2.ligne][coorM2.colonne]=1;
+
+
+}
