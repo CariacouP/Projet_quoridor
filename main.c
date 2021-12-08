@@ -42,6 +42,7 @@ int main()
         int taillePlateau;
         int matrice9[17][17];
         int matrice12[23][23];
+        t_coordonneeM coorNouvelle;
         
         
         t_joueur joueurs[4];
@@ -82,8 +83,9 @@ int main()
             afficherJeu12(matrice12,joueurs);
 
         }
-
-        jouerSontour9(1,  joueurs ,nombreJoueur,taillePlateau, matrice9);
+        coorNouvelle=coordonneGrilleVersCoordMatrice( remplircoordonneeG(taillePlateau));
+        deplacerPion(coorNouvelle,joueurs[0],matrice9);
+        afficherJeu9(matrice9,joueurs);
         
         
     }
@@ -102,16 +104,7 @@ int main()
     case 5: //
         break;
     case 6:{
-        t_coordonneeG coorG;
-        t_coordonneeM coorM;
-        t_joueur joueurs[4];
-        int taillePlateau=9;
-        afficherGrilleVide(taillePlateau,taillePlateau);
-        coorG.ligne='A';
-        coorG.colonne=5;
-        allerCase(coorG);
-        fflush(stdin);
-        printf("%c",0x40);
+        
 
 
 
