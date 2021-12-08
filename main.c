@@ -42,12 +42,16 @@ int main()
         int taillePlateau;
         int matrice9[17][17];
         int matrice12[23][23];
+        
+        
         t_joueur joueurs[4];
         system("cls");
         color(0,15);
         printf("Combien de joueurs pour cette partie ?\n");
-        fflush(stdin);
-        scanf("%d",&nombreJoueur);
+        do{
+            fflush(stdin);
+            scanf("%d",&nombreJoueur);
+        }while (nombreJoueur!=2 && nombreJoueur!=4);
         if (nombreJoueur==4){
             do{
                 printf("Quelle taille pour le plateau ?\n");
@@ -78,7 +82,10 @@ int main()
             afficherJeu12(matrice12,joueurs);
 
         }
+
         enregistrerPartie9(matrice9,joueurs,nombreJoueur);
+        
+        
     }
 
         
