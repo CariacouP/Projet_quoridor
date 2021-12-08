@@ -1,7 +1,8 @@
-#define FONCTIONS_H_INCLUDED
-#define FONCTIONS_H_INCLUDED
+#ifndef FONCTIONS_H
+#define FONCTIONS_H
+#include "structures.h"
 
-typedef struct coordonneeM{
+/*typedef struct coordonneeM{
     int ligne;
     int colonne;
 }t_coordonneeM;
@@ -30,7 +31,7 @@ typedef struct barriereG{
     int sens   ; // sens dans lequel sera posé la barrière (en haut (1), à droite (2), en bas (3), gauche(4))
 
 }t_barriereG;
-
+*/
 
 
 
@@ -63,6 +64,8 @@ t_barriereG choixBarrierre(int taillePlateau);
 void placerBarriereGdansMatrice(t_barriereG barriere, int matrice[17][17]);
 void initialiserMatrice9 (int matrice[17][17],t_joueur joueur[4]);
 void initialiserMatrice12 (int matrice[23][23],t_joueur joueur[4]);
+void enregistrerPartie9(int matrice[17][17], t_joueur joueurs[4],int nombreJoueur );
+void jouerSontour(int iemeJoueur, t_joueur joueurs[4] ,int nombreJoueur,int taillePlateau);
 
 
-
+#endif 

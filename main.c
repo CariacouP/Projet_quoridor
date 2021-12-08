@@ -3,7 +3,7 @@
 #include <windows.h>
 #include <time.h>
 
-
+#include "structures.h"
 #include "alexis.h"
 #include "fonctions.h"
 int main()
@@ -78,12 +78,10 @@ int main()
             afficherJeu12(matrice12,joueurs);
 
         }
+        enregistrerPartie9(matrice9,joueurs,nombreJoueur);
     }
 
-        gotoligcol(2,60); // garder ces coordoonées en mémoir elles se toruve à l'extérieur à droite du plateau
-        printf("test position");
-        gotoligcol(4,60);
-        printf(" test de la deuxième ligne");
+        
         
         break;
     
@@ -117,7 +115,7 @@ int main()
         t_joueur joueurs[4];
         //Demander la taille
         initialiserMatrice9(plateau,joueurs);
-        deplacerPion(0,0,1,1,plateau);
+        //deplacerPion(0,0,1,1,plateau);
         afficher9(plateau);
         break;
         }

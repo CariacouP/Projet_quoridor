@@ -1,7 +1,10 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include<math.h>
+#include "structures.h"
 #include"fonctions.h"
+#include"alexis.h"
+
 
 
 
@@ -144,13 +147,13 @@ int verifiePassage(int i, int j, int matrice[17][17])//vérifie si  le pion est 
 
 }
 
-void deplacerPion(int i1,int j1,int matrice[17][17])
+void deplacerPion(t_coordonneeM coorVoulu,t_joueur joueur,int matrice[17][17])
 {
-    int i,j,j2,i2;
-    t_joueur joueur;
-    t_coordonneeM coor;
-    i=coor.ligne;
-    j=coor.colonne;
+    int i,j,j1,i1,i2,j2;
+    i1= coorVoulu.ligne;
+    j1=coorVoulu.colonne;
+    i=joueur.coordonneeMatrice.ligne;
+    j=joueur.coordonneeMatrice.colonne;
     if (verificationDeplacement(i1,j1,matrice))
     {
         if (verifierBarriere(i,j,i1,j1,matrice))

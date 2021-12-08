@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <time.h>
 #include <windows.h>
-
+#include "structures.h"
 #include "fonctions.h"
 #define NC 100
 
@@ -188,13 +188,15 @@ t_coordonneeG remplircoordonneeG(int taillePlateau){
     char lig;
     int col;
    do{
+        gotoligcol(40,60);
         fflush(stdin);
-        printf("\nLigne grille: ");
+        printf("Ligne grille: ");
         scanf("%c",&lig);
         }while ( ( ((int) lig)<65 )|| ( ((int)lig )>(65+taillePlateau) ) );// on verifie que les valeurs saisies sont correct
 
     do{
-        printf("\nColonne grille: ");
+        gotoligcol(42,60);
+        printf("Colonne grille: ");
         fflush(stdin);
         scanf("%d",&col);
     }while( ( col<1) ||(col>taillePlateau)); //blindage de la saisie
@@ -573,4 +575,76 @@ void initialiserMatrice12 (int matrice[23][23],t_joueur joueur[4])
             matrice[joueur[i].coordonneeMatrice.ligne][joueur[i].coordonneeMatrice.colonne]=joueur[i].pionM;
         }
     }
+}
+
+void jouerSontour(int iemeJoueur, t_joueur joueurs[4] ,int nombreJoueur,int taillePlateau){
+    int choixAction;
+    gotoligcol(2,60); // garder ces coordoonées en mémoir elles se toruve à l'extérieur à droite du plateau
+    printf("Au tour de %s : %c ",joueurs[iemeJoueur-1].nom,joueurs[iemeJoueur-1].pion);
+    gotoligcol(4,60);
+    printf("score : %d",joueurs[iemeJoueur-1].score);
+    gotoligcol(6,60);
+    printf("nombre de barrière restante: %d",joueurs[iemeJoueur-1].barriere_posees);
+    gotoligcol(8,60);
+    printf("nombre de coups a annuler restant: %d",joueurs[iemeJoueur-1].nbCoupAnnule);
+    gotoligcol(10,60);
+    printf("quelle action voulez vous effectuer ?");
+    gotoligcol(12,60);
+    printf("1.Me deplacer");
+    gotoligcol(14,60);
+    printf("2.Poser une barriere");
+    gotoligcol(16,60);
+    printf("3.Annuler le coup du joueur precedent");
+    gotoligcol(18,60);
+    printf("4.Sauvegarder et quitter");
+    gotoligcol(20,60);
+    do{
+        fflush(stdin);
+        scanf("%d",choixAction);
+    }while( (choixAction<1) && (choixAction>4) );
+
+    switch (choixAction)
+    {
+    case 1:
+        gotoligcol(38,60);
+        printf("Saisir les coordonees ou vous souhaitez vous déplacer");
+        remplircoordonneeG(taillePlateau);
+        break;
+    case 2:
+        gotoligcol(38,60);
+        printf("Saisir les coordonees des deux case le long desquels sera la barrière ainsi que l'orientation par rapport a ces cases");
+        choixBarrierre(taillePlateau);
+        break;
+    case 3:
+       
+        break;
+    case 4:
+       
+        break;
+    
+    default:
+        break;
+    }
+
+
+    
+
+}
+
+void enregistrerPartie9(int matrice[17][17], t_joueur joueurs[4],int nombreJoueur ){
+    char nomPartie;
+    FILE *fichier ;
+    
+    gotoligcol(22,60);
+    printf("quel nom pour la partie ?");
+    gotoligcol(24,60);
+    fflush(stdin);
+    gets(nomPartie);
+    fichier=fopen( nomPartie,'w');
+
+    for (int i=0;i<nombreJoueur;i++){
+        fwrite(&joueurs[i],sizeof(t_joueur),1,fichier);
+    }
+    fwrite(&matrice,sizeof(int),17*17,fichier);
+
 }
