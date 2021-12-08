@@ -83,7 +83,7 @@ int main()
 
         }
 
-        enregistrerPartie9(matrice9,joueurs,nombreJoueur);
+        jouerSontour9(1,  joueurs ,nombreJoueur,taillePlateau, matrice9);
         
         
     }

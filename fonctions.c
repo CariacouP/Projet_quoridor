@@ -4,6 +4,7 @@
 #include <windows.h>
 #include "structures.h"
 #include "fonctions.h"
+#include "alexis.h"
 #define NC 100
 
 
@@ -577,7 +578,7 @@ void initialiserMatrice12 (int matrice[23][23],t_joueur joueur[4])
     }
 }
 
-void jouerSontour(int iemeJoueur, t_joueur joueurs[4] ,int nombreJoueur,int taillePlateau){
+void jouerSontour9(int iemeJoueur, t_joueur joueurs[4] ,int nombreJoueur,int taillePlateau, int matrice[17][17]){
     int choixAction;
     gotoligcol(2,60); // garder ces coordoonées en mémoir elles se toruve à l'extérieur à droite du plateau
     printf("Au tour de %s : %c ",joueurs[iemeJoueur-1].nom,joueurs[iemeJoueur-1].pion);
@@ -605,15 +606,20 @@ void jouerSontour(int iemeJoueur, t_joueur joueurs[4] ,int nombreJoueur,int tail
 
     switch (choixAction)
     {
-    case 1:
+    case 1:{
+        t_coordonneeM coordonneeVoulu;
         gotoligcol(38,60);
         printf("Saisir les coordonees ou vous souhaitez vous déplacer");
-        remplircoordonneeG(taillePlateau);
+        coordonneeVoulu = coordonneGrilleVersCoordMatrice( remplircoordonneeG(taillePlateau));
+        deplacerPion(coordonneeVoulu,joueurs[iemeJoueur-1],matrice);
+        
         break;
+    }
     case 2:
         gotoligcol(38,60);
         printf("Saisir les coordonees des deux case le long desquels sera la barrière ainsi que l'orientation par rapport a ces cases");
         choixBarrierre(taillePlateau);
+        
         break;
     case 3:
        
@@ -635,11 +641,9 @@ void enregistrerPartie9(int matrice[17][17], t_joueur joueurs[4],int nombreJoueu
     char nomPartie[20];
     char tmp[256];
     int i,j;
-   // char repertoire[20];
-    //repertoire=;
     FILE *fichier ;
     getcwd(tmp,256);
-    /*strcat((getcwd(tmp, 256)),"\\Parties_sauvegardee\\");
+    strcat((getcwd(tmp, 256)),"\\Parties_sauvegardee\\");
     printf("%s",tmp);
     gotoligcol(22,60);
     printf("quel nom pour la partie (doit finir en .txt) ?");
@@ -647,7 +651,7 @@ void enregistrerPartie9(int matrice[17][17], t_joueur joueurs[4],int nombreJoueu
     fflush(stdin);
     gets(nomPartie);
     strcat(tmp,nomPartie);
-    printf("%s",tmp);*/
+    printf("%s",tmp);
     fichier=fopen( tmp,'w');
     if(fichier==NULL){
         printf("erreur d'ouverture du fichier");
