@@ -10,10 +10,10 @@ void deplacerPion(t_coordonneeM coorVoulu,t_joueur joueur,int matrice[17][17]);
 
 
 //void saisieEmplacementJoueur(t_joueur *Ptjoueur);
-int verificationDeplacement(int i1,int j1,int matrice[17][17]);
+int verificationDeplacement(t_joueur joueur , t_coordonneeM coorVoulu,int matrice[17][17]);
 int verifierBarriere(int i,int j,int i1,int j1,int matrice[17][17]);
-int PionDansCase(int i1,int j1,int matrice[17][17]);
+int PionDansCase(t_coordonneeM cooraVerif,int matrice[17][17]);
 
-int verifiePassage(int i, int j, int matrice[17][17]);
+int verifiePassage(t_coordonneeM coorPion, int matrice[17][17]);
 
 #endif

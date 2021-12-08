@@ -585,7 +585,7 @@ void jouerSontour9(int iemeJoueur, t_joueur joueurs[4] ,int nombreJoueur,int tai
     gotoligcol(4,60);
     printf("score : %d",joueurs[iemeJoueur-1].score);
     gotoligcol(6,60);
-    printf("nombre de barrière restante: %d",joueurs[iemeJoueur-1].barriere_posees);
+    printf("nombre de barriere restante: %d",joueurs[iemeJoueur-1].barriere_posees);
     gotoligcol(8,60);
     printf("nombre de coups a annuler restant: %d",joueurs[iemeJoueur-1].nbCoupAnnule);
     gotoligcol(10,60);
