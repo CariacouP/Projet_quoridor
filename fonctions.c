@@ -634,10 +634,12 @@ void jouerSontour(int iemeJoueur, t_joueur joueurs[4] ,int nombreJoueur,int tail
 void enregistrerPartie9(int matrice[17][17], t_joueur joueurs[4],int nombreJoueur ){
     char nomPartie[20];
     char tmp[256];
+    int i,j;
    // char repertoire[20];
     //repertoire=;
     FILE *fichier ;
-    strcat((getcwd(tmp, 256)),"\\Parties_sauvegardee\\");
+    getcwd(tmp,256);
+    /*strcat((getcwd(tmp, 256)),"\\Parties_sauvegardee\\");
     printf("%s",tmp);
     gotoligcol(22,60);
     printf("quel nom pour la partie (doit finir en .txt) ?");
@@ -645,17 +647,32 @@ void enregistrerPartie9(int matrice[17][17], t_joueur joueurs[4],int nombreJoueu
     fflush(stdin);
     gets(nomPartie);
     strcat(tmp,nomPartie);
-    printf("%s",tmp);
+    printf("%s",tmp);*/
     fichier=fopen( tmp,'w');
     if(fichier==NULL){
         printf("erreur d'ouverture du fichier");
     }
     else{
 
-        for (int i=0;i<nombreJoueur;i++){
-            fwrite(&joueurs[i],sizeof(t_joueur),1,fichier);
+        for (i=0;i<nombreJoueur;i++){
+            fprintf(fichier,"%s\n",joueurs[i].nom);
+            fprintf(fichier,"%d\n",joueurs[i].pion);
+            fprintf(fichier,"%d\n",joueurs[i].pionM);
+            fprintf(fichier,"%d\n",joueurs[i].coordonneeMatrice.ligne);
+            fprintf(fichier,"%d\n",joueurs[i].coordonneeMatrice.colonne);
+            fprintf(fichier,"%c\n",joueurs[i].coordonneeGrille.ligne);
+            fprintf(fichier,"%c\n",joueurs[i].coordonneeGrille.colonne);
+            fprintf(fichier,"%d\n",joueurs[i].score);
+            fprintf(fichier,"%d\n",joueurs[i].barriere_posees);
+            fprintf(fichier,"%d\n",joueurs[i].nbCoupAnnule);
+
         }
-        fwrite(&matrice,sizeof(int),17*17,fichier);
+        for (i=0;i<17;i++){
+            for (j=0;j<17;j++){
+                 fprintf(fichier,"%d\n",matrice[i][j]);
+
+            }
+        }
         fclose(fichier);
     }
 }
