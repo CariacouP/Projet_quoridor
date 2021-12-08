@@ -51,6 +51,7 @@ void placerBarriere(t_coordonneeG coor,int sens);
 t_coordonneeM coordonneGrilleVersCoordMatrice(t_coordonneeG coorG);
 t_coordonneeG coordoneeMatriceversCoordGrille(t_coordonneeM  coorM);
 void afficherPiondepuisMatrice(t_coordonneeM coorM, t_joueur joueur );
+void afficherCaseVideDepuisMatrice(t_coordonneeM coorM);
 t_joueur creerJoueur(int iemejoueur, int listePionUtilise[8], int taillePlateau);
 t_coordonneeG remplircoordonneeG(int taillePlateau);
 

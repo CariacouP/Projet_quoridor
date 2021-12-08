@@ -216,6 +216,13 @@ void afficherPiondepuisMatrice(t_coordonneeM coorM, t_joueur joueur ){
     joueur.coordonneeGrille=coorG;
 }
 
+void afficherCaseVideDepuisMatrice(t_coordonneeM coorM){
+    t_coordonneeG coorG;
+    coorG=coordoneeMatriceversCoordGrille(coorM);
+    allerCase(coorG);
+    printf(" ");
+}
+
 t_joueur creerJoueur(int iemejoueur, int listePionUtilise[8], int taillePlateau){
     // on crée la fonction qui va définir un joueur intialement et lui donner ca position initial la variable "ième joueur" sers à décider à quel poisition il débute
     int i;
@@ -449,6 +456,12 @@ void afficherJeu12(int matrice[23][23],t_joueur listejoueurs[4]){
                 coorM.ligne=i;
                 coorM.colonne=j;
                 afficherPiondepuisMatrice(coorM,joueurAPlacer);
+            }
+            else if (matrice[i][j]==0){
+                coorM.ligne=i;
+                coorM.colonne=j;
+                afficherCaseVideDepuisMatrice(coorM);
+
             }
 
         }
