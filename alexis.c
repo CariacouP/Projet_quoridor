@@ -164,12 +164,14 @@ void deplacerPion(t_coordonneeM coorVoulu,t_joueur joueur,int matrice[17][17])
                 {
                     do
                     {
+                        i=joueur.coordonneeMatrice.ligne;
+                        j=joueur.coordonneeMatrice.colonne;
                         printf("entrer des cooedonnees\n");
                         scanf("%d",&i2);
                         scanf("%d",&j2);
+                        matrice[i][j]=0;//le pion n est plus dans sa case de depart ,ni dans celle du pion car il le saute
                         i=i1;
                         j=j1;
-                        matrice[i][j]=0;//le pion n est plus dans sa case de depart ,ni dans celle du pion car il le saute
                     }while ((verificationDeplacement(i2,j2,matrice)!=0)&&(matrice[i2][j2]!=0));//deplacement dans la seconde cellule apres le saut du pion
                     matrice[i2][j2]=joueur.pion;
                 }
