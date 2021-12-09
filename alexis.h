@@ -16,4 +16,6 @@ int PionDansCase(t_coordonneeM cooraVerif,int matrice[17][17]);
 int verifiePassage(t_coordonneeM coorPion, int matrice[17][17]);
 
 void deplacerPion9(t_coordonneeM coorVoulu,t_joueur joueur,int matrice[17][17]);
+
+void placerBarriereMatrice(t_coordonneeG coorGrille,int matrice[17][17]);
 #endif
