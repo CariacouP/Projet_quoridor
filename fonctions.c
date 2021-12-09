@@ -685,7 +685,7 @@ void enregistrerPartie9(int matrice[17][17], t_joueur joueurs[4],int nombreJoueu
     gets(nomPartie);
     strcat(tmp,nomPartie);
     printf("%s",tmp);
-    fichier=fopen( tmp,'w');
+    fichier=fopen( tmp,"w");
     if(fichier==NULL){
         printf("erreur d'ouverture du fichier");
     }
