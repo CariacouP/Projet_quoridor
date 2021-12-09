@@ -500,7 +500,9 @@ t_barriereG choixBarrierre(int taillePlateau){
     t_barriereG barriere;
     int sens;
     barriere.coorG1=remplircoordonneeG(taillePlateau);
+    do {
     barriere.coorG2=remplircoordonneeG(taillePlateau);
+    }while( (barriere.coorG1.ligne !=barriere.coorG1.ligne) && (barriere.coorG1.colonne !=barriere.coorG1.colonne));
     printf(" Choisissez l'orientation de la barrière par rapport aux 2 cases choisies en haut (1), à droite (2), en bas (3), gauche(4). Attention a choisir un sens possible");
     do {
         scanf("%d",&sens);
@@ -627,7 +629,7 @@ void jouerSontour9(int iemeJoueur, t_joueur joueurs[4] ,int nombreJoueur,int tai
         printf("Saisir les coordonees ou vous souhaitez vous déplacer");
         coordonneeVouluG=remplircoordonneeG(taillePlateau);
         coordonneeVoulu = coordonneGrilleVersCoordMatrice(coordonneeVouluG);
-        deplacerPion(coordonneeVoulu,joueurs[iemeJoueur-1],matrice);
+        deplacerPion9(coordonneeVoulu,joueurs[iemeJoueur-1],matrice);
         afficher9(matrice);
         
         

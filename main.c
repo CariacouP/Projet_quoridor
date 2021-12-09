@@ -86,7 +86,7 @@ int main()
         
         coorNouvelle=coordonneGrilleVersCoordMatrice( remplircoordonneeG(taillePlateau));
         
-        deplacerPion(coorNouvelle,joueurs[0],matrice9);
+        deplacerPion9(coorNouvelle,joueurs[0],matrice9);
         
         
         afficherJeu9(matrice9,joueurs);

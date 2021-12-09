@@ -112,27 +112,17 @@ int verifierBarriere(int i,int j,int i1,int j1,int matrice[17][17])// va dans le
 
 int PionDansCase(t_coordonneeM cooraVerif,int matrice[17][17])
 {
-    int i1,j1;
-    i1=cooraVerif.ligne;
-    j1=cooraVerif.colonne;
+    
     //si il y a un pion dans la case, il faut re saisir un endroit ou se deplacer et tout re verifier
     //Donc on va mettre verificationDeplacement ici
-    if ((i1%2==1)||(j1%2==1))
-    {
-        printf("pas possible de placer un pion a ces coordonnees de barrierre");
-        return(1);
+    if (matrice[cooraVerif.ligne][cooraVerif.colonne]!=0){
+        return 1;
     }
-    else
-    {
-        if ((matrice[i1][j1]>=2)&&(matrice[i1][j1]<=4))
-        {
-            printf("il y a un pion dans la case");
-            return(0);
-        }
-    }
+    return 0;
+   
 }
 
-int verifiePassage(t_coordonneeM coorPion, int matrice[17][17])//vérifie si  le pion est entoure de pion ou de barriere
+/*int verifiePassage(t_coordonneeM coorPion, int matrice[17][17])//vérifie si  le pion est entoure de pion ou de barriere
 {
     int i,j;
     i=coorPion.ligne;
@@ -151,9 +141,9 @@ int verifiePassage(t_coordonneeM coorPion, int matrice[17][17])//vérifie si  le
         }
     }
 
-}
+}*/
 
-void deplacerPion(t_coordonneeM coorVoulu,t_joueur joueur,int matrice[17][17])
+void deplacerPion9(t_coordonneeM coorVoulu,t_joueur joueur,int matrice[17][17])
 {
     int i,j,j1,i1,i2,j2;
     t_coordonneeM nouvellesCoor;
@@ -161,36 +151,122 @@ void deplacerPion(t_coordonneeM coorVoulu,t_joueur joueur,int matrice[17][17])
     j1=coorVoulu.colonne;
     i=joueur.coordonneeMatrice.ligne;
     j=joueur.coordonneeMatrice.colonne;
-    if (verificationDeplacement(joueur,coorVoulu,matrice))
+    if (verificationDeplacement(joueur,coorVoulu,matrice)==0)
+    //on verifie que le deplacement est possible
     {
          
-            if (PionDansCase(coorVoulu,matrice))
+            if (PionDansCase(coorVoulu,matrice)==1)
+            //Si il y a un pion dans la case visée
             {
-                if (verifiePassage(joueur.coordonneeMatrice,matrice))//verifie si le pion peut sauter le joueur et a une case ou atterir
-                {
-                    do
-                    {
-                        
-                        i=joueur.coordonneeMatrice.ligne;
-                        j=joueur.coordonneeMatrice.colonne;
-                        printf("entrer des cooedonnees\n");
-                        nouvellesCoor=coordonneGrilleVersCoordMatrice(remplircoordonneeG(9));
-                        i2=nouvellesCoor.ligne;
-                        j2=nouvellesCoor.colonne;
-                        matrice[i][j]=0;//le pion n est plus dans sa case de depart ,ni dans celle du pion car il le saute
-                        i=i1;
-                        j=j1;
-                    }while ((verificationDeplacement(joueur,nouvellesCoor,matrice)!=0) || (matrice[i2][j2]!=0));//deplacement dans la seconde cellule apres le saut du pion
-                    matrice[nouvellesCoor.ligne][nouvellesCoor.colonne]=joueur.pionM;
+                if ( (i==i1)&&(j1 > j) ){
+                    // si la case visée est sur la meme ligne vers la droite
+                    if (verifierBarriere(i1,j1,i1,j1+2,matrice)==0){
+                        // on verifie qu'il n'y a pas de barrière après le pion
+                        matrice[i1][j1+2]=joueur.pionM;
+                        matrice[i][j]=0;
+                        joueur.coordonneeMatrice.ligne=i1;
+                        joueur.coordonneeMatrice.colonne=j1+2;
+                        joueur.coordonneeGrille=coordoneeMatriceversCoordGrille(joueur.coordonneeMatrice);
+                    }
+                    else if (verifierBarriere(i1,j1,i1,j1+2,matrice)==1){
+                        //si il y a une barrière après le pion, on demande au joueur de choisir une nouvelle case immediatement au dessus ou en dessous du pion
+                        do{
+                            printf("choissez la case sur laquelle vous voulez aller, au dessus ou en desous du pion");
+                            nouvellesCoor=coordonneGrilleVersCoordMatrice(remplircoordonneeG(9));
+                        }while ( ( (nouvellesCoor.ligne!=i1-2) && (nouvellesCoor.ligne!=i1+2) ) || (nouvellesCoor.colonne!=j1) || (verifierBarriere(i1,j1,nouvellesCoor.ligne,nouvellesCoor.colonne,matrice)==1) || (PionDansCase(nouvellesCoor,matrice)==1) );
+
+                            matrice[nouvellesCoor.ligne][nouvellesCoor.colonne]=joueur.pionM;
+                            matrice[i][j]=0;
+                            joueur.coordonneeMatrice.ligne=nouvellesCoor.ligne;
+                            joueur.coordonneeMatrice.colonne=nouvellesCoor.colonne;
+                            joueur.coordonneeGrille=coordoneeMatriceversCoordGrille(joueur.coordonneeMatrice);  
+                    }
+
+
                 }
+
+                else if ( (i==i1)&&(j1 < j) ){
+                    if (verifierBarriere(i1,j1,i1,j1-2,matrice)==0){
+                        matrice[i1][j1-2]=joueur.pionM;
+                        matrice[i][j]=0;
+                        joueur.coordonneeMatrice.ligne=i1;
+                        joueur.coordonneeMatrice.colonne=j1-2;
+                        joueur.coordonneeGrille=coordoneeMatriceversCoordGrille(joueur.coordonneeMatrice);
+                    }
+                    else if (verifierBarriere(i1,j1,i1,j1-2,matrice)==1){
+                        do{
+                            printf("choissez la case sur laquelle vous voulez aller, au dessus ou en desous du pion");
+                            nouvellesCoor=coordonneGrilleVersCoordMatrice(remplircoordonneeG(9));
+                        }while ( ( (nouvellesCoor.ligne!=i1-2) && (nouvellesCoor.ligne!=i1+2) ) || (nouvellesCoor.colonne!=j1) || (verifierBarriere(i1,j1,nouvellesCoor.ligne,nouvellesCoor.colonne,matrice)==1) || (PionDansCase(nouvellesCoor,matrice)==1) );
+
+                            matrice[nouvellesCoor.ligne][nouvellesCoor.colonne]=joueur.pionM;
+                            matrice[i][j]=0;
+                            joueur.coordonneeMatrice.ligne=nouvellesCoor.ligne;
+                            joueur.coordonneeMatrice.colonne=nouvellesCoor.colonne;
+                            joueur.coordonneeGrille=coordoneeMatriceversCoordGrille(joueur.coordonneeMatrice);  
+                    }
+
+
+                }
+
+                else if ( (j==j1)&&(i1 < i) ){
+                    if (verifierBarriere(i1,j1,i1-2,j1,matrice)==0){
+                        matrice[i1-2][j1]=joueur.pionM;
+                        matrice[i][j]=0;
+                        joueur.coordonneeMatrice.ligne=i1-2;
+                        joueur.coordonneeMatrice.colonne=j1;
+                        joueur.coordonneeGrille=coordoneeMatriceversCoordGrille(joueur.coordonneeMatrice);
+                    }
+                    else if (verifierBarriere(i1,j1,i1-2,j1,matrice)==1){
+                        do{
+                            printf("choissez la case sur laquelle vous voulez aller, au dessus ou en desous du pion");
+                            nouvellesCoor=coordonneGrilleVersCoordMatrice(remplircoordonneeG(9));
+                        }while ( ( (nouvellesCoor.colonne!=j1-2) && (nouvellesCoor.colonne!=j1+2) ) || (nouvellesCoor.colonne!=i1) || (verifierBarriere(i1,j1,nouvellesCoor.ligne,nouvellesCoor.colonne,matrice)==1) || (PionDansCase(nouvellesCoor,matrice)==1) );
+
+                            matrice[nouvellesCoor.ligne][nouvellesCoor.colonne]=joueur.pionM;
+                            matrice[i][j]=0;
+                            joueur.coordonneeMatrice.ligne=nouvellesCoor.ligne;
+                            joueur.coordonneeMatrice.colonne=nouvellesCoor.colonne;
+                            joueur.coordonneeGrille=coordoneeMatriceversCoordGrille(joueur.coordonneeMatrice);  
+                    }
+                }
+
+                else if ( (j==j1)&&(i1 > i) ){
+                    if (verifierBarriere(i1,j1,i1+2,j1,matrice)==0){
+                        matrice[i1+2][j1]=joueur.pionM;
+                        matrice[i][j]=0;
+                        joueur.coordonneeMatrice.ligne=i1+2;
+                        joueur.coordonneeMatrice.colonne=j1;
+                        joueur.coordonneeGrille=coordoneeMatriceversCoordGrille(joueur.coordonneeMatrice);
+                    }
+                    else if (verifierBarriere(i1,j1,i1+2,j1,matrice)==1){
+                        do{
+                            printf("choissez la case sur laquelle vous voulez aller, au dessus ou en desous du pion");
+                            nouvellesCoor=coordonneGrilleVersCoordMatrice(remplircoordonneeG(9));
+                        }while ( ( (nouvellesCoor.colonne!=j1-2) && (nouvellesCoor.colonne!=j1+2) ) || (nouvellesCoor.colonne!=i1) || (verifierBarriere(i1,j1,nouvellesCoor.ligne,nouvellesCoor.colonne,matrice)==1) || (PionDansCase(nouvellesCoor,matrice)==1) );
+
+                            matrice[nouvellesCoor.ligne][nouvellesCoor.colonne]=joueur.pionM;
+                            matrice[i][j]=0;
+                            joueur.coordonneeMatrice.ligne=nouvellesCoor.ligne;
+                            joueur.coordonneeMatrice.colonne=nouvellesCoor.colonne;
+                            joueur.coordonneeGrille=coordoneeMatriceversCoordGrille(joueur.coordonneeMatrice);  
+                    }
+
+
+                }
+                
             }
             
-        
-    }
-    else
+         else
             {
                 
                 matrice[coorVoulu.ligne][coorVoulu.colonne]=joueur.pionM;
                 matrice[joueur.coordonneeMatrice.ligne][joueur.coordonneeMatrice.colonne]=0;
+                joueur.coordonneeMatrice.ligne=coorVoulu.ligne;
+                joueur.coordonneeMatrice.colonne=coorVoulu.colonne;
+                joueur.coordonneeGrille=coordoneeMatriceversCoordGrille(joueur.coordonneeMatrice);
+
             }
+    }
+   
 }
