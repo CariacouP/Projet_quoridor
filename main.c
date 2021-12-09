@@ -43,6 +43,7 @@ int main()
         int matrice9[17][17];
         int matrice12[23][23];
         t_coordonneeM coorNouvelle;
+        t_barriereG barriere;
         
         
         t_joueur joueurs[4];
@@ -87,11 +88,13 @@ int main()
         //coorNouvelle=coordonneGrilleVersCoordMatrice( remplircoordonneeG(taillePlateau));
         
         //deplacerPion9(coorNouvelle,joueurs[0],matrice9);
+        barriere=choixBarrierre(taillePlateau);
+        placerBarriereGdansMatrice(barriere,matrice9);
         
         
-        //afficherJeu9(matrice9,joueurs);
+        afficherJeu9(matrice9,joueurs);
 
-        jouerSontour9(1,  joueurs ,nombreJoueur,taillePlateau,  matrice9);
+        //jouerSontour9(1, joueurs ,nombreJoueur,taillePlateau,  matrice9);
         
     }
 

@@ -67,6 +67,6 @@ void initialiserMatrice9 (int matrice[17][17],t_joueur joueur[4]);
 void initialiserMatrice12 (int matrice[23][23],t_joueur joueur[4]);
 void enregistrerPartie9(int matrice[17][17], t_joueur joueurs[4],int nombreJoueur );
 void jouerSontour9(int iemeJoueur, t_joueur joueurs[4] ,int nombreJoueur,int taillePlateau,int matrice[17][17]);
-
+int sontCoteAcote(t_coordonneeG case1,t_coordonneeG case2);
 
 #endif 

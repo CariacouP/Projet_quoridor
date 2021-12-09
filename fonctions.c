@@ -188,15 +188,17 @@ t_coordonneeG remplircoordonneeG(int taillePlateau){
     t_coordonneeG coor;
     char lig;
     int col;
+    gotoligcol(18,60);
+    printf("saisir les coordonnes d'une case :");
    do{
-        gotoligcol(40,60);
+        gotoligcol(20,60);
         fflush(stdin);
         printf("Ligne grille: ");
         scanf("%c",&lig);
         }while ( ( ((int) lig)<65 )|| ( ((int)lig )>(65+taillePlateau) ) );// on verifie que les valeurs saisies sont correct
 
     do{
-        gotoligcol(42,60);
+        gotoligcol(22,60);
         printf("Colonne grille: ");
         fflush(stdin);
         scanf("%d",&col);
@@ -414,11 +416,8 @@ void afficherJeu9(int matrice[17][17],t_joueur listejoueurs[4]){
     }
 // affichage des barrières sur la grille
     for (i=0;i<17;i++){
-        for (j=1;j<17;j+=2){
-            if (matrice[i][j]!=1 && matrice[i][j]!=0){
-                printf("ERREUR UN pion  EST sur une barrière");
-            }
-            else if (matrice[i][j]==1){
+        for (j=1;j<17;j++){  
+            if (matrice[i][j]==1){
                 if (i%2==0){//si la barrière est vertical
                     coorMpourPlacerBarriere.ligne=i;
                     coorMpourPlacerBarriere.colonne=j-1;
@@ -427,7 +426,7 @@ void afficherJeu9(int matrice[17][17],t_joueur listejoueurs[4]){
                 }
 
                 else if (i%2!=0){ // si la barrière est horizontal
-                    coorMpourPlacerBarriere.ligne=i-1;
+                    coorMpourPlacerBarriere.ligne=i+1;
                     coorMpourPlacerBarriere.colonne=j;
                     coorG=coordoneeMatriceversCoordGrille(coorMpourPlacerBarriere);
                     placerBarriere(coorG,1);
@@ -499,16 +498,26 @@ void afficherJeu12(int matrice[23][23],t_joueur listejoueurs[4]){
 t_barriereG choixBarrierre(int taillePlateau){
     t_barriereG barriere;
     int sens;
+    
+    gotoligcol(16,60);
+    printf("Saisir la 1ere barriere ");
+
     barriere.coorG1=remplircoordonneeG(taillePlateau);
     do {
-    barriere.coorG2=remplircoordonneeG(taillePlateau);
-    }while( (barriere.coorG1.ligne !=barriere.coorG1.ligne) && (barriere.coorG1.colonne !=barriere.coorG1.colonne));
-    printf(" Choisissez l'orientation de la barrière par rapport aux 2 cases choisies en haut (1), à droite (2), en bas (3), gauche(4). Attention a choisir un sens possible");
+        gotoligcol(16,60);
+        printf("Saisir la 2eme barriere ");
+        barriere.coorG2=remplircoordonneeG(taillePlateau);
+    }while( sontCoteAcote(barriere.coorG1,barriere.coorG2)==0);// on verifie que les deux cases sont cote a cote 
+    
     do {
+        gotoligcol(26,60);
+        printf(" Choisissez l'orientation de la barriere par rapport aux 2 cases choisies en haut (1), à droite (2), en bas (3), gauche(4). Attention a choisir un sens possible : ");
         scanf("%d",&sens);
-    }while ( ( (barriere.coorG1.ligne==barriere.coorG2.ligne) && ((sens==2)||(sens==4)) ) || ( (barriere.coorG1.colonne==barriere.coorG2.colonne) && ((sens==1)||(sens==3)) ) );
-//on verifie que le sens saisie est possible ( si on a pris 2 cases horizontales on ne peut pas poser les barrières verticalement et vice versa)
+    }while ( ( (barriere.coorG1.ligne==barriere.coorG2.ligne) && ((sens==2)||(sens==4)) ) || ( (barriere.coorG1.colonne==barriere.coorG2.colonne) && ((sens==1)||(sens==3)) ) || ( (barriere.coorG1.ligne=='A')&& (sens ==1)) || ( (barriere.coorG1.ligne==64+taillePlateau)&& (sens ==3)) || ( (barriere.coorG1.colonne==1)&& (sens ==4)) || ( (barriere.coorG1.colonne== taillePlateau)&& (sens ==2)) );
+//on verifie que le sens saisie est possible ( si on a pris 2 cases horizontales on ne peut pas poser les barrières verticalement et vice versa, on verifie aussi que l'on ne les positionne pas sur le bord du plateau)
     barriere.sens=sens;
+    gotoligcol(28,60);
+    printf("%d",barriere.sens);
     return barriere;
 
 }
@@ -636,11 +645,14 @@ void jouerSontour9(int iemeJoueur, t_joueur joueurs[4] ,int nombreJoueur,int tai
     }
         break;
     case 2:
+        {t_barriereG barriere;
         gotoligcol(38,60);
         printf("Saisir les coordonees des deux case le long desquels sera la barrière ainsi que l'orientation par rapport a ces cases");
         choixBarrierre(taillePlateau);
+        placerBarriereGdansMatrice(barriere,matrice);
         
         break;
+        }
     case 3:
        
         break;
@@ -700,3 +712,22 @@ void enregistrerPartie9(int matrice[17][17], t_joueur joueurs[4],int nombreJoueu
         fclose(fichier);
     }
 }
+
+
+int sontCoteAcote(t_coordonneeG case1,t_coordonneeG case2){
+    if ( (case1.ligne !=case2.ligne) && (case1.colonne !=case2.colonne) ){
+        // si les cases ne sont ni sur la meme ligne ni su rl ameme colonne
+        return 0;
+    }
+    else if ( (case1.ligne==case2.ligne) && (abs(case1.colonne-case2.colonne)>1) ){
+        //Si elle sont sur la meme ligne mais que la distance entre les colonne est trop importante
+        return 0;
+    }
+    else if ( (case1.colonne==case2.colonne) && (abs( ((int)case1.ligne)-((int)case2.ligne))>1)){
+        //Si elle sont sue la meme colonnen mais que la distance entre les lignes est trop importante
+        return 0;
+    }
+    else {
+        return 1;
+    }
+}   
