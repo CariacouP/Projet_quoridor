@@ -626,7 +626,7 @@ void jouerSontour9(int iemeJoueur, t_joueur joueurs[4] ,int nombreJoueur,int tai
     gotoligcol(20,60);
     do{
         fflush(stdin);
-        scanf("%d",choixAction);
+        scanf("%d",&choixAction);
     }while( (choixAction<1) && (choixAction>4) );
 
     switch (choixAction)
@@ -645,10 +645,11 @@ void jouerSontour9(int iemeJoueur, t_joueur joueurs[4] ,int nombreJoueur,int tai
     }
         break;
     case 2:
-        {t_barriereG barriere;
+        {
+        t_barriereG barriere;
         gotoligcol(38,60);
         printf("Saisir les coordonees des deux case le long desquels sera la barrière ainsi que l'orientation par rapport a ces cases");
-        choixBarrierre(taillePlateau);
+        barriere = choixBarrierre(taillePlateau);
         placerBarriereGdansMatrice(barriere,matrice);
         
         break;
