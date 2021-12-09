@@ -31,9 +31,18 @@
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
+		<Unit filename="alexis.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="alexis.h" />
+		<Unit filename="fonctions.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="fonctions.h" />
 		<Unit filename="main.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="structures.h" />
 		<Extensions>
 			<lib_finder disable_auto="1" />
 		</Extensions>
