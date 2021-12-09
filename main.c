@@ -8,6 +8,7 @@
 #include "fonctions.h"
 int main()
 {   int choixMenu;
+    int i=1;
     char t;
 
 
@@ -94,12 +95,20 @@ int main()
         
         //afficherJeu9(matrice9,joueurs);
 
-        jouerSontour9(1, joueurs ,nombreJoueur,taillePlateau,  matrice9);
+        do {
+            
+            jouerSontour9(i, joueurs ,nombreJoueur,taillePlateau,  matrice9);
+            gotoligcol(46,60);
+            printf("coordonnee du joeur dans la matrice :  %d; %d",joueurs[i-1].coordonneeMatrice.ligne,joueurs[i-1].coordonneeMatrice.colonne);
+            printf("coordonnee du joeur sur la grille :  %c; %d",joueurs[i-1].coordonneeGrille.ligne,joueurs[i-1].coordonneeGrille.colonne);
+            
+            i++;
+            if (i>nombreJoueur){
+                i=1;
+            }
         
+        }while(unJoueurEstArrivee(joueurs,taillePlateau,nombreJoueur)==0 );  
     }
-
-        
-        
         break;
     
         

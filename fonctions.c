@@ -638,8 +638,8 @@ void jouerSontour9(int iemeJoueur, t_joueur joueurs[4] ,int nombreJoueur,int tai
         printf("Saisir les coordonees ou vous souhaitez vous déplacer");
         coordonneeVouluG=remplircoordonneeG(taillePlateau);
         coordonneeVoulu = coordonneGrilleVersCoordMatrice(coordonneeVouluG);
-        deplacerPion9(coordonneeVoulu,joueurs[iemeJoueur-1],matrice);
-        afficher9(matrice);
+        joueurs[iemeJoueur-1]=deplacerPion9(coordonneeVoulu,joueurs[iemeJoueur-1],matrice);
+        afficherJeu9(matrice,joueurs);
         
         
     }
@@ -651,6 +651,7 @@ void jouerSontour9(int iemeJoueur, t_joueur joueurs[4] ,int nombreJoueur,int tai
         printf("Saisir les coordonees des deux case le long desquels sera la barrière ainsi que l'orientation par rapport a ces cases");
         barriere = choixBarrierre(taillePlateau);
         placerBarriereGdansMatrice(barriere,matrice);
+        afficherJeu9(matrice,joueurs);
         
         break;
         }
@@ -732,3 +733,42 @@ int sontCoteAcote(t_coordonneeG case1,t_coordonneeG case2){
         return 1;
     }
 }   
+
+int unJoueurEstArrivee(t_joueur joueurs[4],int taillePlateau,int nombreJoueur){
+    //veririfie si un des joeur est arrivé, renvoie le numero du joueur arrivé
+    if (nombreJoueur==2){
+        if (joueurs[0].coordonneeGrille.ligne=='I'){
+            return 1;
+        }
+        else if (joueurs[1].coordonneeGrille.ligne=='A'){
+            return 2;
+        }
+
+        else{
+            return 0;
+        } 
+    }
+
+
+    else if (nombreJoueur==4){
+        if ( ((joueurs[0].coordonneeGrille.ligne=='I')  && (taillePlateau==9)) || ((joueurs[0].coordonneeGrille.ligne=='L')  && (taillePlateau==12))){
+            return 1;
+        }
+        else if (joueurs[1].coordonneeGrille.ligne=='A'){
+            return 2;
+        }
+        else if ( ((joueurs[2].coordonneeGrille.colonne==9)  && (taillePlateau==9)) || ((joueurs[2].coordonneeGrille.colonne==12)  && (taillePlateau==12))){
+            return 3;
+        }
+
+        else if (joueurs[3].coordonneeGrille.colonne==1){
+            return 4;
+        }
+        
+        else{
+            return 0;
+        } 
+    }
+
+    
+}

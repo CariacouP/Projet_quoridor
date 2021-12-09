@@ -143,8 +143,9 @@ int PionDansCase(t_coordonneeM cooraVerif,int matrice[17][17])
 
 }*/
 
-void deplacerPion9(t_coordonneeM coorVoulu,t_joueur joueur,int matrice[17][17])
+t_joueur deplacerPion9(t_coordonneeM coorVoulu,t_joueur joueur,int matrice[17][17])
 {
+    t_joueur joueurfin;
     int i,j,j1,i1,i2,j2;
     t_coordonneeM nouvellesCoor;
     i1= coorVoulu.ligne;
@@ -213,9 +214,9 @@ void deplacerPion9(t_coordonneeM coorVoulu,t_joueur joueur,int matrice[17][17])
                     if (verifierBarriere(i1,j1,i1-2,j1,matrice)==0){
                         matrice[i1-2][j1]=joueur.pionM;
                         matrice[i][j]=0;
-                        joueur.coordonneeMatrice.ligne=i1-2;
-                        joueur.coordonneeMatrice.colonne=j1;
-                        joueur.coordonneeGrille=coordoneeMatriceversCoordGrille(joueur.coordonneeMatrice);
+                        joueurfin.coordonneeMatrice.ligne=i1-2;
+                        joueurfin.coordonneeMatrice.colonne=j1;
+                        joueurfin.coordonneeGrille=coordoneeMatriceversCoordGrille(joueur.coordonneeMatrice);
                     }
                     else if (verifierBarriere(i1,j1,i1-2,j1,matrice)==1){
                         do{
@@ -225,9 +226,9 @@ void deplacerPion9(t_coordonneeM coorVoulu,t_joueur joueur,int matrice[17][17])
 
                             matrice[nouvellesCoor.ligne][nouvellesCoor.colonne]=joueur.pionM;
                             matrice[i][j]=0;
-                            joueur.coordonneeMatrice.ligne=nouvellesCoor.ligne;
-                            joueur.coordonneeMatrice.colonne=nouvellesCoor.colonne;
-                            joueur.coordonneeGrille=coordoneeMatriceversCoordGrille(joueur.coordonneeMatrice);  
+                            joueurfin.coordonneeMatrice.ligne=nouvellesCoor.ligne;
+                            joueurfin.coordonneeMatrice.colonne=nouvellesCoor.colonne;
+                            joueurfin.coordonneeGrille=coordoneeMatriceversCoordGrille(joueur.coordonneeMatrice);  
                     }
                 }
 
@@ -235,9 +236,9 @@ void deplacerPion9(t_coordonneeM coorVoulu,t_joueur joueur,int matrice[17][17])
                     if (verifierBarriere(i1,j1,i1+2,j1,matrice)==0){
                         matrice[i1+2][j1]=joueur.pionM;
                         matrice[i][j]=0;
-                        joueur.coordonneeMatrice.ligne=i1+2;
-                        joueur.coordonneeMatrice.colonne=j1;
-                        joueur.coordonneeGrille=coordoneeMatriceversCoordGrille(joueur.coordonneeMatrice);
+                        joueurfin.coordonneeMatrice.ligne=i1+2;
+                        joueurfin.coordonneeMatrice.colonne=j1;
+                        joueurfin.coordonneeGrille=coordoneeMatriceversCoordGrille(joueur.coordonneeMatrice);
                     }
                     else if (verifierBarriere(i1,j1,i1+2,j1,matrice)==1){
                         do{
@@ -247,9 +248,9 @@ void deplacerPion9(t_coordonneeM coorVoulu,t_joueur joueur,int matrice[17][17])
 
                             matrice[nouvellesCoor.ligne][nouvellesCoor.colonne]=joueur.pionM;
                             matrice[i][j]=0;
-                            joueur.coordonneeMatrice.ligne=nouvellesCoor.ligne;
-                            joueur.coordonneeMatrice.colonne=nouvellesCoor.colonne;
-                            joueur.coordonneeGrille=coordoneeMatriceversCoordGrille(joueur.coordonneeMatrice);  
+                            joueurfin.coordonneeMatrice.ligne=nouvellesCoor.ligne;
+                            joueurfin.coordonneeMatrice.colonne=nouvellesCoor.colonne;
+                            joueurfin.coordonneeGrille=coordoneeMatriceversCoordGrille(joueur.coordonneeMatrice);  
                     }
 
 
@@ -262,13 +263,19 @@ void deplacerPion9(t_coordonneeM coorVoulu,t_joueur joueur,int matrice[17][17])
                 
                 matrice[coorVoulu.ligne][coorVoulu.colonne]=joueur.pionM;
                 matrice[joueur.coordonneeMatrice.ligne][joueur.coordonneeMatrice.colonne]=0;
-                joueur.coordonneeMatrice.ligne=coorVoulu.ligne;
-                joueur.coordonneeMatrice.colonne=coorVoulu.colonne;
-                joueur.coordonneeGrille=coordoneeMatriceversCoordGrille(joueur.coordonneeMatrice);
+                joueurfin.coordonneeMatrice.ligne=coorVoulu.ligne;
+                joueurfin.coordonneeMatrice.colonne=coorVoulu.colonne;
+                joueurfin.coordonneeGrille=coordoneeMatriceversCoordGrille(joueur.coordonneeMatrice);
 
             }
     }
-   
+   joueurfin.barriere_posees=joueur.barriere_posees;
+   joueurfin.nbCoupAnnule=joueur.nbCoupAnnule;
+    strcpy(joueurfin.nom,joueur.nom);
+   joueurfin.pionM=joueur.pionM;
+   joueurfin.pion=joueur.pion;
+   joueurfin.score=joueur.score;
+   return joueurfin;
 }
 
 
