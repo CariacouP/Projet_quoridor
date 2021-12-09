@@ -271,27 +271,33 @@ void deplacerPion9(t_coordonneeM coorVoulu,t_joueur joueur,int matrice[17][17])
    
 }
 
-void placerBarriereMatrice(t_coordonneeG coorGrille,int matrice[17][17])//prend en argument des coordonnes de barriere de la grille
+void placerBarriereMatrice(t_barriereG barriere,int matrice[17][17])//prend en argument des coordonnes de barriere de la grille
 {                                                  //et place la barriere dans la matrice
-    t_barriereG barriere;
-    t_coordonneeM coorMatrice;
-    coorMatrice=coordonneGrilleVersCoordMatrice(coorGrille);
-    matrice[coorMatrice.ligne][coorMatrice.colonne]=1;
+    t_coordonneeM coorMatrice1;
+    t_coordonneeM coorMatrice2;
+    coorMatrice1=coordonneGrilleVersCoordMatrice(barriere.coorG1);
+    coorMatrice2=coordonneGrilleVersCoordMatrice(barriere.coorG2);
+
+    matrice[coorMatrice1.ligne][coorMatrice1.colonne]=1;
     if(barriere.sens==1)
     {
-        matrice[coorMatrice.ligne+1][coorMatrice.colonne]=1;//La barriere est au dessus
+        matrice[coorMatrice1.ligne-1][coorMatrice1.colonne]=1;//La barriere est au dessus
+        matrice[coorMatrice2.ligne-1][coorMatrice2.colonne]=1;
     }
     if (barriere.sens==2)
     {
-        matrice[coorMatrice.ligne][coorMatrice.colonne+1]=1;//la barriere est a droite
+        matrice[coorMatrice1.ligne][coorMatrice1.colonne+1]=1;//la barriere est a droite
+        matrice[coorMatrice2.ligne][coorMatrice2.colonne+1]=1;
     }
     if(barriere.sens==3)//la berriere est en dessous
     {
-        matrice[coorMatrice.ligne-1][coorMatrice.colonne]=1;
+        matrice[coorMatrice1.ligne+1][coorMatrice1.colonne]=1;
+        matrice[coorMatrice2.ligne+1][coorMatrice2.colonne]=1;
     }
     if(barriere.sens==4)
     {
-        matrice[coorMatrice.ligne][coorMatrice.colonne-1]=1;
+        matrice[coorMatrice1.ligne][coorMatrice1.colonne-1]=1;
+        matrice[coorMatrice2.ligne][coorMatrice2.colonne-1]=1;
     }
 }
 
