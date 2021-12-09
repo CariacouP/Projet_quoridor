@@ -6,6 +6,8 @@
 #include "structures.h"
 #include "alexis.h"
 #include "fonctions.h"
+#include "pathfinder.h"
+
 int main()
 {   int choixMenu;
     int i=1;
@@ -45,8 +47,8 @@ int main()
         int matrice12[23][23];
         t_coordonneeM coorNouvelle;
         t_barriereG barriere;
-        
-        
+
+
         t_joueur joueurs[4];
         system("cls");
         color(0,15);
@@ -65,16 +67,16 @@ int main()
         else {
             taillePlateau=9;
         }
-        
+
         lancerNouvellePartie(nombreJoueur, taillePlateau, joueurs);
         //intitialiation de la matrice dans laquelle seront géréer les deplacements
         if (taillePlateau==9){
-            
+
             initialiserMatrice9(matrice9,joueurs);
-            
+
             }
         else if (taillePlateau==12) {
-            
+
             initialiserMatrice12(matrice12,joueurs);
             }
         afficherGrilleVide(taillePlateau,taillePlateau);
@@ -85,33 +87,33 @@ int main()
             afficherJeu12(matrice12,joueurs);
 
         }
-        
+
         //coorNouvelle=coordonneGrilleVersCoordMatrice( remplircoordonneeG(taillePlateau));
-        
+
         //deplacerPion9(coorNouvelle,joueurs[0],matrice9);
        // barriere=choixBarrierre(taillePlateau);
         //placerBarriereGdansMatrice(barriere,matrice9);
-        
-        
-        //afficherJeu9(matrice9,joueurs);
 
+
+        //afficherJeu9(matrice9,joueurs);
+        int blocage=0;
         do {
-            
+            blocage=CheckAllPath(matrice9, taillePlateau, joueurs, nombreJoueur);
             jouerSontour9(i, joueurs ,nombreJoueur,taillePlateau,  matrice9);
             gotoligcol(46,60);
             printf("coordonnee du joeur dans la matrice :  %d; %d",joueurs[i-1].coordonneeMatrice.ligne,joueurs[i-1].coordonneeMatrice.colonne);
             printf("coordonnee du joeur sur la grille :  %c; %d",joueurs[i-1].coordonneeGrille.ligne,joueurs[i-1].coordonneeGrille.colonne);
-            
+
             i++;
             if (i>nombreJoueur){
                 i=1;
             }
-        
-        }while(unJoueurEstArrivee(joueurs,taillePlateau,nombreJoueur)==0 );  
+
+        }while(unJoueurEstArrivee(joueurs,taillePlateau,nombreJoueur)==0 && blocage==0);
     }
         break;
-    
-        
+
+
     case 2: // appel de lancerPartiesauvegardee
         break;
     case 3: //appel de afficherAide
@@ -121,7 +123,7 @@ int main()
     case 5: //
         break;
     case 6:{
-        
+
 
 
 

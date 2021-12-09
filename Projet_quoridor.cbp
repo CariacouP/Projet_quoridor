@@ -42,6 +42,10 @@
 		<Unit filename="main.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="pathfinder.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="pathfinder.h" />
 		<Unit filename="structures.h" />
 		<Extensions>
 			<lib_finder disable_auto="1" />
