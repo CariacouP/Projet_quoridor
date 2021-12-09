@@ -294,3 +294,5 @@ void placerBarriereMatrice(t_coordonneeG coorGrille,int matrice[17][17])//prend 
         matrice[coorMatrice.ligne][coorMatrice.colonne-1]=1;
     }
 }
+
+//elle est au dessus de ce commentaire
