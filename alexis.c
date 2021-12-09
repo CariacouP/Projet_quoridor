@@ -163,7 +163,7 @@ void deplacerPion(t_coordonneeM coorVoulu,t_joueur joueur,int matrice[17][17])
     j=joueur.coordonneeMatrice.colonne;
     if (verificationDeplacement(joueur,coorVoulu,matrice))
     {
-        
+         
             if (PionDansCase(coorVoulu,matrice))
             {
                 if (verifiePassage(joueur.coordonneeMatrice,matrice))//verifie si le pion peut sauter le joueur et a une case ou atterir
@@ -175,18 +175,22 @@ void deplacerPion(t_coordonneeM coorVoulu,t_joueur joueur,int matrice[17][17])
                         j=joueur.coordonneeMatrice.colonne;
                         printf("entrer des cooedonnees\n");
                         nouvellesCoor=coordonneGrilleVersCoordMatrice(remplircoordonneeG(9));
+                        i2=nouvellesCoor.ligne;
+                        j2=nouvellesCoor.colonne;
                         matrice[i][j]=0;//le pion n est plus dans sa case de depart ,ni dans celle du pion car il le saute
                         i=i1;
                         j=j1;
                     }while ((verificationDeplacement(joueur,nouvellesCoor,matrice)!=0) || (matrice[i2][j2]!=0));//deplacement dans la seconde cellule apres le saut du pion
-                    matrice[nouvellesCoor.ligne][nouvellesCoor.colonne]=joueur.pion;
+                    matrice[nouvellesCoor.ligne][nouvellesCoor.colonne]=joueur.pionM;
                 }
             }
-            else
-            {
-                matrice[i1][j1]=joueur.pion;
-                matrice[i][j]=0;
-            }
+            
         
     }
+    else
+            {
+                
+                matrice[coorVoulu.ligne][coorVoulu.colonne]=joueur.pionM;
+                matrice[joueur.coordonneeMatrice.ligne][joueur.coordonneeMatrice.colonne]=0;
+            }
 }

@@ -389,7 +389,7 @@ void afficherJeu9(int matrice[17][17],t_joueur listejoueurs[4]){
     t_coordonneeG coorG;
     t_joueur joueurAPlacer;
     int i,j;
-
+    afficherGrilleVide(9,9);
 // affichage des pions des joueurs sur la grilles
     for (i=0;i<17;i+=2){
         for(j=0;j<17;j+=2){
@@ -444,6 +444,7 @@ void afficherJeu12(int matrice[23][23],t_joueur listejoueurs[4]){
     t_coordonneeG coorG;
     t_joueur joueurAPlacer;
     int i,j;
+    afficherGrilleVide(12,12);
 
 // affichage des pions des joueurs sur la grilles
     for (i=0;i<23;i+=2){
@@ -621,13 +622,17 @@ void jouerSontour9(int iemeJoueur, t_joueur joueurs[4] ,int nombreJoueur,int tai
     {
     case 1:{
         t_coordonneeM coordonneeVoulu;
+        t_coordonneeG coordonneeVouluG;
         gotoligcol(38,60);
         printf("Saisir les coordonees ou vous souhaitez vous déplacer");
-        coordonneeVoulu = coordonneGrilleVersCoordMatrice( remplircoordonneeG(taillePlateau));
+        coordonneeVouluG=remplircoordonneeG(taillePlateau);
+        coordonneeVoulu = coordonneGrilleVersCoordMatrice(coordonneeVouluG);
         deplacerPion(coordonneeVoulu,joueurs[iemeJoueur-1],matrice);
+        afficher9(matrice);
         
-        break;
+        
     }
+        break;
     case 2:
         gotoligcol(38,60);
         printf("Saisir les coordonees des deux case le long desquels sera la barrière ainsi que l'orientation par rapport a ces cases");

@@ -6,7 +6,6 @@
 void afficher9(int matrice[17][17]);
 void afficher12(int matrice[23][23]);
 
-void deplacerPion(t_coordonneeM coorVoulu,t_joueur joueur,int matrice[17][17]);
 
 
 //void saisieEmplacementJoueur(t_joueur *Ptjoueur);
@@ -16,4 +15,5 @@ int PionDansCase(t_coordonneeM cooraVerif,int matrice[17][17]);
 
 int verifiePassage(t_coordonneeM coorPion, int matrice[17][17]);
 
+void deplacerPion(t_coordonneeM coorVoulu,t_joueur joueur,int matrice[17][17]);
 #endif

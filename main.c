@@ -83,10 +83,15 @@ int main()
             afficherJeu12(matrice12,joueurs);
 
         }
-        coorNouvelle=coordonneGrilleVersCoordMatrice( remplircoordonneeG(taillePlateau));
-        deplacerPion(coorNouvelle,joueurs[0],matrice9);
-        afficherJeu9(matrice9,joueurs);
         
+        coorNouvelle=coordonneGrilleVersCoordMatrice( remplircoordonneeG(taillePlateau));
+        
+        deplacerPion(coorNouvelle,joueurs[0],matrice9);
+        
+        
+        afficherJeu9(matrice9,joueurs);
+
+       // jouerSontour9(1,  joueurs ,nombreJoueur,taillePlateau,  matrice9);
         
     }
 
