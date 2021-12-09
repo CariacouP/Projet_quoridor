@@ -84,14 +84,14 @@ int main()
 
         }
         
-        coorNouvelle=coordonneGrilleVersCoordMatrice( remplircoordonneeG(taillePlateau));
+        //coorNouvelle=coordonneGrilleVersCoordMatrice( remplircoordonneeG(taillePlateau));
         
-        deplacerPion9(coorNouvelle,joueurs[0],matrice9);
+        //deplacerPion9(coorNouvelle,joueurs[0],matrice9);
         
         
-        afficherJeu9(matrice9,joueurs);
+        //afficherJeu9(matrice9,joueurs);
 
-       // jouerSontour9(1,  joueurs ,nombreJoueur,taillePlateau,  matrice9);
+        jouerSontour9(1,  joueurs ,nombreJoueur,taillePlateau,  matrice9);
         
     }
 
