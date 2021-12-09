@@ -270,3 +270,27 @@ void deplacerPion9(t_coordonneeM coorVoulu,t_joueur joueur,int matrice[17][17])
     }
    
 }
+
+void placerBarriereMatrice(t_coordonneeG coorGrille,int matrice[17][17])//prend en argument des coordonnes de barriere de la grille
+{                                                  //et place la barriere dans la matrice
+    t_barriereG barriere;
+    t_coordonneeM coorMatrice;
+    coorMatrice=coordonneGrilleVersCoordMatrice(coorGrille);
+    matrice[coorMatrice.ligne][coorMatrice.colonne]=1;
+    if(barriere.sens==1)
+    {
+        matrice[coorMatrice.ligne+1][coorMatrice.colonne]=1;//La barriere est au dessus
+    }
+    if (barriere.sens==2)
+    {
+        matrice[coorMatrice.ligne][coorMatrice.colonne+1]=1;//la barriere est a droite
+    }
+    if(barriere.sens==3)//la berriere est en dessous
+    {
+        matrice[coorMatrice.ligne-1][coorMatrice.colonne]=1;
+    }
+    if(barriere.sens==4)
+    {
+        matrice[coorMatrice.ligne][coorMatrice.colonne-1]=1;
+    }
+}
