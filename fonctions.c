@@ -698,7 +698,7 @@ void enregistrerPartie9(int matrice[17][17], t_joueur joueurs[4],int nombreJoueu
             fprintf(fichier,"%d\n",joueurs[i].coordonneeMatrice.ligne);
             fprintf(fichier,"%d\n",joueurs[i].coordonneeMatrice.colonne);
             fprintf(fichier,"%c\n",joueurs[i].coordonneeGrille.ligne);
-            fprintf(fichier,"%c\n",joueurs[i].coordonneeGrille.colonne);
+            fprintf(fichier,"%d\n",joueurs[i].coordonneeGrille.colonne);
             fprintf(fichier,"%d\n",joueurs[i].score);
             fprintf(fichier,"%d\n",joueurs[i].barriere_posees);
             fprintf(fichier,"%d\n",joueurs[i].nbCoupAnnule);
