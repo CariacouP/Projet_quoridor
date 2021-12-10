@@ -137,7 +137,7 @@ void allerCase(t_coordonneeG coor){
     char lig=(coor.ligne);
     l=(int)lig-64;
     gotoligcol(l*2+1,(coor.colonne)*3);
-    
+
 }
 
 void placerBarriere(t_coordonneeG coor,int sens){
@@ -255,7 +255,7 @@ t_joueur creerJoueur(int iemejoueur, int listePionUtilise[8], int taillePlateau)
     {
        pion=listePions[rand()%9] ;
     }while (pionsUtilise(listePionUtilise,pion)==1);
-    
+
     while (listePionUtilise[i]==0){
         i++;
     }
@@ -348,7 +348,7 @@ int pionsUtilise(int listePionsUtilise[8],int pion){
 }
 
 void lancerNouvellePartie(int nombreJoueur,int taillePlateau,t_joueur joueur[4]){
-///Lance une nouvelle partie et crée le nombre voulu de joueur 
+///Lance une nouvelle partie et crée le nombre voulu de joueur
     system("cls");
     color(0,15);
     int listePionUtilise[8];
@@ -360,22 +360,22 @@ void lancerNouvellePartie(int nombreJoueur,int taillePlateau,t_joueur joueur[4])
     case 2 :
         printf(" \n creation du 1er joueur ");
         joueur[0]=creerJoueur(1, listePionUtilise,  taillePlateau);
-        printf(" \n création du 2eme joueur ");
+        printf(" \n creation du 2eme joueur ");
         joueur[1]=creerJoueur(2, listePionUtilise,  taillePlateau);
        break;
     case 4 :
         printf(" \n creation du 1er joueur ");
         joueur[0]=creerJoueur(1, listePionUtilise,  taillePlateau);
-        
+
         printf(" \n creation du 2eme joueur ");
         joueur[1]=creerJoueur(2, listePionUtilise,  taillePlateau);
 
          printf(" \n creation du 3eme joueur ");
         joueur[2]=creerJoueur(3, listePionUtilise,  taillePlateau);
-         
+
         printf(" \n creation du 4eme joueur ");
         joueur[3]=creerJoueur(4, listePionUtilise,  taillePlateau);
-        
+
         break;
     default:
         break;
@@ -396,7 +396,7 @@ void afficherJeu9(int matrice[17][17],t_joueur listejoueurs[4]){
     for (i=0;i<17;i+=2){
         for(j=0;j<17;j+=2){
             if (matrice[i][j]==1){
-                printf("ERREUR UNE BARRIERE EST A L'INTERRIEUR D'UNE CASE");
+                printf("ERREUR UNE BARRIERE EST A L'INTERIEUR D'UNE CASE");
             }
             else if (matrice[i][j]!=0){
                 joueurAPlacer=listejoueurs[matrice[i][j]-2];
@@ -416,7 +416,7 @@ void afficherJeu9(int matrice[17][17],t_joueur listejoueurs[4]){
     }
 // affichage des barrières sur la grille
     for (i=0;i<17;i++){
-        for (j=1;j<17;j++){  
+        for (j=1;j<17;j++){
             if (matrice[i][j]==1){
                 if (i%2==0){//si la barrière est vertical
                     coorMpourPlacerBarriere.ligne=i;
@@ -449,7 +449,7 @@ void afficherJeu12(int matrice[23][23],t_joueur listejoueurs[4]){
     for (i=0;i<23;i+=2){
         for(j=0;j<23;j+=2){
             if (matrice[i][j]==1){
-                printf("ERREUR UNE BARRIERE EST A L'INTERRIEUR D'UNE CASE");
+                printf("ERREUR UNE BARRIERE EST A L'INTERIEUR D'UNE CASE");
             }
             else if (matrice[i][j]!=0){
                 joueurAPlacer=listejoueurs[matrice[i][j]-2];
@@ -471,7 +471,7 @@ void afficherJeu12(int matrice[23][23],t_joueur listejoueurs[4]){
     for (i=0;i<23;i++){
         for (j=1;j<23;j+=2){
             if (matrice[i][j]!=1 && matrice[i][j]!=0){
-                printf("ERREUR UN pion  EST sur une barrière");
+                printf("ERREUR UN PION  EST SUR UNE BARRIERE");
             }
             else if (matrice[i][j]==1){
                 if (i%2==0){//si la barrière est vertical
@@ -498,7 +498,7 @@ void afficherJeu12(int matrice[23][23],t_joueur listejoueurs[4]){
 t_barriereG choixBarrierre(int taillePlateau){
     t_barriereG barriere;
     int sens;
-    
+
     gotoligcol(16,60);
     printf("Saisir la 1ere barriere ");
 
@@ -507,11 +507,11 @@ t_barriereG choixBarrierre(int taillePlateau){
         gotoligcol(16,60);
         printf("Saisir la 2eme barriere ");
         barriere.coorG2=remplircoordonneeG(taillePlateau);
-    }while( sontCoteAcote(barriere.coorG1,barriere.coorG2)==0);// on verifie que les deux cases sont cote a cote 
-    
+    }while( sontCoteAcote(barriere.coorG1,barriere.coorG2)==0);// on verifie que les deux cases sont cote a cote
+
     do {
         gotoligcol(26,60);
-        printf(" Choisissez l'orientation de la barriere par rapport aux 2 cases choisies en haut (1), à droite (2), en bas (3), gauche(4). Attention a choisir un sens possible : ");
+        printf(" Choisissez l'orientation de la barriere par rapport aux 2 cases choisies en haut (1), a droite (2), en bas (3), a gauche(4). \n Attention a choisir un sens possible : ");
         scanf("%d",&sens);
     }while ( ( (barriere.coorG1.ligne==barriere.coorG2.ligne) && ((sens==2)||(sens==4)) ) || ( (barriere.coorG1.colonne==barriere.coorG2.colonne) && ((sens==1)||(sens==3)) ) || ( (barriere.coorG1.ligne=='A')&& (sens ==1)) || ( (barriere.coorG1.ligne==64+taillePlateau)&& (sens ==3)) || ( (barriere.coorG1.colonne==1)&& (sens ==4)) || ( (barriere.coorG1.colonne== taillePlateau)&& (sens ==2)) );
 //on verifie que le sens saisie est possible ( si on a pris 2 cases horizontales on ne peut pas poser les barrières verticalement et vice versa, on verifie aussi que l'on ne les positionne pas sur le bord du plateau)
@@ -533,7 +533,7 @@ void placerBarriereGdansMatrice(t_barriereG barriere, int matrice[17][17]){
     coorM2=coordonneGrilleVersCoordMatrice(barriere.coorG2);
 
     switch (sens){
-        //on décale la barrière dans la bonne case de la matrice en fonction du sens dans lequel on a posé la barrière 
+        //on décale la barrière dans la bonne case de la matrice en fonction du sens dans lequel on a posé la barrière
     case 1:
         coorM1.ligne-=1;
         coorM2.ligne-=1;
@@ -550,7 +550,7 @@ void placerBarriereGdansMatrice(t_barriereG barriere, int matrice[17][17]){
         coorM1.colonne-=1;
         coorM2.colonne-=1;
         break;
-    
+
     default:
         break;
     }
@@ -572,7 +572,7 @@ void initialiserMatrice9 (int matrice[17][17],t_joueur joueur[4])
            // printf("Ici\n");
         }
     }
-    
+
     for (i=0;i<4;i++){
         // On va placer les joueurs qui ont été intialisé et qui sont présent dans la liste de joueurs
         if (joueur[i].pionM<6 && joueur[i].pionM>1 ){
@@ -608,13 +608,13 @@ void jouerSontour9(int iemeJoueur, t_joueur joueurs[4] ,int nombreJoueur,int tai
     gotoligcol(2,60); // garder ces coordoonées en mémoir elles se toruve à l'extérieur à droite du plateau
     printf("Au tour de %s : %c ",joueurs[iemeJoueur-1].nom,joueurs[iemeJoueur-1].pion);
     gotoligcol(4,60);
-    printf("score : %d",joueurs[iemeJoueur-1].score);
+    printf("Score : %d",joueurs[iemeJoueur-1].score);
     gotoligcol(6,60);
-    printf("nombre de barriere restante: %d",joueurs[iemeJoueur-1].barriere_posees);
+    printf("Nombre de barrieres restantes: %d",joueurs[iemeJoueur-1].barriere_posees);
     gotoligcol(8,60);
-    printf("nombre de coups a annuler restant: %d",joueurs[iemeJoueur-1].nbCoupAnnule);
+    printf("Nombre de coups a annuler restant: %d",joueurs[iemeJoueur-1].nbCoupAnnule);
     gotoligcol(10,60);
-    printf("quelle action voulez vous effectuer ?");
+    printf("Quelle action voulez vous effectuer ?");
     gotoligcol(12,60);
     printf("1.Me deplacer");
     gotoligcol(14,60);
@@ -635,39 +635,39 @@ void jouerSontour9(int iemeJoueur, t_joueur joueurs[4] ,int nombreJoueur,int tai
         t_coordonneeM coordonneeVoulu;
         t_coordonneeG coordonneeVouluG;
         gotoligcol(38,60);
-        printf("Saisir les coordonees ou vous souhaitez vous déplacer");
+        printf("Saisir les coordonnees ou vous souhaitez vous deplacer");
         coordonneeVouluG=remplircoordonneeG(taillePlateau);
         coordonneeVoulu = coordonneGrilleVersCoordMatrice(coordonneeVouluG);
         joueurs[iemeJoueur-1]=deplacerPion9(coordonneeVoulu,joueurs[iemeJoueur-1],matrice);
         afficherJeu9(matrice,joueurs);
-        
-        
+
+
     }
         break;
     case 2:
         {
         t_barriereG barriere;
         gotoligcol(38,60);
-        printf("Saisir les coordonees des deux case le long desquels sera la barrière ainsi que l'orientation par rapport a ces cases");
+        printf("Saisir les coordonnees des deux cases le long desquels sera la barriere ainsi que l'orientation par rapport a ces cases");
         barriere = choixBarrierre(taillePlateau);
         placerBarriereGdansMatrice(barriere,matrice);
         afficherJeu9(matrice,joueurs);
-        
+
         break;
         }
     case 3:
-       
+
         break;
     case 4:
-       
+
         break;
-    
+
     default:
         break;
     }
 
 
-    
+
 
 }
 
@@ -680,7 +680,7 @@ void enregistrerPartie9(int matrice[17][17], t_joueur joueurs[4],int nombreJoueu
     strcat((getcwd(tmp, 256)),"\\Parties_sauvegardee\\");
     printf("%s",tmp);
     gotoligcol(22,60);
-    printf("quel nom pour la partie (doit finir en .txt) ?");
+    printf("Quel nom pour la partie (doit finir en .txt) ?");
     gotoligcol(24,60);
     fflush(stdin);
     gets(nomPartie);
@@ -688,7 +688,7 @@ void enregistrerPartie9(int matrice[17][17], t_joueur joueurs[4],int nombreJoueu
     printf("%s",tmp);
     fichier=fopen( tmp,"w");
     if(fichier==NULL){
-        printf("erreur d'ouverture du fichier");
+        printf("Erreur d'ouverture du fichier");
     }
     else{
 
@@ -732,7 +732,7 @@ int sontCoteAcote(t_coordonneeG case1,t_coordonneeG case2){
     else {
         return 1;
     }
-}   
+}
 
 int unJoueurEstArrivee(t_joueur joueurs[4],int taillePlateau,int nombreJoueur){
     //veririfie si un des joeur est arrivé, renvoie le numero du joueur arrivé
@@ -746,7 +746,7 @@ int unJoueurEstArrivee(t_joueur joueurs[4],int taillePlateau,int nombreJoueur){
 
         else{
             return 0;
-        } 
+        }
     }
 
 
@@ -764,11 +764,11 @@ int unJoueurEstArrivee(t_joueur joueurs[4],int taillePlateau,int nombreJoueur){
         else if (joueurs[3].coordonneeGrille.colonne==1){
             return 4;
         }
-        
+
         else{
             return 0;
-        } 
+        }
     }
 
-    
+
 }

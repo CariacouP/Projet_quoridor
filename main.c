@@ -24,17 +24,17 @@ int main()
     afficherGrille(p);*/
 
 
-/// affichage du menu d'entr�e
+/// affichage du menu d'entree
     system("cls");
     color(0,15);
-    printf("Bienvenu dans Quoridor !");
+    printf("Bienvenue dans Quoridor !");
     printf("\n -- Menu -- \n");
     printf("1 - Lancer une nouvelle partie\n");
-    printf("2 - reprendre une partie sauvegard�e\n");
+    printf("2 - Reprendre une partie sauvegardee\n");
     printf("3 - Afficher l'aide\n");
     printf("4 - Afficher les scores des joueurs\n");
     printf("5 - Quitter le jeu\n");
-    printf("6 - afficher tableau\n");
+    printf("6 - Afficher tableau\n");
     printf("7 - test programme alexis\n");
 
     scanf("%d",&choixMenu);
@@ -101,8 +101,8 @@ int main()
             blocage=CheckAllPath(matrice9, taillePlateau, joueurs, nombreJoueur);
             jouerSontour9(i, joueurs ,nombreJoueur,taillePlateau,  matrice9);
             gotoligcol(46,60);
-            printf("coordonnee du joeur dans la matrice :  %d; %d",joueurs[i-1].coordonneeMatrice.ligne,joueurs[i-1].coordonneeMatrice.colonne);
-            printf("coordonnee du joeur sur la grille :  %c; %d",joueurs[i-1].coordonneeGrille.ligne,joueurs[i-1].coordonneeGrille.colonne);
+            printf("coordonnees du joueur dans la matrice :  %d; %d",joueurs[i-1].coordonneeMatrice.ligne,joueurs[i-1].coordonneeMatrice.colonne);
+            printf("coordonnees du joueur sur la grille :  %c; %d",joueurs[i-1].coordonneeGrille.ligne,joueurs[i-1].coordonneeGrille.colonne);
 
             i++;
             if (i>nombreJoueur){
