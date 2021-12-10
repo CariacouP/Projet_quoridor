@@ -91,22 +91,43 @@ int verificationDeplacement(t_joueur joueur , t_coordonneeM coorVoulu,int matric
 
 int verifierBarriere(int i,int j,int i1,int j1,int matrice[17][17])// va dans lee programme verificationDeplacement, on a i1 et j1 les coordonnées visée et i, j les coordonées du joueur dans la matrice
 {
-    if (i!=i1)
+    if ( (i==i1)&& (j<j1) )
     {
-        if (matrice[(i+i1)/2]==1)//S il y a une barriere entre les deux cases
+        if (matrice[i][j+1]==1)//S il y a une barriere entre les deux cases
         {
             printf("il y a une barriere\n");
             return(1);
         }
     }
-    if (j!=j1)
+    
+    else if ( (i==i1)&& (j>j1) )
     {
-        if (matrice[(j+j1)/2]==1)//S il y a une barriere entre les deux cases
+        if (matrice[i][j-1]==1)//S il y a une barriere entre les deux cases
         {
             printf("il y a une barriere\n");
             return(1);
         }
     }
+
+    else if ( (j==j1)&& (i<i1) )
+    {
+        if (matrice[i+1][j]==1)//S il y a une barriere entre les deux cases
+        {
+            printf("il y a une barriere\n");
+            return(1);
+        }
+    }
+
+    else if ( (j==j1)&& (i>i1) )
+    {
+        if (matrice[i-1][j]==1)//S il y a une barriere entre les deux cases
+        {
+            printf("il y a une barriere\n");
+            return(1);
+        }
+    }
+
+
     return(0);
 }
 
@@ -114,7 +135,7 @@ int PionDansCase(t_coordonneeM cooraVerif,int matrice[17][17])
 {
     
     //si il y a un pion dans la case, il faut re saisir un endroit ou se deplacer et tout re verifier
-    //Donc on va mettre verificationDeplacement ici
+    
     if (matrice[cooraVerif.ligne][cooraVerif.colonne]!=0){
         return 1;
     }
@@ -269,6 +290,13 @@ t_joueur deplacerPion9(t_coordonneeM coorVoulu,t_joueur joueur,int matrice[17][1
 
             }
     }
+    else if (verificationDeplacement(joueur,coorVoulu,matrice)==1){
+        gotoligcol(19,60);
+        printf("Une barrière barre le chemin veuillez");
+        nouvellesCoor= coordonneGrilleVersCoordMatrice(remplircoordonneeG(9));
+        deplacerPion9(nouvellesCoor,joueur,matrice);
+    }
+
    joueurfin.barriere_posees=joueur.barriere_posees;
    joueurfin.nbCoupAnnule=joueur.nbCoupAnnule;
     strcpy(joueurfin.nom,joueur.nom);
