@@ -1,0 +1,42 @@
+# depslib dependency file v1.0
+1639078165 source:d:\projects\projetquoridor\projet_quoridor\alexis.c
+	<stdio.h>
+	<stdlib.h>
+	<math.h>
+	"structures.h"
+	"fonctions.h"
+	"alexis.h"
+
+1639078165 d:\projects\projetquoridor\projet_quoridor\structures.h
+
+1639081491 d:\projects\projetquoridor\projet_quoridor\fonctions.h
+	"structures.h"
+
+1639078165 d:\projects\projetquoridor\projet_quoridor\alexis.h
+	"structures.h"
+
+1639081487 source:d:\projects\projetquoridor\projet_quoridor\fonctions.c
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+	<windows.h>
+	"structures.h"
+	"fonctions.h"
+	"alexis.h"
+
+1639087107 source:d:\projects\projetquoridor\projet_quoridor\main.c
+	<stdio.h>
+	<stdlib.h>
+	<windows.h>
+	<time.h>
+	"structures.h"
+	"alexis.h"
+	"fonctions.h"
+	"pathfinder.h"
+
+1639086799 d:\projects\projetquoridor\projet_quoridor\pathfinder.h
+	"structures.h"
+
+1639091964 source:d:\projects\projetquoridor\projet_quoridor\pathfinder.c
+	"structures.h"
+
