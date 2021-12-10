@@ -73,47 +73,40 @@ int main()
         if (taillePlateau==9){
 
             initialiserMatrice9(matrice9,joueurs);
-
-            }
-        else if (taillePlateau==12) {
-
-            initialiserMatrice12(matrice12,joueurs);
-            }
-        afficherGrilleVide(taillePlateau,taillePlateau);
-        if (taillePlateau==9){
-            afficherJeu9(matrice9,joueurs);
-        }
-        else if (taillePlateau==12){
-            afficherJeu12(matrice12,joueurs);
-
-        }
-
-        //coorNouvelle=coordonneGrilleVersCoordMatrice( remplircoordonneeG(taillePlateau));
-
-        //deplacerPion9(coorNouvelle,joueurs[0],matrice9);
-       // barriere=choixBarrierre(taillePlateau);
-        //placerBarriereGdansMatrice(barriere,matrice9);
-
-
-        //afficherJeu9(matrice9,joueurs);
-        int blocage=0;
-        do {
+             afficherJeu9(matrice9,joueurs);
+             int blocage=0;
+            do {
             blocage=CheckAllPath(matrice9, taillePlateau, joueurs, nombreJoueur);
             jouerSontour9(i, joueurs ,nombreJoueur,taillePlateau,  matrice9);
             gotoligcol(46,60);
-            printf("coordonnee du joeur dans la matrice :  %d; %d",joueurs[i-1].coordonneeMatrice.ligne,joueurs[i-1].coordonneeMatrice.colonne);
-            printf("coordonnee du joeur sur la grille :  %c; %d",joueurs[i-1].coordonneeGrille.ligne,joueurs[i-1].coordonneeGrille.colonne);
-
             i++;
             if (i>nombreJoueur){
                 i=1;
             }
 
-        }while(unJoueurEstArrivee(joueurs,taillePlateau,nombreJoueur)==0 && blocage==0);
+            }while(unJoueurEstArrivee(joueurs,taillePlateau,nombreJoueur)==0 && blocage==0);
+        }
+
+            
+        else if (taillePlateau==12) {
+            initialiserMatrice12(matrice12,joueurs);
+            afficherJeu12(matrice12,joueurs);
+            int blocage=0;
+         do {
+            blocage=CheckAllPath(matrice12, taillePlateau, joueurs, nombreJoueur);
+            jouerSontour12(i, joueurs ,nombreJoueur,taillePlateau,  matrice12);
+            gotoligcol(46,60);
+            i++;
+            if (i>nombreJoueur){
+                i=1;
+            }
+
+            }while(unJoueurEstArrivee(joueurs,taillePlateau,nombreJoueur)==0 && blocage==0);
+        }
     }
         break;
 
-
+        
     case 2: // appel de lancerPartiesauvegardee
         break;
     case 3: //appel de afficherAide
@@ -149,3 +142,4 @@ int main()
     scanf("%c",&t);
     return 0;
 }
+    

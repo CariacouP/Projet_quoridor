@@ -522,7 +522,46 @@ t_barriereG choixBarrierre(int taillePlateau){
 
 }
 
-void placerBarriereGdansMatrice(t_barriereG barriere, int matrice[17][17]){
+void placerBarriereGdansMatrice9(t_barriereG barriere, int matrice[17][17]){
+
+    t_coordonneeM coorM1;
+    t_coordonneeM coorM2;
+    int sens ;
+    sens=barriere.sens;
+
+    coorM1=coordonneGrilleVersCoordMatrice(barriere.coorG1);
+    coorM2=coordonneGrilleVersCoordMatrice(barriere.coorG2);
+
+    switch (sens){
+        //on décale la barrière dans la bonne case de la matrice en fonction du sens dans lequel on a posé la barrière 
+    case 1:
+        coorM1.ligne-=1;
+        coorM2.ligne-=1;
+        break;
+    case 2:
+        coorM1.colonne+=1;
+        coorM2.colonne+=1;
+        break;
+    case 3:
+        coorM1.ligne+=1;
+        coorM2.ligne+=1;
+        break;
+    case 4:
+        coorM1.colonne-=1;
+        coorM2.colonne-=1;
+        break;
+    
+    default:
+        break;
+    }
+
+    matrice[coorM1.ligne][coorM1.colonne]=1;
+    matrice[coorM2.ligne][coorM2.colonne]=1;
+
+
+}
+
+void placerBarriereGdansMatrice12(t_barriereG barriere, int matrice[23][23]){
 
     t_coordonneeM coorM1;
     t_coordonneeM coorM2;
@@ -634,7 +673,7 @@ void jouerSontour9(int iemeJoueur, t_joueur joueurs[4] ,int nombreJoueur,int tai
     case 1:{
         t_coordonneeM coordonneeVoulu;
         t_coordonneeG coordonneeVouluG;
-        gotoligcol(38,60);
+        gotoligcol(22,60);
         printf("Saisir les coordonees ou vous souhaitez vous déplacer");
         coordonneeVouluG=remplircoordonneeG(taillePlateau);
         coordonneeVoulu = coordonneGrilleVersCoordMatrice(coordonneeVouluG);
@@ -647,11 +686,20 @@ void jouerSontour9(int iemeJoueur, t_joueur joueurs[4] ,int nombreJoueur,int tai
     case 2:
         {
         t_barriereG barriere;
-        gotoligcol(38,60);
-        printf("Saisir les coordonees des deux case le long desquels sera la barrière ainsi que l'orientation par rapport a ces cases");
-        barriere = choixBarrierre(taillePlateau);
-        placerBarriereGdansMatrice(barriere,matrice);
-        afficherJeu9(matrice,joueurs);
+        if (joueurs[iemeJoueur-1].barriere_posees >0){
+            gotoligcol(22,60);
+            printf("Saisir les coordonees des deux case le long desquels sera la barrière ainsi que l'orientation par rapport a ces cases");
+            barriere = choixBarrierre(taillePlateau);
+            placerBarriereGdansMatrice9(barriere,matrice);
+            joueurs[iemeJoueur-1]=changerNombreBarriere(joueurs[iemeJoueur-1],joueurs[iemeJoueur-1].barriere_posees-1);
+
+            afficherJeu9(matrice,joueurs);
+        }
+        else if (joueurs[iemeJoueur-1].barriere_posees == 0){
+             gotoligcol(22,60);
+             printf("Vous n'avez plus assez de barrière à poser");
+            
+        }
         
         break;
         }
@@ -665,11 +713,80 @@ void jouerSontour9(int iemeJoueur, t_joueur joueurs[4] ,int nombreJoueur,int tai
     default:
         break;
     }
-
-
-    
-
 }
+
+void jouerSontour12(int iemeJoueur, t_joueur joueurs[4] ,int nombreJoueur,int taillePlateau, int matrice[23][23]){
+    int choixAction;
+    gotoligcol(2,60); // garder ces coordoonées en mémoir elles se toruve à l'extérieur à droite du plateau
+    printf("Au tour de %s : %c ",joueurs[iemeJoueur-1].nom,joueurs[iemeJoueur-1].pion);
+    gotoligcol(4,60);
+    printf("score : %d",joueurs[iemeJoueur-1].score);
+    gotoligcol(6,60);
+    printf("nombre de barriere restante: %d",joueurs[iemeJoueur-1].barriere_posees);
+    gotoligcol(8,60);
+    printf("nombre de coups a annuler restant: %d",joueurs[iemeJoueur-1].nbCoupAnnule);
+    gotoligcol(10,60);
+    printf("quelle action voulez vous effectuer ?");
+    gotoligcol(12,60);
+    printf("1.Me deplacer");
+    gotoligcol(14,60);
+    printf("2.Poser une barriere");
+    gotoligcol(16,60);
+    printf("3.Annuler le coup du joueur precedent");
+    gotoligcol(18,60);
+    printf("4.Sauvegarder et quitter");
+    gotoligcol(20,60);
+    do{
+        fflush(stdin);
+        scanf("%d",&choixAction);
+    }while( (choixAction<1) && (choixAction>4) );
+
+    switch (choixAction)
+    {
+    case 1:{
+        t_coordonneeM coordonneeVoulu;
+        t_coordonneeG coordonneeVouluG;
+        gotoligcol(38,60);
+        printf("Saisir les coordonees ou vous souhaitez vous déplacer");
+        coordonneeVouluG=remplircoordonneeG(taillePlateau);
+        coordonneeVoulu = coordonneGrilleVersCoordMatrice(coordonneeVouluG);
+        joueurs[iemeJoueur-1]=deplacerPion12(coordonneeVoulu,joueurs[iemeJoueur-1],matrice);
+        afficherJeu12(matrice,joueurs);
+        
+        
+    }
+        break;
+    case 2:
+       {
+        t_barriereG barriere;
+        if (joueurs[iemeJoueur-1].barriere_posees >0){
+            gotoligcol(22,60);
+            printf("Saisir les coordonees des deux case le long desquels sera la barrière ainsi que l'orientation par rapport a ces cases");
+            barriere = choixBarrierre(taillePlateau);
+            placerBarriereGdansMatrice12(barriere,matrice);
+            joueurs[iemeJoueur-1]=changerNombreBarriere(joueurs[iemeJoueur-1],joueurs[iemeJoueur-1].barriere_posees-1);
+
+            afficherJeu12(matrice,joueurs);
+        }
+        else if (joueurs[iemeJoueur-1].barriere_posees == 0){
+             gotoligcol(22,60);
+             printf("Vous n'avez plus assez de barrière à poser");
+            
+        }
+        break;
+        }
+    case 3:
+       
+        break;
+    case 4:
+       
+        break;
+    
+    default:
+        break;
+    }
+}
+
 
 void enregistrerPartie9(int matrice[17][17], t_joueur joueurs[4],int nombreJoueur ){
     char nomPartie[20];
@@ -735,6 +852,7 @@ int sontCoteAcote(t_coordonneeG case1,t_coordonneeG case2){
 }   
 
 int unJoueurEstArrivee(t_joueur joueurs[4],int taillePlateau,int nombreJoueur){
+
     //veririfie si un des joeur est arrivé, renvoie le numero du joueur arrivé
     if (nombreJoueur==2){
         if (joueurs[0].coordonneeGrille.ligne=='I'){
@@ -771,4 +889,39 @@ int unJoueurEstArrivee(t_joueur joueurs[4],int taillePlateau,int nombreJoueur){
     }
 
     
+}
+
+
+t_joueur changerNombreBarriere(t_joueur joueur,int nbarriere){
+    // crée une copie du joueur pour modifier le nombre de barrière
+    t_joueur joueurfin;
+    joueurfin.barriere_posees=nbarriere;
+    joueurfin.nbCoupAnnule=joueur.nbCoupAnnule;
+    strcpy(joueurfin.nom,joueur.nom);
+    joueurfin.pionM=joueur.pionM;
+    joueurfin.pion=joueur.pion;
+    joueurfin.score=joueur.score;
+    joueurfin.coordonneeMatrice.ligne=joueur.coordonneeMatrice.ligne;
+    joueurfin.coordonneeMatrice.colonne=joueur.coordonneeMatrice.colonne;
+    joueurfin.coordonneeGrille.ligne=joueur.coordonneeGrille.ligne;
+    joueurfin.coordonneeGrille.colonne=joueur.coordonneeGrille.colonne;
+
+    return joueurfin;
+}
+
+t_joueur changerScore(t_joueur joueur,int nouveauScore){
+    //crerer une copie du joueur pour modidfier son score
+    t_joueur joueurfin;
+    joueurfin.barriere_posees=joueur.barriere_posees;
+    joueurfin.nbCoupAnnule=joueur.nbCoupAnnule;
+    strcpy(joueurfin.nom,joueur.nom);
+    joueurfin.pionM=joueur.pionM;
+    joueurfin.pion=joueur.pion;
+    joueurfin.score=nouveauScore;
+    joueurfin.coordonneeMatrice.ligne=joueur.coordonneeMatrice.ligne;
+    joueurfin.coordonneeMatrice.colonne=joueur.coordonneeMatrice.colonne;
+    joueurfin.coordonneeGrille.ligne=joueur.coordonneeGrille.ligne;
+    joueurfin.coordonneeGrille.colonne=joueur.coordonneeGrille.colonne;
+
+    return joueurfin;
 }
