@@ -444,7 +444,7 @@ void afficherJeu12(int matrice[23][23],t_joueur listejoueurs[4]){
     t_joueur joueurAPlacer;
     int i,j;
     afficherGrilleVide(12,12);
-    printf("la grille vide est affichz");
+    
 
 // affichage des pions des joueurs sur la grilles
     for (i=0;i<23;i+=2){
@@ -645,7 +645,7 @@ void initialiserMatrice12 (int matrice[23][23],t_joueur joueur[4])
     }
 }
 
-void jouerSontour9(int iemeJoueur, t_joueur joueurs[4] ,int nombreJoueur,int taillePlateau, int matrice[17][17]){
+void jouerSontour9(int iemeJoueur, t_joueur joueurs[4] ,t_joueur joueurCoupPrecedent[4],int nombreJoueur,int taillePlateau, int matrice[17][17],int matricePrecedente[17][17]){
     int choixAction;
     gotoligcol(2,60); // garder ces coordoonées en mémoir elles se toruve à l'extérieur à droite du plateau
     printf("Au tour de %s : %c ",joueurs[iemeJoueur-1].nom,joueurs[iemeJoueur-1].pion);
@@ -691,7 +691,6 @@ void jouerSontour9(int iemeJoueur, t_joueur joueurs[4] ,int nombreJoueur,int tai
         t_barriereG barriere;
         if (joueurs[iemeJoueur-1].barriere_posees >0){
             gotoligcol(22,60);
-            printf("Saisir les coordonees des deux case le long desquels sera la barrière ainsi que l'orientation par rapport a ces cases");
             barriere = choixBarrierre(taillePlateau);
             placerBarriereGdansMatrice9(barriere,matrice);
             joueurs[iemeJoueur-1]=changerNombreBarriere(joueurs[iemeJoueur-1],joueurs[iemeJoueur-1].barriere_posees-1);
@@ -700,15 +699,33 @@ void jouerSontour9(int iemeJoueur, t_joueur joueurs[4] ,int nombreJoueur,int tai
         }
         else if (joueurs[iemeJoueur-1].barriere_posees == 0){
              gotoligcol(22,60);
-             printf("Vous n'avez plus assez de barrière à poser");
-             jouerSontour9(iemeJoueur, joueurs,nombreJoueur,taillePlateau,matrice);
+             printf("Vous n'avez plus assez de barrière à poser, veuillez rejouer");
+             jouerSontour9(iemeJoueur, joueurs,joueurCoupPrecedent,nombreJoueur,taillePlateau, matrice, matricePrecedente);
             
         }
         
         break;
         }
     case 3:
-       
+        if(joueurs[iemeJoueur-1].nbCoupAnnule>0){
+            for(int i=0 ;i<4;i++){
+                joueurs[i]=copieJoueur(joueurCoupPrecedent[i]);
+            }
+            for (int i=0;i<17;i++){
+                for(int j=0;j<17;j++){
+                    matrice[i][j]=matricePrecedente[i][j];
+                }
+            }
+            joueurs[iemeJoueur-1]=changerNbCoupAnnule(joueurs[iemeJoueur-1],0);
+        }
+
+        else {
+            gotoligcol(22,60);
+            printf("voous ne pouvez plus annuler de coup veuillez rejouer");
+            jouerSontour9(iemeJoueur, joueurs,joueurCoupPrecedent,nombreJoueur,taillePlateau, matrice, matricePrecedente);
+    
+        }
+        afficherJeu9(matrice,joueurs);
         break;
     case 4:
        
@@ -719,7 +736,7 @@ void jouerSontour9(int iemeJoueur, t_joueur joueurs[4] ,int nombreJoueur,int tai
     }
 }
 
-void jouerSontour12(int iemeJoueur, t_joueur joueurs[4] ,int nombreJoueur,int taillePlateau, int matrice[23][23]){
+void jouerSontour12(int iemeJoueur, t_joueur joueurs[4] ,t_joueur joueurCoupPrecedent[4],int nombreJoueur,int taillePlateau, int matrice[23][23],int matricePrecedente[23][23]){
     int choixAction;
     gotoligcol(2,60); // garder ces coordoonées en mémoir elles se toruve à l'extérieur à droite du plateau
     printf("Au tour de %s : %c ",joueurs[iemeJoueur-1].nom,joueurs[iemeJoueur-1].pion);
@@ -767,24 +784,45 @@ void jouerSontour12(int iemeJoueur, t_joueur joueurs[4] ,int nombreJoueur,int ta
         t_barriereG barriere;
         if (joueurs[iemeJoueur-1].barriere_posees >0){
             gotoligcol(22,60);
-            printf("Saisir les coordonees des deux case le long desquels sera la barrière ainsi que l'orientation par rapport a ces cases");
             barriere = choixBarrierre(taillePlateau);
             placerBarriereGdansMatrice12(barriere,matrice);
+            afficher12(matrice);
             joueurs[iemeJoueur-1]=changerNombreBarriere(joueurs[iemeJoueur-1],joueurs[iemeJoueur-1].barriere_posees-1);
 
             afficherJeu12(matrice,joueurs);
+
         }
         else if (joueurs[iemeJoueur-1].barriere_posees == 0){
              gotoligcol(22,60);
              printf("Vous n'avez plus assez de barrière à poser");
-             jouerSontour12(iemeJoueur, joueurs,nombreJoueur,taillePlateau,matrice);
+             jouerSontour12(iemeJoueur, joueurs,joueurCoupPrecedent,nombreJoueur,taillePlateau, matrice, matricePrecedente);
+    
             
         }
         
         break;
         }
-    case 3:
-       
+   case 3:
+        if (joueurs[iemeJoueur-1].nbCoupAnnule>0){
+            for(int i=0 ;i<4;i++){
+                joueurs[i]=copieJoueur(joueurCoupPrecedent[i]);
+            }
+            for (int i=0;i<23;i++){
+                for(int j=0;j<23;j++){
+                    matrice[i][j]=matricePrecedente[i][j];
+                }
+            }
+            joueurs[iemeJoueur-1]=changerNbCoupAnnule(joueurs[iemeJoueur-1],0);
+        }
+        
+
+        else {
+            gotoligcol(22,60);
+            printf("voous ne pouvez plus annuler de coup veuillez rejouer");
+            jouerSontour12(iemeJoueur, joueurs,joueurCoupPrecedent,nombreJoueur,taillePlateau, matrice, matricePrecedente);
+    
+        }
+        afficherJeu12(matrice,joueurs);
         break;
     case 4:
        
@@ -940,6 +978,23 @@ t_joueur copieJoueur(t_joueur joueur){
     t_joueur joueurfin;
     joueurfin.barriere_posees=joueur.barriere_posees;
     joueurfin.nbCoupAnnule=joueur.nbCoupAnnule;
+    strcpy(joueurfin.nom,joueur.nom);
+    joueurfin.pionM=joueur.pionM;
+    joueurfin.pion=joueur.pion;
+    joueurfin.score=joueur.score;
+    joueurfin.coordonneeMatrice.ligne=joueur.coordonneeMatrice.ligne;
+    joueurfin.coordonneeMatrice.colonne=joueur.coordonneeMatrice.colonne;
+    joueurfin.coordonneeGrille.ligne=joueur.coordonneeGrille.ligne;
+    joueurfin.coordonneeGrille.colonne=joueur.coordonneeGrille.colonne;
+
+    return joueurfin;
+}
+
+t_joueur changerNbCoupAnnule(t_joueur joueur,int nouveauNbCOupAnnule){
+    //créée la copie d'un joueur
+    t_joueur joueurfin;
+    joueurfin.barriere_posees=joueur.barriere_posees;
+    joueurfin.nbCoupAnnule= nouveauNbCOupAnnule;
     strcpy(joueurfin.nom,joueur.nom);
     joueurfin.pionM=joueur.pionM;
     joueurfin.pion=joueur.pion;
