@@ -188,17 +188,17 @@ t_coordonneeG remplircoordonneeG(int taillePlateau){
     t_coordonneeG coor;
     char lig;
     int col;
-    gotoligcol(18,60);
+    gotoligcol(22,60);
     printf("saisir les coordonnes d'une case :");
    do{
-        gotoligcol(20,60);
+        gotoligcol(23,60);
         fflush(stdin);
         printf("Ligne grille: ");
         scanf("%c",&lig);
         }while ( ( ((int) lig)<65 )|| ( ((int)lig )>(65+taillePlateau) ) );// on verifie que les valeurs saisies sont correct
 
     do{
-        gotoligcol(22,60);
+        gotoligcol(24,60);
         printf("Colonne grille: ");
         fflush(stdin);
         scanf("%d",&col);
@@ -225,9 +225,10 @@ void afficherCaseVideDepuisMatrice(t_coordonneeM coorM){
     printf(" ");
 }
 
-t_joueur creerJoueur(int iemejoueur, int listePionUtilise[8], int taillePlateau){
+t_joueur creerJoueur(int iemejoueur, t_joueur joueurs[4], int taillePlateau){
     // on crée la fonction qui va définir un joueur intialement et lui donner ca position initial la variable "ième joueur" sers à décider à quel poisition il débute
     int i;
+    int choixPion;
     t_joueur joueur;
     int listePions[8];
     int pion ;
@@ -251,16 +252,18 @@ t_joueur creerJoueur(int iemejoueur, int listePionUtilise[8], int taillePlateau)
     gets(joueur.nom);
     joueur.score=0;
     joueur.barriere_posees=20;
+    printf("\nchoissez un pion parmis ceux-ci :");
+    for (int j=0;j<8;j++){
+        printf("\n%d. %c \n",j,listePions[j]);
+
+    }
     do     // on veut attriber un jeton aléatoirement tout en verifiant qu'il n'a pas déjà été attribué
     {
-       pion=listePions[rand()%9] ;
-    }while (pionsUtilise(listePionUtilise,pion)==1);
+       scanf("%d",&choixPion) ;
+    }while (pionsUtilise(joueurs,listePions[choixPion])==1);
     
-    while (listePionUtilise[i]==0){
-        i++;
-    }
-    listePionUtilise[i]=pion;
-    joueur.pion=pion;
+    
+    joueur.pion=listePions[choixPion];
     joueur.nbCoupAnnule=1;
     joueur.pionM=iemejoueur+1;
     switch (iemejoueur)
@@ -336,11 +339,11 @@ t_joueur creerJoueur(int iemejoueur, int listePionUtilise[8], int taillePlateau)
 }
 
 
-int pionsUtilise(int listePionsUtilise[8],int pion){
+int pionsUtilise(t_joueur joueurs[4],int pion){
     // verifie si le ion demandé est déjà utilisé par un joueur, renvoie une valeur booléenne
 
-    for(int i=0;i<8;i++){
-        if (pion==listePionsUtilise[i]){
+    for(int i=0;i<4;i++){
+        if (pion==joueurs[i].pion){
             return 1;
         }
     }
@@ -351,30 +354,27 @@ void lancerNouvellePartie(int nombreJoueur,int taillePlateau,t_joueur joueur[4])
 ///Lance une nouvelle partie et crée le nombre voulu de joueur 
     system("cls");
     color(0,15);
-    int listePionUtilise[8];
-    for (int i=0;i<8;i++){
-                listePionUtilise[i]=0;
-            }
+    
     switch (nombreJoueur)
     {
     case 2 :
         printf(" \n creation du 1er joueur ");
-        joueur[0]=creerJoueur(1, listePionUtilise,  taillePlateau);
+        joueur[0]=creerJoueur(1, joueur,  taillePlateau);
         printf(" \n création du 2eme joueur ");
-        joueur[1]=creerJoueur(2, listePionUtilise,  taillePlateau);
+        joueur[1]=creerJoueur(2, joueur,  taillePlateau);
        break;
     case 4 :
         printf(" \n creation du 1er joueur ");
-        joueur[0]=creerJoueur(1, listePionUtilise,  taillePlateau);
+        joueur[0]=creerJoueur(1, joueur,  taillePlateau);
         
         printf(" \n creation du 2eme joueur ");
-        joueur[1]=creerJoueur(2, listePionUtilise,  taillePlateau);
+        joueur[1]=creerJoueur(2, joueur,  taillePlateau);
 
          printf(" \n creation du 3eme joueur ");
-        joueur[2]=creerJoueur(3, listePionUtilise,  taillePlateau);
+        joueur[2]=creerJoueur(3, joueur,  taillePlateau);
          
         printf(" \n creation du 4eme joueur ");
-        joueur[3]=creerJoueur(4, listePionUtilise,  taillePlateau);
+        joueur[3]=creerJoueur(4, joueur,  taillePlateau);
         
         break;
     default:
@@ -444,6 +444,7 @@ void afficherJeu12(int matrice[23][23],t_joueur listejoueurs[4]){
     t_joueur joueurAPlacer;
     int i,j;
     afficherGrilleVide(12,12);
+    printf("la grille vide est affichz");
 
 // affichage des pions des joueurs sur la grilles
     for (i=0;i<23;i+=2){
@@ -499,19 +500,21 @@ t_barriereG choixBarrierre(int taillePlateau){
     t_barriereG barriere;
     int sens;
     
-    gotoligcol(16,60);
+    gotoligcol(21,60);
     printf("Saisir la 1ere barriere ");
 
     barriere.coorG1=remplircoordonneeG(taillePlateau);
     do {
-        gotoligcol(16,60);
+        gotoligcol(21,60);
         printf("Saisir la 2eme barriere ");
         barriere.coorG2=remplircoordonneeG(taillePlateau);
     }while( sontCoteAcote(barriere.coorG1,barriere.coorG2)==0);// on verifie que les deux cases sont cote a cote 
     
     do {
         gotoligcol(26,60);
-        printf(" Choisissez l'orientation de la barriere par rapport aux 2 cases choisies en haut (1), à droite (2), en bas (3), gauche(4). Attention a choisir un sens possible : ");
+        printf(" Choisissez l'orientation de la barriere par rapport aux 2 cases choisies  ");
+        gotoligcol(27,60);
+        printf("en haut (1), à droite (2), en bas (3), gauche(4). Attention a choisir un sens possible : ");
         scanf("%d",&sens);
     }while ( ( (barriere.coorG1.ligne==barriere.coorG2.ligne) && ((sens==2)||(sens==4)) ) || ( (barriere.coorG1.colonne==barriere.coorG2.colonne) && ((sens==1)||(sens==3)) ) || ( (barriere.coorG1.ligne=='A')&& (sens ==1)) || ( (barriere.coorG1.ligne==64+taillePlateau)&& (sens ==3)) || ( (barriere.coorG1.colonne==1)&& (sens ==4)) || ( (barriere.coorG1.colonne== taillePlateau)&& (sens ==2)) );
 //on verifie que le sens saisie est possible ( si on a pris 2 cases horizontales on ne peut pas poser les barrières verticalement et vice versa, on verifie aussi que l'on ne les positionne pas sur le bord du plateau)
@@ -698,6 +701,7 @@ void jouerSontour9(int iemeJoueur, t_joueur joueurs[4] ,int nombreJoueur,int tai
         else if (joueurs[iemeJoueur-1].barriere_posees == 0){
              gotoligcol(22,60);
              printf("Vous n'avez plus assez de barrière à poser");
+             jouerSontour9(iemeJoueur, joueurs,nombreJoueur,taillePlateau,matrice);
             
         }
         
@@ -746,18 +750,20 @@ void jouerSontour12(int iemeJoueur, t_joueur joueurs[4] ,int nombreJoueur,int ta
     case 1:{
         t_coordonneeM coordonneeVoulu;
         t_coordonneeG coordonneeVouluG;
-        gotoligcol(38,60);
+        gotoligcol(22,60);
         printf("Saisir les coordonees ou vous souhaitez vous déplacer");
         coordonneeVouluG=remplircoordonneeG(taillePlateau);
         coordonneeVoulu = coordonneGrilleVersCoordMatrice(coordonneeVouluG);
         joueurs[iemeJoueur-1]=deplacerPion12(coordonneeVoulu,joueurs[iemeJoueur-1],matrice);
+       
         afficherJeu12(matrice,joueurs);
+        
         
         
     }
         break;
     case 2:
-       {
+        {
         t_barriereG barriere;
         if (joueurs[iemeJoueur-1].barriere_posees >0){
             gotoligcol(22,60);
@@ -771,8 +777,10 @@ void jouerSontour12(int iemeJoueur, t_joueur joueurs[4] ,int nombreJoueur,int ta
         else if (joueurs[iemeJoueur-1].barriere_posees == 0){
              gotoligcol(22,60);
              printf("Vous n'avez plus assez de barrière à poser");
+             jouerSontour12(iemeJoueur, joueurs,nombreJoueur,taillePlateau,matrice);
             
         }
+        
         break;
         }
     case 3:
@@ -918,6 +926,24 @@ t_joueur changerScore(t_joueur joueur,int nouveauScore){
     joueurfin.pionM=joueur.pionM;
     joueurfin.pion=joueur.pion;
     joueurfin.score=nouveauScore;
+    joueurfin.coordonneeMatrice.ligne=joueur.coordonneeMatrice.ligne;
+    joueurfin.coordonneeMatrice.colonne=joueur.coordonneeMatrice.colonne;
+    joueurfin.coordonneeGrille.ligne=joueur.coordonneeGrille.ligne;
+    joueurfin.coordonneeGrille.colonne=joueur.coordonneeGrille.colonne;
+
+    return joueurfin;
+}
+
+
+t_joueur copieJoueur(t_joueur joueur){
+    //créée la copie d'un joueur
+    t_joueur joueurfin;
+    joueurfin.barriere_posees=joueur.barriere_posees;
+    joueurfin.nbCoupAnnule=joueur.nbCoupAnnule;
+    strcpy(joueurfin.nom,joueur.nom);
+    joueurfin.pionM=joueur.pionM;
+    joueurfin.pion=joueur.pion;
+    joueurfin.score=joueur.score;
     joueurfin.coordonneeMatrice.ligne=joueur.coordonneeMatrice.ligne;
     joueurfin.coordonneeMatrice.colonne=joueur.coordonneeMatrice.colonne;
     joueurfin.coordonneeGrille.ligne=joueur.coordonneeGrille.ligne;

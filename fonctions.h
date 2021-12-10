@@ -52,7 +52,7 @@ t_coordonneeM coordonneGrilleVersCoordMatrice(t_coordonneeG coorG);
 t_coordonneeG coordoneeMatriceversCoordGrille(t_coordonneeM  coorM);
 void afficherPiondepuisMatrice(t_coordonneeM coorM, t_joueur joueur );
 void afficherCaseVideDepuisMatrice(t_coordonneeM coorM);
-t_joueur creerJoueur(int iemejoueur, int listePionUtilise[8], int taillePlateau);
+t_joueur creerJoueur(int iemejoueur, t_joueur joueurs[4], int taillePlateau);
 t_coordonneeG remplircoordonneeG(int taillePlateau);
 
 void lancerNouvellePartie(int nombreJoueur,int taillePlateau,t_joueur joueur[4]);
@@ -60,7 +60,7 @@ void lancerNouvellePartie(int nombreJoueur,int taillePlateau,t_joueur joueur[4])
 void afficherJeu9(int matrice[17][17],t_joueur listejoueurs[4]);
 void afficherJeu12(int matrice[23][23],t_joueur listejoueurs[4]);
 
-int pionsUtilise(int listePionsUtilise[8],int pion);
+int pionsUtilise(t_joueur joueurs[4],int pion);
 t_barriereG choixBarrierre(int taillePlateau);
 
 void placerBarriereGdansMatrice9(t_barriereG barriere, int matrice[17][17]);
@@ -79,4 +79,5 @@ int unJoueurEstArrivee(t_joueur joueurs[4],int taillePlateau,int nombreJoueur);
 
 t_joueur changerNombreBarriere(t_joueur joueur,int nbarriere);
 t_joueur changerScore(t_joueur joueur,int nouveauScore);
+t_joueur copieJoueur(t_joueur joueur);
 #endif 

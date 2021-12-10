@@ -399,7 +399,7 @@ t_joueur deplacerPion9(t_coordonneeM coorVoulu,t_joueur joueur,int matrice[17][1
     else if (verificationDeplacement9(joueur,coorVoulu,matrice)==1){
         gotoligcol(19,60);
         gotoligcol(24,60);
-        printf("Une barrière barre le chemin veuillez changez de destination");
+        printf("Une barriere barre le chemin veuillez changez de destination");
         nouvellesCoor= coordonneGrilleVersCoordMatrice(remplircoordonneeG(9));
         deplacerPion9(nouvellesCoor,joueur,matrice);
     }

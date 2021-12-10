@@ -43,13 +43,15 @@ int main()
     case 1:{// appel de lancerNouvellePartie
         int nombreJoueur;
         int taillePlateau;
+        int rejouer;
         int matrice9[17][17];
+        int sauvegardeMatrice9[17][17];
         int matrice12[23][23];
+        int sauvegardeMatrice12[23][23];
         t_coordonneeM coorNouvelle;
         t_barriereG barriere;
-
-
         t_joueur joueurs[4];
+        t_joueur sauveGardeJoueur[4];
         system("cls");
         color(0,15);
         printf("Combien de joueurs pour cette partie ?\n");
@@ -67,42 +69,128 @@ int main()
         else {
             taillePlateau=9;
         }
-
+        
         lancerNouvellePartie(nombreJoueur, taillePlateau, joueurs);
         //intitialiation de la matrice dans laquelle seront géréer les deplacements
-        if (taillePlateau==9){
+        do {
+            i= rand() % (nombreJoueur-1 + 1) + 1;
+            if (taillePlateau==9){
 
-            initialiserMatrice9(matrice9,joueurs);
-             afficherJeu9(matrice9,joueurs);
-             int blocage=0;
-            do {
-            blocage=CheckAllPath(matrice9, taillePlateau, joueurs, nombreJoueur);
-            jouerSontour9(i, joueurs ,nombreJoueur,taillePlateau,  matrice9);
-            gotoligcol(46,60);
-            i++;
-            if (i>nombreJoueur){
-                i=1;
-            }
+                initialiserMatrice9(matrice9,joueurs);
+                afficherJeu9(matrice9,joueurs);
+                int blocage=0;
+                do {
+                    blocage=CheckAllPath(matrice9, taillePlateau, joueurs, nombreJoueur);
+                    
+                    for (int j=0; j<4;j++){
+                        sauveGardeJoueur[j]=copieJoueur(joueurs[j]);
+                    }
 
-            }while(unJoueurEstArrivee(joueurs,taillePlateau,nombreJoueur)==0 && blocage==0);
-        }
+                    for(int l=0;l<17;l++){
+                        for (int k=0;k<17;k++){
+                            sauvegardeMatrice9[l][k]=matrice9[l][k];
+                        }
+                    }
+                    
+                    jouerSontour9(i, joueurs ,nombreJoueur,taillePlateau,  matrice9);
+                    gotoligcol(46,60);
+                    if (blocage>0){
+                        for (int j=0; j<4;j++){
+                        joueurs[j]=copieJoueur(sauveGardeJoueur[j]);
+                        }
+
+                        for(int l=0;l<17;l++){
+                            for (int k=0;k<17;k++){
+                            matrice9[l][k]=sauvegardeMatrice9[l][k];
+                            }
+                        }
+                        gotoligcol(26,60);
+                        printf("le chemin est bloqué veuillez rejouer");
+                        i--;
+
+                    }
+                    
+                    i++;
+
+                    if (i>nombreJoueur){
+                        i=1;
+                    }
+
+                    
+
+                }while(unJoueurEstArrivee(joueurs,taillePlateau,nombreJoueur)==0 );
+
+                if (unJoueurEstArrivee(joueurs,taillePlateau,nombreJoueur)!=0){
+                    gotoligcol(26,60);
+                    printf("%s a remporté cette manche !",joueurs[unJoueurEstArrivee(joueurs,taillePlateau,nombreJoueur)-1].nom);
+                    gotoligcol(27,60);
+                    printf("voulez vous continuer à jouer ?  -1-oui  -2-non :");
+                    scanf("%d",&rejouer);
+
+                }
 
             
-        else if (taillePlateau==12) {
-            initialiserMatrice12(matrice12,joueurs);
-            afficherJeu12(matrice12,joueurs);
-            int blocage=0;
-         do {
-            blocage=CheckAllPath(matrice12, taillePlateau, joueurs, nombreJoueur);
-            jouerSontour12(i, joueurs ,nombreJoueur,taillePlateau,  matrice12);
-            gotoligcol(46,60);
-            i++;
-            if (i>nombreJoueur){
-                i=1;
             }
 
-            }while(unJoueurEstArrivee(joueurs,taillePlateau,nombreJoueur)==0 && blocage==0);
-        }
+                
+            else if (taillePlateau==12) {
+                initialiserMatrice12(matrice12,joueurs);
+                afficherJeu12(matrice12,joueurs);
+                int blocage=0;
+                do {
+                    blocage=CheckAllPath(matrice12, taillePlateau, joueurs, nombreJoueur);
+                    
+                    for (int j=0; j<4;j++){
+                        sauveGardeJoueur[j]=copieJoueur(joueurs[j]);
+                    }
+
+                    for(int l=0;l<23;l++){
+                        for (int k=0;k<23;k++){
+                            sauvegardeMatrice12[l][k]=matrice12[l][k];
+                        }
+                    }
+                    gotoligcol(46,60);
+                    
+                    jouerSontour12(i, joueurs ,nombreJoueur,taillePlateau,  matrice12);
+
+                    gotoligcol(46,60);
+                    
+                    if (blocage>0){
+                        for (int j=0; j<4;j++){
+                        joueurs[j]=copieJoueur(sauveGardeJoueur[j]);
+                        }
+
+                        for(int l=0;l<23;l++){
+                            for (int k=0;k<23;k++){
+                            matrice12[l][k]=sauvegardeMatrice12[l][k];
+                            }
+                        }
+                        gotoligcol(26,60);
+                        printf("le chemin est bloqué veuillez rejouer");
+                        i--;
+
+                    }
+                    
+                    i++;
+
+                    if (i>nombreJoueur){
+                        i=1;
+                    }
+
+                
+
+                }while(unJoueurEstArrivee(joueurs,taillePlateau,nombreJoueur)==0 );
+                
+                if (unJoueurEstArrivee(joueurs,taillePlateau,nombreJoueur)!=0){
+                    gotoligcol(26,60);
+                    printf("%s a remporté cette manche !",joueurs[unJoueurEstArrivee(joueurs,taillePlateau,nombreJoueur)-1].nom);
+                    gotoligcol(27,60);
+                    printf("voulez vous continuer à jouer ?  -1-oui  -2-non :");
+                    scanf("%d",&rejouer);
+
+                }
+            }
+        }while(rejouer==1);
     }
         break;
 
