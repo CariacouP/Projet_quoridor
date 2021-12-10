@@ -26,10 +26,10 @@ int CheckPath( int grid[23][23], int taille, t_joueur joueur, int indexJoueur)
                 int colMatrice = col * 2;
                 if(verifGrid[lig][col] == 0)
                 {
-                    if((lig > 0 && verifGrid[lig - 1][col] == 1 && grid[ligMatrice - 1][colMatrice] == 0)
-                       || (col > 0 && verifGrid[lig][col - 1] == 1 && grid[ligMatrice][colMatrice - 1] == 0)
-                       || (lig < taille - 1 && verifGrid[lig + 1][col] == 1 && grid[ligMatrice + 1][colMatrice] == 0)
-                       || (col < taille - 1 && verifGrid[lig][col + 1] == 1 && grid[ligMatrice][colMatrice + 1] == 0))
+                    if((lig > 0 && verifGrid[lig - 1][col] == 1 && ligMatrice > 0 && grid[ligMatrice - 1][colMatrice] == 0)
+                       || (col > 0 && verifGrid[lig][col - 1] == 1 && colMatrice > 0 && grid[ligMatrice][colMatrice - 1] == 0)
+                       || (lig < taille - 1 && verifGrid[lig + 1][col] == 1 && ligMatrice < taille * 2 - 1 && grid[ligMatrice + 1][colMatrice] == 0)
+                       || (col < taille - 1 && verifGrid[lig][col + 1] == 1 && colMatrice < taille * 2 - 1 && grid[ligMatrice][colMatrice + 1] == 0))
                     {
                         verifGrid[lig][col] = 1;
                         nbCelluleModif++;
