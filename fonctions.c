@@ -338,6 +338,86 @@ t_joueur creerJoueur(int iemejoueur, t_joueur joueurs[4], int taillePlateau){
     return joueur;
 }
 
+t_joueur reinitialiserJoueur(int iemeJoueur, t_joueur joueurs[4],int nombreJoueur,int taillePlateau){
+    t_coordonneeG coorG;
+    t_coordonneeM coorM;
+    t_joueur joueurfin;
+    
+    joueurfin.barriere_posees=20;
+    joueurfin.nbCoupAnnule=1;
+    strcpy(joueurfin.nom,joueurs[iemeJoueur-1].nom);
+    joueurfin.pionM=joueurs[iemeJoueur-1].pionM;
+    joueurfin.pion=joueurs[iemeJoueur-1].pion;
+    joueurfin.score=joueurs[iemeJoueur-1].score;
+    
+    
+        
+        
+        
+        switch (iemeJoueur)
+    {
+    case 1 :
+        joueurfin.coordonneeGrille.ligne='A';
+        joueurfin.coordonneeGrille.colonne= 5;
+        coorM=coordonneGrilleVersCoordMatrice(joueurfin.coordonneeGrille);
+        joueurfin.coordonneeMatrice=coorM;
+
+        break;
+    case 2 :
+       if (taillePlateau==9){
+            joueurfin.coordonneeGrille.ligne='I';
+            joueurfin.coordonneeGrille.colonne= 5;
+            coorM=coordonneGrilleVersCoordMatrice(joueurfin.coordonneeGrille);
+            joueurfin.coordonneeMatrice=coorM;
+       }
+       else if (taillePlateau==12){
+            joueurfin.coordonneeGrille.ligne='L';
+            joueurfin.coordonneeGrille.colonne= 6;
+            coorM=coordonneGrilleVersCoordMatrice(joueurfin.coordonneeGrille);
+            joueurfin.coordonneeMatrice=coorM;
+
+       }
+       break;
+    case 3 :
+        if (taillePlateau==9)  {
+            joueurfin.coordonneeGrille.ligne='E';
+            joueurfin.coordonneeGrille.colonne= 1;
+            coorM=coordonneGrilleVersCoordMatrice(joueurfin.coordonneeGrille);
+            joueurfin.coordonneeMatrice=coorM;
+        }
+        else if (taillePlateau==12){
+            joueurfin.coordonneeGrille.ligne='F';
+            joueurfin.coordonneeGrille.colonne= 1;
+            coorM=coordonneGrilleVersCoordMatrice(joueurfin.coordonneeGrille);
+            joueurfin.coordonneeMatrice=coorM;
+        }
+        else {
+            printf("erreur de taille du tableau");
+        }
+        break;
+    case 4:
+         if (taillePlateau==9)  {
+            joueurfin.coordonneeGrille.ligne='E';
+            joueurfin.coordonneeGrille.colonne= 9;
+            coorM=coordonneGrilleVersCoordMatrice(joueurfin.coordonneeGrille);
+            joueurfin.coordonneeMatrice=coorM;
+        }
+
+        else if (taillePlateau==12){
+            joueurfin.coordonneeGrille.ligne='F';
+            joueurfin.coordonneeGrille.colonne= 12;
+            coorM=coordonneGrilleVersCoordMatrice(joueurfin.coordonneeGrille);
+            joueurfin.coordonneeMatrice=coorM;
+        }
+
+        else {
+            printf("erreur de taille du tableau");
+        }
+    default:
+        break;
+    }
+      return joueurfin;  
+    }
 
 int pionsUtilise(t_joueur joueurs[4],int pion){
     // verifie si le ion demandé est déjà utilisé par un joueur, renvoie une valeur booléenne
@@ -643,7 +723,7 @@ void initialiserMatrice12 (int matrice[23][23],t_joueur joueur[4])
     }
 }
 
-void jouerSontour9(int iemeJoueur, t_joueur joueurs[4] ,t_joueur joueurCoupPrecedent[4],int nombreJoueur,int taillePlateau, int matrice[17][17],int matricePrecedente[17][17]){
+int jouerSontour9(int iemeJoueur, t_joueur joueurs[4] ,t_joueur joueurCoupPrecedent[4],int nombreJoueur,int taillePlateau, int matrice[17][17],int matricePrecedente[17][17]){
     int choixAction;
     gotoligcol(2,60); // garder ces coordoonées en mémoir elles se toruve à l'extérieur à droite du plateau
     printf("Au tour de %s : %c ",joueurs[iemeJoueur-1].nom,joueurs[iemeJoueur-1].pion);
@@ -687,7 +767,8 @@ void jouerSontour9(int iemeJoueur, t_joueur joueurs[4] ,t_joueur joueurCoupPrece
         afficherJeu9(matrice,joueurs);
         
         
-    }
+    }   
+        return 0;
         break;
     case 2:
         {
@@ -706,7 +787,7 @@ void jouerSontour9(int iemeJoueur, t_joueur joueurs[4] ,t_joueur joueurCoupPrece
              jouerSontour9(iemeJoueur, joueurs,joueurCoupPrecedent,nombreJoueur,taillePlateau, matrice, matricePrecedente);
             
         }
-        
+        return 0;
         break;
         }
     case 3:
@@ -729,8 +810,10 @@ void jouerSontour9(int iemeJoueur, t_joueur joueurs[4] ,t_joueur joueurCoupPrece
     
         }
         afficherJeu9(matrice,joueurs);
+        return 0;
         break;
     case 4:
+        return 1;
        
         break;
     
@@ -739,7 +822,7 @@ void jouerSontour9(int iemeJoueur, t_joueur joueurs[4] ,t_joueur joueurCoupPrece
     }
 }
 
-void jouerSontour12(int iemeJoueur, t_joueur joueurs[4] ,t_joueur joueurCoupPrecedent[4],int nombreJoueur,int taillePlateau, int matrice[23][23],int matricePrecedente[23][23]){
+int jouerSontour12(int iemeJoueur, t_joueur joueurs[4] ,t_joueur joueurCoupPrecedent[4],int nombreJoueur,int taillePlateau, int matrice[23][23],int matricePrecedente[23][23]){
     int choixAction;
     gotoligcol(2,60); // garder ces coordoonées en mémoir elles se toruve à l'extérieur à droite du plateau
     printf("Au tour de %s : %c ",joueurs[iemeJoueur-1].nom,joueurs[iemeJoueur-1].pion);
@@ -783,6 +866,7 @@ void jouerSontour12(int iemeJoueur, t_joueur joueurs[4] ,t_joueur joueurCoupPrec
         
         
     }
+        return 0;
         break;
     case 2:
         {
@@ -804,7 +888,7 @@ void jouerSontour12(int iemeJoueur, t_joueur joueurs[4] ,t_joueur joueurCoupPrec
     
             
         }
-        
+        return 0;
         break;
         }
    case 3:
@@ -828,9 +912,10 @@ void jouerSontour12(int iemeJoueur, t_joueur joueurs[4] ,t_joueur joueurCoupPrec
     
         }
         afficherJeu12(matrice,joueurs);
+        return 0;
         break;
     case 4:
-       
+       return 1;
         break;
     
     default:

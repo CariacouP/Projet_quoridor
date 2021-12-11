@@ -45,7 +45,9 @@ int main()
         case 1:{// appel de lancerNouvellePartie
             int nombreJoueur;
             int taillePlateau;
-            int rejouer;
+            int rejouer=1;
+            int pause;
+            int quitterJeu=0;
             int memoire=1;
             int matrice9[17][17];
             int premiereSauvegardeMatrice9[17][17];
@@ -79,7 +81,15 @@ int main()
             lancerNouvellePartie(nombreJoueur, taillePlateau, joueurs);
             //intitialiation de la matrice dans laquelle seront géréer les deplacements
             
-                do {
+                while(rejouer==1 ) {
+
+                    rejouer=0;
+                    for (int m=0; m<nombreJoueur;m++){//on reinitialise le joueurs en gardant leur nom leur piion et leur score pour démarer une nouvelle partie
+                        joueurs[m]=reinitialiserJoueur(m+1,joueurs,nombreJoueur,taillePlateau);
+                    }       
+
+
+
                 i= rand() % (nombreJoueur-1 + 1) + 1;
                 if (taillePlateau==9){
 
@@ -87,7 +97,7 @@ int main()
                     afficherJeu9(matrice9,joueurs);
                     int blocage=0;
                     
-                    while(unJoueurEstArrivee(joueurs,taillePlateau,nombreJoueur)==0 ){
+                    while(unJoueurEstArrivee(joueurs,taillePlateau,nombreJoueur)==0 || quitterJeu==0){
                         if (memoire==1){
                             blocage=CheckAllPath(matrice9, taillePlateau, joueurs, nombreJoueur);
                             
@@ -101,7 +111,7 @@ int main()
                                 }
                             }
                             
-                            jouerSontour9(i, joueurs ,deuxiemeSauvegardeJoueur,nombreJoueur,taillePlateau,  matrice9,deuxiemeSauvegardeMatrice9);
+                            quitterJeu=jouerSontour9(i, joueurs ,deuxiemeSauvegardeJoueur,nombreJoueur,taillePlateau,  matrice9,deuxiemeSauvegardeMatrice9);
                             memoire=2;
                             gotoligcol(46,60);
                             if (blocage>0){
@@ -116,7 +126,7 @@ int main()
                                 }
                                 gotoligcol(26,60);
                                 printf("le chemin est bloqué veuillez rejouer");
-                                jouerSontour9(i, joueurs ,deuxiemeSauvegardeJoueur,nombreJoueur,taillePlateau,  matrice9,deuxiemeSauvegardeMatrice9);
+                                quitterJeu=jouerSontour9(i, joueurs ,deuxiemeSauvegardeJoueur,nombreJoueur,taillePlateau,  matrice9,deuxiemeSauvegardeMatrice9);
 
                             }
                         }
@@ -134,7 +144,7 @@ int main()
                                 }
                             }
                             
-                            jouerSontour9(i, joueurs ,premiereSauvegardeJoueur,nombreJoueur,taillePlateau,  matrice9,premiereSauvegardeMatrice9);
+                            quitterJeu=jouerSontour9(i, joueurs ,premiereSauvegardeJoueur,nombreJoueur,taillePlateau,  matrice9,premiereSauvegardeMatrice9);
                             memoire=1;
 
                             if (blocage>0){
@@ -149,7 +159,7 @@ int main()
                                 }
                                 gotoligcol(26,60);
                                 printf("le chemin est bloqué veuillez rejouer");
-                                jouerSontour9(i, joueurs ,premiereSauvegardeJoueur,nombreJoueur,taillePlateau,  matrice9,premiereSauvegardeMatrice9);
+                                quitterJeu=jouerSontour9(i, joueurs ,premiereSauvegardeJoueur,nombreJoueur,taillePlateau,  matrice9,premiereSauvegardeMatrice9);
 
                             }  
                         } 
@@ -160,7 +170,10 @@ int main()
                             i=1;
                         }
 
-                        
+                    gotoligcol(27,60);
+                    printf("quitterJeu= %d  rejouer=%d",quitterJeu,rejouer);
+                    scanf("%d",&pause);
+
 
                     }
 
@@ -173,8 +186,7 @@ int main()
                         scanf("%d",&rejouer);
 
                     }
-
-                
+                   
                 }
 
                     
@@ -182,7 +194,7 @@ int main()
                     initialiserMatrice12(matrice12,joueurs);
                     afficherJeu12(matrice12,joueurs);
                     int blocage=0;
-                    do {
+                    while(unJoueurEstArrivee(joueurs,taillePlateau,nombreJoueur)==0|| quitterJeu!=1 ) {
                         if (memoire==1){
                             blocage=CheckAllPath(matrice12, taillePlateau, joueurs, nombreJoueur);
                             
@@ -196,7 +208,7 @@ int main()
                                 }
                             }
                             
-                            jouerSontour12(i, joueurs ,deuxiemeSauvegardeJoueur,nombreJoueur,taillePlateau,  matrice12,deuxiemeSauvegardeMatrice12);
+                            quitterJeu=jouerSontour12(i, joueurs ,deuxiemeSauvegardeJoueur,nombreJoueur,taillePlateau,  matrice12,deuxiemeSauvegardeMatrice12);
                             memoire=2;
                             gotoligcol(46,60);
                             if (blocage>0){
@@ -211,7 +223,7 @@ int main()
                                 }
                                 gotoligcol(26,60);
                                 printf("le chemin est bloqué veuillez rejouer");
-                                jouerSontour12(i, joueurs ,deuxiemeSauvegardeJoueur,nombreJoueur,taillePlateau,  matrice12,deuxiemeSauvegardeMatrice12);
+                                quitterJeu=jouerSontour12(i, joueurs ,deuxiemeSauvegardeJoueur,nombreJoueur,taillePlateau,  matrice12,deuxiemeSauvegardeMatrice12);
 
                             }
                         }
@@ -229,7 +241,7 @@ int main()
                                 }
                             }
                             
-                            jouerSontour12(i, joueurs ,premiereSauvegardeJoueur,nombreJoueur,taillePlateau,  matrice12,premiereSauvegardeMatrice12);
+                            quitterJeu=jouerSontour12(i, joueurs ,premiereSauvegardeJoueur,nombreJoueur,taillePlateau,  matrice12,premiereSauvegardeMatrice12);
                             memoire=1;
 
                             if (blocage>0){
@@ -244,7 +256,7 @@ int main()
                                 }
                                 gotoligcol(26,60);
                                 printf("le chemin est bloqué veuillez rejouer");
-                                jouerSontour12(i, joueurs ,premiereSauvegardeJoueur,nombreJoueur,taillePlateau,  matrice12,premiereSauvegardeMatrice12);
+                                quitterJeu=jouerSontour12(i, joueurs ,premiereSauvegardeJoueur,nombreJoueur,taillePlateau,  matrice12,premiereSauvegardeMatrice12);
 
                             }  
                         } 
@@ -258,7 +270,7 @@ int main()
 
                         
 
-                    }while(unJoueurEstArrivee(joueurs,taillePlateau,nombreJoueur)==0 );
+                    }
                     
                     if (unJoueurEstArrivee(joueurs,taillePlateau,nombreJoueur)!=0){
                         gotoligcol(26,60);
@@ -270,7 +282,7 @@ int main()
 
                     }
                 }
-            }while(rejouer==1);
+            }
         }
             break;
 
