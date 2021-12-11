@@ -674,6 +674,11 @@ void jouerSontour9(int iemeJoueur, t_joueur joueurs[4] ,t_joueur joueurCoupPrece
     case 1:{
         t_coordonneeM coordonneeVoulu;
         t_coordonneeG coordonneeVouluG;
+        gotoligcol(28,60);
+        printf("coordonnees du joueur avant déplacement : %c ; %d ",joueurs[iemeJoueur-1].coordonneeGrille.ligne,joueurs[iemeJoueur-1].coordonneeGrille.colonne);
+        gotoligcol(29,60);
+        printf("coordonnees du joueur avant déplacement : %d ; %d ",joueurs[iemeJoueur-1].coordonneeMatrice.ligne,joueurs[iemeJoueur-1].coordonneeMatrice.colonne);
+       
         gotoligcol(22,60);
         printf("Saisir les coordonees ou vous souhaitez vous déplacer");
         coordonneeVouluG=remplircoordonneeG(taillePlateau);
@@ -765,13 +770,15 @@ void jouerSontour12(int iemeJoueur, t_joueur joueurs[4] ,t_joueur joueurCoupPrec
     case 1:{
         t_coordonneeM coordonneeVoulu;
         t_coordonneeG coordonneeVouluG;
-        gotoligcol(22,60);
-        printf("Saisir les coordonees ou vous souhaitez vous déplacer");
+        printf ("coordonnee du joueur %c ; %d",joueurs[iemeJoueur-1].coordonneeGrille.ligne,joueurs[iemeJoueur-1].coordonneeGrille.colonne);
+        gotoligcol(21,60);
+        printf("Saisir les coordonees ou vous souhaitez vous deplacer");
         coordonneeVouluG=remplircoordonneeG(taillePlateau);
         coordonneeVoulu = coordonneGrilleVersCoordMatrice(coordonneeVouluG);
         joueurs[iemeJoueur-1]=deplacerPion12(coordonneeVoulu,joueurs[iemeJoueur-1],matrice);
        
         afficherJeu12(matrice,joueurs);
+        gotoligcol(21,60);
         
         
         
@@ -879,7 +886,7 @@ void enregistrerPartie9(int matrice[17][17], t_joueur joueurs[4],int nombreJoueu
 
 int sontCoteAcote(t_coordonneeG case1,t_coordonneeG case2){
     if ( (case1.ligne !=case2.ligne) && (case1.colonne !=case2.colonne) ){
-        // si les cases ne sont ni sur la meme ligne ni su rl ameme colonne
+        // si les cases ne sont ni sur la meme ligne ni sur la meme colonne
         return 0;
     }
     else if ( (case1.ligne==case2.ligne) && (abs(case1.colonne-case2.colonne)>1) ){
@@ -887,7 +894,7 @@ int sontCoteAcote(t_coordonneeG case1,t_coordonneeG case2){
         return 0;
     }
     else if ( (case1.colonne==case2.colonne) && (abs( ((int)case1.ligne)-((int)case2.ligne))>1)){
-        //Si elle sont sue la meme colonnen mais que la distance entre les lignes est trop importante
+        //Si elle sont sur la meme colonne mais que la distance entre les lignes est trop importante
         return 0;
     }
     else {

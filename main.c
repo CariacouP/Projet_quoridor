@@ -29,10 +29,10 @@ int main()
     do {
         system("cls");
         color(0,15);
-        printf("Bienvenu dans Quoridor !");
+        printf("Bienvenue dans Quoridor !");
         printf("\n -- Menu -- \n");
         printf("1 - Lancer une nouvelle partie\n");
-        printf("2 - reprendre une partie sauvegard�e\n");
+        printf("2 - reprendre une partie sauvegarde\n");
         printf("3 - Afficher l'aide\n");
         printf("4 - Afficher les scores des joueurs\n");
         printf("5 - Quitter le jeu\n");
@@ -87,7 +87,7 @@ int main()
                     afficherJeu9(matrice9,joueurs);
                     int blocage=0;
                     
-                    do {
+                    while(unJoueurEstArrivee(joueurs,taillePlateau,nombreJoueur)==0 ){
                         if (memoire==1){
                             blocage=CheckAllPath(matrice9, taillePlateau, joueurs, nombreJoueur);
                             
@@ -162,14 +162,14 @@ int main()
 
                         
 
-                    }while(unJoueurEstArrivee(joueurs,taillePlateau,nombreJoueur)==0 );
+                    }
 
                     if (unJoueurEstArrivee(joueurs,taillePlateau,nombreJoueur)!=0){
                          gotoligcol(26,60);
                         joueurs[unJoueurEstArrivee(joueurs,taillePlateau,nombreJoueur)-1]=changerScore(joueurs[unJoueurEstArrivee(joueurs,taillePlateau,nombreJoueur)-1],joueurs[unJoueurEstArrivee(joueurs,taillePlateau,nombreJoueur)-1].score+5);
-                        printf("%s a remporté cette manche !",joueurs[unJoueurEstArrivee(joueurs,taillePlateau,nombreJoueur)-1].nom);
+                        printf("%s a remporte cette manche !",joueurs[unJoueurEstArrivee(joueurs,taillePlateau,nombreJoueur)-1].nom);
                         gotoligcol(27,60);
-                        printf("voulez vous continuer à jouer ?  -1-oui  -2-non :");
+                        printf("voulez vous continuer a jouer ?  -1-oui  -2-non :");
                         scanf("%d",&rejouer);
 
                     }
