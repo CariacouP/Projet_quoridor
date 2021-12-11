@@ -592,7 +592,7 @@ t_barriereG choixBarrierre(int taillePlateau){
         gotoligcol(26,60);
         printf(" Choisissez l'orientation de la barriere par rapport aux 2 cases choisies  ");
         gotoligcol(27,60);
-        printf("en haut (1), à droite (2), en bas (3), gauche(4). Attention a choisir un sens possible : ");
+        printf("en haut (1), a droite (2), en bas (3), gauche(4). Attention a choisir un sens possible : ");
         scanf("%d",&sens);
     }while ( ( (barriere.coorG1.ligne==barriere.coorG2.ligne) && ((sens==2)||(sens==4)) ) || ( (barriere.coorG1.colonne==barriere.coorG2.colonne) && ((sens==1)||(sens==3)) ) || ( (barriere.coorG1.ligne=='A')&& (sens ==1)) || ( (barriere.coorG1.ligne==64+taillePlateau)&& (sens ==3)) || ( (barriere.coorG1.colonne==1)&& (sens ==4)) || ( (barriere.coorG1.colonne== taillePlateau)&& (sens ==2)) );
 //on verifie que le sens saisie est possible ( si on a pris 2 cases horizontales on ne peut pas poser les barrières verticalement et vice versa, on verifie aussi que l'on ne les positionne pas sur le bord du plateau)
@@ -760,7 +760,7 @@ int jouerSontour9(int iemeJoueur, t_joueur joueurs[4] ,t_joueur joueurCoupPreced
         printf("coordonnees du joueur avant déplacement : %d ; %d ",joueurs[iemeJoueur-1].coordonneeMatrice.ligne,joueurs[iemeJoueur-1].coordonneeMatrice.colonne);
        
         gotoligcol(22,60);
-        printf("Saisir les coordonees ou vous souhaitez vous déplacer");
+        printf("Saisir les coordonees ou vous souhaitez vous deplacer");
         coordonneeVouluG=remplircoordonneeG(taillePlateau);
         coordonneeVoulu = coordonneGrilleVersCoordMatrice(coordonneeVouluG);
         joueurs[iemeJoueur-1]=deplacerPion9(coordonneeVoulu,joueurs[iemeJoueur-1],matrice);
@@ -783,7 +783,7 @@ int jouerSontour9(int iemeJoueur, t_joueur joueurs[4] ,t_joueur joueurCoupPreced
         }
         else if (joueurs[iemeJoueur-1].barriere_posees == 0){
              gotoligcol(22,60);
-             printf("Vous n'avez plus assez de barrière à poser, veuillez rejouer");
+             printf("Vous n'avez plus assez de barriere a poser, veuillez rejouer");
              jouerSontour9(iemeJoueur, joueurs,joueurCoupPrecedent,nombreJoueur,taillePlateau, matrice, matricePrecedente);
             
         }
@@ -805,7 +805,7 @@ int jouerSontour9(int iemeJoueur, t_joueur joueurs[4] ,t_joueur joueurCoupPreced
 
         else {
             gotoligcol(22,60);
-            printf("voous ne pouvez plus annuler de coup veuillez rejouer");
+            printf("vous ne pouvez plus annuler de coup veuillez rejouer");
             jouerSontour9(iemeJoueur, joueurs,joueurCoupPrecedent,nombreJoueur,taillePlateau, matrice, matricePrecedente);
     
         }
@@ -883,7 +883,7 @@ int jouerSontour12(int iemeJoueur, t_joueur joueurs[4] ,t_joueur joueurCoupPrece
         }
         else if (joueurs[iemeJoueur-1].barriere_posees == 0){
              gotoligcol(22,60);
-             printf("Vous n'avez plus assez de barrière à poser");
+             printf("Vous n'avez plus assez de barriere a poser");
              jouerSontour12(iemeJoueur, joueurs,joueurCoupPrecedent,nombreJoueur,taillePlateau, matrice, matricePrecedente);
     
             
@@ -907,7 +907,7 @@ int jouerSontour12(int iemeJoueur, t_joueur joueurs[4] ,t_joueur joueurCoupPrece
 
         else {
             gotoligcol(22,60);
-            printf("voous ne pouvez plus annuler de coup veuillez rejouer");
+            printf("vous ne pouvez plus annuler de coup veuillez rejouer");
             jouerSontour12(iemeJoueur, joueurs,joueurCoupPrecedent,nombreJoueur,taillePlateau, matrice, matricePrecedente);
     
         }
