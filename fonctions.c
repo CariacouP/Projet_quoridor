@@ -813,6 +813,7 @@ int jouerSontour9(int iemeJoueur, t_joueur joueurs[4] ,t_joueur joueurCoupPreced
         return 0;
         break;
     case 4:
+        enregistrerPartie9(matrice, joueurs,nombreJoueur );
         return 1;
        
         break;
@@ -916,10 +917,10 @@ int jouerSontour12(int iemeJoueur, t_joueur joueurs[4] ,t_joueur joueurCoupPrece
         break;
     case 4:
         
-        enregistrerPartie9(matrice, joueurs,nombreJoueur );
+        enregistrerPartie12(matrice, joueurs,nombreJoueur );
         
         
-       return 0;
+       return 1;
         break;
     
     default:
@@ -933,17 +934,27 @@ void enregistrerPartie9(int matrice[17][17], t_joueur joueurs[4],int nombreJoueu
     char tmp[256];
     int i,j;
     FILE *fichier ;
-    //getcwd(tmp,256);
-    //strcat((getcwd(tmp, 256)),"\\Parties_sauvegardee\\");
-    //printf("%s",tmp);
+    FILE *fichierIndex;
+    getcwd(tmp,256);
+    strcat((getcwd(tmp, 256)),"\\Parties_sauvegardee\\");
+    printf("%s",tmp);
     gotoligcol(28,60);
-    printf("quel nom pour la partie (doit finir en .txt) ?");
+    printf("quel nom pour la partie  ?");
     gotoligcol(29,60);
     fflush(stdin);
     scanf("%s",nomPartie);
-    //strcat(tmp,nomPartie);
-    printf("%s",nomPartie);
-    fichier=fopen( nomPartie,"w");
+    strcat(tmp,nomPartie);
+    strcat(tmp,".txt");
+    printf("%s",tmp);
+    fichierIndex=fopen("C:\\Users\\macbook\\Documents\\Projet_quoridor\\Parties_sauvegardee\\indexDesParties.txt","w");
+    if (fichierIndex==NULL){
+        printf("erreur d'ouverture du fichierIndex");
+    }
+    else {
+        fprintf(fichierIndex,"%s",tmp);
+        fclose(fichierIndex);
+    }
+    fichier=fopen( tmp,"w");
     if(fichier==NULL){
         printf("erreur d'ouverture du fichier");
     }
@@ -964,6 +975,50 @@ void enregistrerPartie9(int matrice[17][17], t_joueur joueurs[4],int nombreJoueu
         }
         for (i=0;i<17;i++){
             for (j=0;j<17;j++){
+                 fprintf(fichier,"%d\n",matrice[i][j]);
+
+            }
+        }
+        fclose(fichier);
+    }
+}
+
+void enregistrerPartie12(int matrice[23][23], t_joueur joueurs[4],int nombreJoueur ){
+    char nomPartie[20];
+    char tmp[256];
+    int i,j;
+    FILE *fichier ;
+    getcwd(tmp,256);
+    strcat((getcwd(tmp, 256)),"\\Parties_sauvegardee\\");
+    printf("%s",tmp);
+    gotoligcol(28,60);
+    printf("quel nom pour la partie (doit finir en .txt) ?");
+    gotoligcol(29,60);
+    fflush(stdin);
+    scanf("%s",nomPartie);
+    strcat(tmp,nomPartie);
+    printf("%s",tmp);
+    fichier=fopen( tmp,"w");
+    if(fichier==NULL){
+        printf("erreur d'ouverture du fichier");
+    }
+    else{
+
+        for (i=0;i<nombreJoueur;i++){
+            fprintf(fichier,"%s\n",joueurs[i].nom);
+            fprintf(fichier,"%d\n",joueurs[i].pion);
+            fprintf(fichier,"%d\n",joueurs[i].pionM);
+            fprintf(fichier,"%d\n",joueurs[i].coordonneeMatrice.ligne);
+            fprintf(fichier,"%d\n",joueurs[i].coordonneeMatrice.colonne);
+            fprintf(fichier,"%c\n",joueurs[i].coordonneeGrille.ligne);
+            fprintf(fichier,"%d\n",joueurs[i].coordonneeGrille.colonne);
+            fprintf(fichier,"%d\n",joueurs[i].score);
+            fprintf(fichier,"%d\n",joueurs[i].barriere_posees);
+            fprintf(fichier,"%d\n",joueurs[i].nbCoupAnnule);
+
+        }
+        for (i=0;i<23;i++){
+            for (j=0;j<23;j++){
                  fprintf(fichier,"%d\n",matrice[i][j]);
 
             }
