@@ -69,7 +69,7 @@ int main()
             }while (nombreJoueur!=2 && nombreJoueur!=4);
             if (nombreJoueur==4){
                 do{
-                    printf("Quelle taille pour le plateau ?\n");
+                    printf("Quelle taille pour le plateau ? (9 ou 12 uniquement) \n");
                     fflush(stdin);
                     scanf("%d",&taillePlateau);
                 }while ( (taillePlateau!=9) && (taillePlateau!=12) ); // verifie que la taille du plateau correspond à 9 ou 12

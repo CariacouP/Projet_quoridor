@@ -915,7 +915,11 @@ int jouerSontour12(int iemeJoueur, t_joueur joueurs[4] ,t_joueur joueurCoupPrece
         return 0;
         break;
     case 4:
-       return 1;
+        
+        enregistrerPartie9(matrice, joueurs,nombreJoueur );
+        
+        
+       return 0;
         break;
     
     default:
@@ -929,17 +933,17 @@ void enregistrerPartie9(int matrice[17][17], t_joueur joueurs[4],int nombreJoueu
     char tmp[256];
     int i,j;
     FILE *fichier ;
-    getcwd(tmp,256);
-    strcat((getcwd(tmp, 256)),"\\Parties_sauvegardee\\");
-    printf("%s",tmp);
-    gotoligcol(22,60);
+    //getcwd(tmp,256);
+    //strcat((getcwd(tmp, 256)),"\\Parties_sauvegardee\\");
+    //printf("%s",tmp);
+    gotoligcol(28,60);
     printf("quel nom pour la partie (doit finir en .txt) ?");
-    gotoligcol(24,60);
+    gotoligcol(29,60);
     fflush(stdin);
-    gets(nomPartie);
-    strcat(tmp,nomPartie);
-    printf("%s",tmp);
-    fichier=fopen( tmp,"w");
+    scanf("%s",nomPartie);
+    //strcat(tmp,nomPartie);
+    printf("%s",nomPartie);
+    fichier=fopen( nomPartie,"w");
     if(fichier==NULL){
         printf("erreur d'ouverture du fichier");
     }
