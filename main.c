@@ -254,6 +254,7 @@ int main()
                         if (i>nombreJoueur){
                             i=1;
                         }
+                        
 
                         
 
@@ -282,7 +283,7 @@ int main()
             break;
         case 5: //
             system("cls");
-            color(0,15;);
+            color(0,15);
             printf("Merci d'avoir joué ! A bientot ");
             quitter=1;
             break;

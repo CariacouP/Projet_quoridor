@@ -470,11 +470,9 @@ void afficherJeu12(int matrice[23][23],t_joueur listejoueurs[4]){
 
 // affichage des barrières sur la grille
     for (i=0;i<23;i++){
-        for (j=1;j<23;j+=2){
-            if (matrice[i][j]!=1 && matrice[i][j]!=0){
-                printf("ERREUR UN pion  EST sur une barrière");
-            }
-            else if (matrice[i][j]==1){
+        for (j=1;j<23;j++){
+            
+            if (matrice[i][j]==1){
                 if (i%2==0){//si la barrière est vertical
                     coorMpourPlacerBarriere.ligne=i;
                     coorMpourPlacerBarriere.colonne=j-1;
@@ -483,7 +481,7 @@ void afficherJeu12(int matrice[23][23],t_joueur listejoueurs[4]){
                 }
 
                 else if (i%2!=0){ // si la barrière est horizontal
-                    coorMpourPlacerBarriere.ligne=i-1;
+                    coorMpourPlacerBarriere.ligne=i+1;
                     coorMpourPlacerBarriere.colonne=j;
                     coorG=coordoneeMatriceversCoordGrille(coorMpourPlacerBarriere);
                     placerBarriere(coorG,1);
