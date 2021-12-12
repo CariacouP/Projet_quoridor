@@ -933,6 +933,7 @@ void enregistrerPartie9(int matrice[17][17], t_joueur joueurs[4],int nombreJoueu
     char nomPartie[20];
     char tmp1[256];
     char tmp2[256];
+    int tailleTableau=9;
     int i,j;
     FILE *fichier ;
     FILE *fichierIndex;
@@ -961,7 +962,8 @@ void enregistrerPartie9(int matrice[17][17], t_joueur joueurs[4],int nombreJoueu
         printf("erreur d'ouverture du fichier");
     }
     else{
-        fprintf(fichier,"%d",nombreJoueur);
+        fprintf(fichier,"%d\n",tailleTableau);
+        fprintf(fichier,"%d\n",nombreJoueur);
         for (i=0;i<nombreJoueur;i++){
             
             fprintf(fichier,"%s\n",joueurs[i].nom);
@@ -990,6 +992,7 @@ void enregistrerPartie12(int matrice[23][23], t_joueur joueurs[4],int nombreJoue
     char nomPartie[20];
     char tmp1[256];
     char tmp2[256];
+    int tailleTableau=12;
     int i,j;
     FILE *fichier ;
     FILE *fichierIndex;
@@ -1019,7 +1022,8 @@ void enregistrerPartie12(int matrice[23][23], t_joueur joueurs[4],int nombreJoue
         printf("erreur d'ouverture du fichier");
     }
     else{
-        fprintf(fichier,"%d",nombreJoueur);
+        fprintf(fichier,"%d\n",tailleTableau);
+        fprintf(fichier,"%d\n",nombreJoueur);
         for (i=0;i<nombreJoueur;i++){
             
             fprintf(fichier,"%s\n",joueurs[i].nom);
