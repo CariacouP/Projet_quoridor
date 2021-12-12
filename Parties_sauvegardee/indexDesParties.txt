@@ -1,1 +1,4 @@
-c:\Users\macbook\Documents\Projet_quoridor\Parties_sauvegardee\test5.txt
+
+c:\Users\macbook\Documents\Projet_quoridor\Parties_sauvegardee\test.txt
+c:\Users\macbook\Documents\Projet_quoridor\Parties_sauvegardee\test1.txt
+c:\Users\macbook\Documents\Projet_quoridor\Parties_sauvegardee\test.txt

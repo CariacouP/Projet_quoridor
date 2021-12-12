@@ -949,12 +949,12 @@ void enregistrerPartie9(int matrice[17][17], t_joueur joueurs[4],int nombreJoueu
     strcat(tmp1,nomPartie);
     strcat(tmp1,".txt");
     printf("%s",tmp1);
-    fichierIndex=fopen(tmp2,"w");
+    fichierIndex=fopen(tmp2,"a");
     if (fichierIndex==NULL){
         printf("erreur d'ouverture du fichierIndex");
     }
     else {
-        fprintf(fichierIndex,"%s",tmp1);
+        fprintf(fichierIndex,"\n%s",tmp1);
         fclose(fichierIndex);
     }
     fichier=fopen( tmp1,"w");
@@ -1014,7 +1014,7 @@ void enregistrerPartie12(int matrice[23][23], t_joueur joueurs[4],int nombreJoue
         printf("erreur d'ouverture du fichierIndex");
     }
     else {
-        fprintf(fichierIndex,"%s \n",tmp1);
+        fprintf(fichierIndex,"\n%s",tmp1);
         fclose(fichierIndex);
     }
     fichier=fopen( tmp1,"w");
