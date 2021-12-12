@@ -440,7 +440,7 @@ void lancerNouvellePartie(int nombreJoueur,int taillePlateau,t_joueur joueur[4])
     case 2 :
         printf(" \n creation du 1er joueur ");
         joueur[0]=creerJoueur(1, joueur,  taillePlateau);
-        printf(" \n création du 2eme joueur ");
+        printf(" \n creation du 2eme joueur ");
         joueur[1]=creerJoueur(2, joueur,  taillePlateau);
        break;
     case 4 :
@@ -854,7 +854,7 @@ int jouerSontour12(int iemeJoueur, t_joueur joueurs[4] ,t_joueur joueurCoupPrece
     case 1:{
         t_coordonneeM coordonneeVoulu;
         t_coordonneeG coordonneeVouluG;
-        printf ("coordonnee du joueur %c ; %d",joueurs[iemeJoueur-1].coordonneeGrille.ligne,joueurs[iemeJoueur-1].coordonneeGrille.colonne);
+
         gotoligcol(21,60);
         printf("Saisir les coordonees ou vous souhaitez vous deplacer");
         coordonneeVouluG=remplircoordonneeG(taillePlateau);

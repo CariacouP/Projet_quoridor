@@ -127,7 +127,7 @@ int verificationDeplacement12(t_joueur joueur , t_coordonneeM coorVoulu,int matr
         printf("un pion ne peut pas se deplacer en diagonale");
         return(1);//Le pion ne se deplace pas en diagonale
     }*/
-    if(sontCoteAcote(joueur.coordonneeGrille,coordoneeMatriceversCoordGrille(coorVoulu))==1){
+    if(sontCoteAcote(joueur.coordonneeGrille,coordoneeMatriceversCoordGrille(coorVoulu))==0){
         gotoligcol(24,60);
         printf("Les cases ne sont pas adjacentes");
         return 1;
@@ -258,26 +258,6 @@ int PionDansCase12(t_coordonneeM cooraVerif,int matrice[23][23])
    
 }
 
-/*int verifiePassage(t_coordonneeM coorPion, int matrice[17][17])//vérifie si  le pion est entoure de pion ou de barriere
-{
-    int i,j;
-    i=coorPion.ligne;
-    j=coorPion.colonne;
-    if ((i%2==1)&&(j%2==1))// si le pion est dans une case pion
-    {
-        if (((matrice[i+1][j]==1)||(matrice[i+2][j]>=2))&&((matrice[i-1][j]==1)||(matrice[i-2][j]>=2))&&((matrice[i][j+1]==1)||(matrice[i][j+2]>=2))&&((matrice[i][j-1]==1)||(matrice[i][j-2]>=2)))
-            {//si le pion est entoure de barriere ou pion
-                printf("le pion est entoure le deplacement ne peut pas se faire ici");
-                return(1);
-            }
-        else
-        {
-            printf("le deplacement peut se faire");
-            return(0);
-        }
-    }
-
-}*/
 
 t_joueur deplacerPion9(t_coordonneeM coorVoulu,t_joueur joueur,int matrice[17][17])
 {

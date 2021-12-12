@@ -2,3 +2,4 @@
 c:\Users\macbook\Documents\Projet_quoridor\Parties_sauvegardee\test.txt
 c:\Users\macbook\Documents\Projet_quoridor\Parties_sauvegardee\test1.txt
 c:\Users\macbook\Documents\Projet_quoridor\Parties_sauvegardee\test.txt
+c:\Users\macbook\Documents\Projet_quoridor\Parties_sauvegardee\test12.txt
