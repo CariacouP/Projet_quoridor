@@ -313,7 +313,7 @@ int main()
         printf("quelle partie voulez vous continuer ? Saisissez un numero\n");
         scanf("%d",&numeroPartie);
         printf("%s",listeParties[numeroPartie]);
-        strcpy(*(partieACharger),*(listeParties[numeroPartie]));
+        strcpy(partieACharger,listeParties[numeroPartie]);
        // printf("%s",partieACharger);
 
 

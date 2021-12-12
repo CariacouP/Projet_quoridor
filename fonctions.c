@@ -963,6 +963,7 @@ void enregistrerPartie9(int matrice[17][17], t_joueur joueurs[4],int nombreJoueu
     else{
 
         for (i=0;i<nombreJoueur;i++){
+            fprintf(fichier,"%d",nombreJoueur);
             fprintf(fichier,"%s\n",joueurs[i].nom);
             fprintf(fichier,"%d\n",joueurs[i].pion);
             fprintf(fichier,"%d\n",joueurs[i].pionM);
@@ -1020,6 +1021,7 @@ void enregistrerPartie12(int matrice[23][23], t_joueur joueurs[4],int nombreJoue
     else{
 
         for (i=0;i<nombreJoueur;i++){
+            fprintf(fichier,"%d",nombreJoueur);
             fprintf(fichier,"%s\n",joueurs[i].nom);
             fprintf(fichier,"%d\n",joueurs[i].pion);
             fprintf(fichier,"%d\n",joueurs[i].pionM);
