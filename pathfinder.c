@@ -2,13 +2,13 @@
 
 int CheckPath( int grid[23][23], int taille, t_joueur joueur, int indexJoueur)
 {
-    int verifGrid[taille][taille];          // on crée un tableau imaginaire de la meme dimension que celle du jeu actuel
-    for (int lig=0; lig<taille; lig++)          //on parcourt les lignes
+    int verifGrid[taille][taille];          // je crée un tableau imaginaire de la meme dimension que celle du jeu actuel
+    for (int lig = 0; lig < taille; lig ++)          //je parcours les lignes
         {
 
-            for (int col=0; col<taille; col++)          //on parcourt les colonnes
+            for (int col = 0; col < taille; col ++)          //je parcours les colonnes
             {
-                verifGrid[lig][col] = 0;            // on initialise chaque case à 0
+                verifGrid[lig][col] = 0;            // j'initialise chaque case à 0
             }
         }
     int ligJoueur = joueur.coordonneeMatrice.ligne / 2;         //comme pour les lignes c'est un char j'ai du traduire en chiffre
@@ -18,10 +18,10 @@ int CheckPath( int grid[23][23], int taille, t_joueur joueur, int indexJoueur)
     do
     {
         nbCelluleModif=0;
-        for (int lig=0; lig<taille; lig++)              //je parcours les lignes du tableau
+        for (int lig = 0; lig < taille; lig ++)              //je parcours les lignes du tableau
         {
             int ligMatrice = lig * 2;                   // je convertis dans la matrice
-            for (int col=0; col<taille; col++)              // je parcours les colonnes du tableau
+            for (int col = 0; col < taille; col ++)              // je parcours les colonnes du tableau
             {
                 int colMatrice = col * 2;               // je convertis les colonnes dans la matrice
                 if(verifGrid[lig][col] == 0)                // Si sur une case il y a un 0
@@ -39,17 +39,26 @@ int CheckPath( int grid[23][23], int taille, t_joueur joueur, int indexJoueur)
         }
     } while (nbCelluleModif > 0);               // tant qu'une cellule est modifiée je continue
 
-    if
-    return 0;
+/*    for (col)
+    {
+        if (indexJoueur == 1  && verifGrid[8][col] == 1)
+        {
+            printf("Le joueur n'est pas bloque \n");
+        }
+        else
+        {
+            printf("Le joueur est bloque \n");
+        }
+    }
+    return 0;*/
 }
 
 int CheckAllPath (int grid[23][23], int taille, t_joueur joueurs[4], int nbJoueurs) //Verification du chemin pour les 4 joueurs
 {
-    int nbBlocage=0;                                            //nombre de joueurs bloqués
-    for (int i=0; i<nbJoueurs; i++)
+    int nbBlocage = 0;                                            //nombre de joueurs bloqués
+    for (int i = 0; i < nbJoueurs; i ++)
     {
         nbBlocage += CheckPath(grid, taille, joueurs[i], i );       //on ajoute un chaque fois qu'un joueur est bloque
     }
     return nbBlocage == nbJoueurs;                              // si le nombre de blocage est egal aux nombres de joueurs le jeu s'arrete
 }
-

@@ -117,6 +117,20 @@ int main()
     case 2: // appel de lancerPartiesauvegardee
         break;
     case 3: //appel de afficherAide
+        {
+        printf("Ce jeu se joue sur un plateau. Le but est d atteindre en premier le bord oppose a sa ligne de depart. \n");
+        printf("En debut de partie, les barrieres sont remisees dans leur zone de stockage. \n");
+        printf("Chaque joueur pose son pion au centre de sa ligne de depart (la premiere ligne face a lui). Un tirage au sort determine qui commence.\n");
+        printf("A tour de role, chaque joueur choisit : de deplacer son pion d une case verticalement ou horizontalement, en avant ou en arriere\n");
+        printf("de poser une de ses barrieres. Une barriere doit etre posee exactement entre deux blocs de 2 cases.\n");
+        printf("Lorsqu il n a plus de barrieres, un joueur est oblige de deplacer son pion.\n");
+        printf("La pose des barrieres a pour but de se creer son propre chemin ou de ralentir l adversaire, mais il est interdit de l enfermer dans une case.\n");
+        printf("Quand 2 pions se retrouvent en vis a vis sur 2 cases voisines non separees par une barriere, le joueur dont c est le tour peut sauter par dessus son adversaire et se retrouver derriere lui.\n");
+        printf("Si une barriere se trouve derriere le pion saute, le joueur peut choisir de bifurquer a droite ou a gauche du pion saute.\n");
+        printf("Pour une partie a 4, en debut de partie, les 4 pions sont disposes au centre de chacun des 4 cotes du plateau et chaque joueur dispose de 5 barrieres.\n");
+        printf("Les regles sont strictement identiques, mais on ne peut pas sauter plus d un pion a la fois.\n");
+        }
+
         break;
     case 4:  //appel de afficherScores
         break;
