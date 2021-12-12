@@ -1,0 +1,40 @@
+\hypertarget{structures_8h_source}{}\doxysection{structures.\+h}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#ifndef STRUCTURES\_H}}
+\DoxyCodeLine{2 \textcolor{preprocessor}{\#define STRUCTURES\_H}}
+\DoxyCodeLine{3 }
+\DoxyCodeLine{4 \textcolor{keyword}{typedef} \textcolor{keyword}{struct }\mbox{\hyperlink{structcoordonnee_m}{coordonneeM}}\{}
+\DoxyCodeLine{5     \textcolor{keywordtype}{int} ligne;}
+\DoxyCodeLine{6     \textcolor{keywordtype}{int} colonne;}
+\DoxyCodeLine{7 \}\mbox{\hyperlink{structcoordonnee_m}{t\_coordonneeM}};}
+\DoxyCodeLine{8 }
+\DoxyCodeLine{9 \textcolor{keyword}{typedef} \textcolor{keyword}{struct }\mbox{\hyperlink{structcoordonnee_g}{coordonneeG}}\{}
+\DoxyCodeLine{10     \textcolor{keywordtype}{char} ligne ;}
+\DoxyCodeLine{11     \textcolor{keywordtype}{int} colonne;}
+\DoxyCodeLine{12 \}\mbox{\hyperlink{structcoordonnee_g}{t\_coordonneeG}};}
+\DoxyCodeLine{13 }
+\DoxyCodeLine{14 \textcolor{keyword}{typedef} \textcolor{keyword}{struct }\mbox{\hyperlink{structjoueur}{joueur}}}
+\DoxyCodeLine{15 \{}
+\DoxyCodeLine{16     \textcolor{keywordtype}{char} nom[20];}
+\DoxyCodeLine{17     \textcolor{keywordtype}{int} pion;}
+\DoxyCodeLine{18     \textcolor{keywordtype}{int} pionM;}
+\DoxyCodeLine{19     \mbox{\hyperlink{structcoordonnee_m}{t\_coordonneeM}} coordonneeMatrice;}
+\DoxyCodeLine{20     \mbox{\hyperlink{structcoordonnee_g}{t\_coordonneeG}} coordonneeGrille;}
+\DoxyCodeLine{21     \textcolor{keywordtype}{int} score;}
+\DoxyCodeLine{22     \textcolor{keywordtype}{int} barriere\_posees;}
+\DoxyCodeLine{23     \textcolor{keywordtype}{int} nbCoupAnnule;}
+\DoxyCodeLine{24 \} \mbox{\hyperlink{structjoueur}{t\_joueur}} ;}
+\DoxyCodeLine{25 }
+\DoxyCodeLine{26 \textcolor{keyword}{typedef} \textcolor{keyword}{struct }\mbox{\hyperlink{structbarriere_g}{barriereG}}\{}
+\DoxyCodeLine{27     \textcolor{comment}{//objet barrière de de case de long, on donne le couple de coordoonée sur la matrice qui correspond}}
+\DoxyCodeLine{28     \mbox{\hyperlink{structcoordonnee_g}{t\_coordonneeG}} coorG1;}
+\DoxyCodeLine{29     \mbox{\hyperlink{structcoordonnee_g}{t\_coordonneeG}} coorG2;}
+\DoxyCodeLine{30     \textcolor{keywordtype}{int} sens   ; \textcolor{comment}{// sens dans lequel sera posé la barrière (en haut (1), à droite (2), en bas (3), gauche(4))}}
+\DoxyCodeLine{31 }
+\DoxyCodeLine{32 \}\mbox{\hyperlink{structbarriere_g}{t\_barriereG}};}
+\DoxyCodeLine{33 }
+\DoxyCodeLine{34 }
+\DoxyCodeLine{35 \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

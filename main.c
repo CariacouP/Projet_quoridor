@@ -285,7 +285,7 @@ int main()
         case 2: {
         system("cls");
         color(0,15);
-        
+        int pause;
         FILE* fichierIndex;
         char listeParties[256][256];
         char partieACharger[256];
@@ -417,6 +417,9 @@ int main()
 
         afficher9(matrice9);
         //on jouer avec les donnes des joueurs sauvegardées
+        
+        /*
+        
         int premierTour=1;
         int rejouer=1;
          while(rejouer==1 ) {
@@ -625,7 +628,8 @@ int main()
 
                     }
                 }
-            }
+            }*/
+            scanf("%d",&pause);
 
 
 
@@ -645,7 +649,7 @@ int main()
             char listeParties[256][256];
             char partieACharger[256];
             char tmp[256];
-            int revenirMenu;
+            int revenirMenu=0;
             int taillePlateau;
             int nombreJoueur;
             t_joueur joueurs[4];
@@ -739,7 +743,7 @@ int main()
         case 5: //
             system("cls");
             color(0,15);
-            printf("Merci d'avoir joué ! A bientot ");
+            printf("Merci d'avoir joue ! A bientot ");
             quitter=1;
             break;
         
@@ -758,36 +762,3 @@ int main()
     return 0;
 }
     
-//sauvegarde
-/*int main()
-{
-    int i,j,nombreJoueur;int matrice[17][17]; t_joueur joueurs[4];
-    char nomFichier[50];//(==nom que tu rentres en parametre)
-    scanf("%s",nomFichier);
-    FILE*fic;
-    fic=fopen(nomFichier,"r");
-    fscanf(fic,"%d",&nombreJoueur);
-    for(i=0;i<nombreJoueur;i++)
-    {
-        fscanf(fic,"%s",joueurs[i].nom);
-        fscanf(fic,"%d",&(joueurs[i].pion));
-        fscanf(fic,"%d",&(joueurs[i].pionM));
-        fscanf(fic,"%d",&(joueurs[i].coordonneeMatrice.ligne));
-        fscanf(fic,"%d",&(joueurs[i].coordonneeMatrice.colonne));
-        fscanf(fic,"%c",&(joueurs[i].coordonneeGrille.ligne));
-        fscanf(fic,"%d",&(joueurs[i].coordonneeGrille.colonne));
-        fscanf(fic,"%d",&(joueurs[i].score));
-        fscanf(fic,"%d",&(joueurs[i].barriere_posees));
-        fscanf(fic,"%d",&(joueurs[i].nbCoupAnnule));
-    }
-    for(i=0;i<17;i++)
-    {
-        for(j=0;j<17;j++)
-        {
-            fscanf(fic,"%d",&(matrice[i][j]));
-        }
-    }
-    fclose(fic);
-    return 0;
-}
-*/
