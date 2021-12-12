@@ -12,7 +12,7 @@ int main()
 {   int choixMenu;
     int i=1;
     int quitter=0;
-    char t;
+    
 
 
 
@@ -637,8 +637,105 @@ int main()
         }break;
         case 3: //appel de afficherAide
             break;
-        case 4:  //appel de afficherScores
-            break;
+        case 4:  {
+            system("cls");
+            color(0,15);
+            
+            FILE* fichierIndex;
+            char listeParties[256][256];
+            char partieACharger[256];
+            char tmp[256];
+            int revenirMenu;
+            int taillePlateau;
+            int nombreJoueur;
+            t_joueur joueurs[4];
+            int numeroPartie;
+            int i=0;
+            strcat((getcwd(tmp, 256)),"\\Parties_sauvegardee\\indexDesParties.txt");
+            fichierIndex=fopen(tmp,"r");
+            if (fichierIndex==NULL){
+                printf("Erreur d’ouverture de fichier\n " );
+                }
+            else{
+                while (!feof(fichierIndex)){
+                    fscanf ( fichierIndex, "%s", listeParties[i]);
+                    printf ("%d %s \n ",i,listeParties[i]); 
+                    i++;
+                    }
+                fclose(fichierIndex);
+            }
+            while(revenirMenu==0){
+                printf("Tableau des scores des joueurs\n");
+                for (int j=0;j<i;j++){
+                    FILE *fic;
+                    fic=fopen(listeParties[j],"r");
+                    fscanf(fic,"%d",&taillePlateau);
+                    fscanf(fic,"%d",&nombreJoueur);
+                    // premier joueur
+                    fscanf(fic,"%s",joueurs[0].nom);
+                    fscanf(fic,"%d",&(joueurs[0].pion));
+                    fscanf(fic,"%d",&(joueurs[0].pionM));
+                    fscanf(fic,"%d",&(joueurs[0].coordonneeMatrice.ligne));
+                    fscanf(fic,"%d",&(joueurs[0].coordonneeMatrice.colonne));
+                    fscanf(fic,"%c",&(joueurs[0].coordonneeGrille.ligne));
+                    fscanf(fic,"%d",&(joueurs[0].coordonneeGrille.colonne));
+                    fscanf(fic,"%d",&(joueurs[0].score));
+                    fscanf(fic,"%d",&(joueurs[0].barriere_posees));
+                    fscanf(fic,"%d",&(joueurs[0].nbCoupAnnule));
+
+                    //deuxieme joueur
+
+                    fscanf(fic,"%s",joueurs[1].nom);
+                    fscanf(fic,"%d",&(joueurs[1].pion));
+                    fscanf(fic,"%d",&(joueurs[1].pionM));
+                    fscanf(fic,"%d",&(joueurs[1].coordonneeMatrice.ligne));
+                    fscanf(fic,"%d",&(joueurs[1].coordonneeMatrice.colonne));
+                    fscanf(fic,"%c",&(joueurs[1].coordonneeGrille.ligne));
+                    fscanf(fic,"%d",&(joueurs[1].coordonneeGrille.colonne));
+                    fscanf(fic,"%d",&(joueurs[1].score));
+                    fscanf(fic,"%d",&(joueurs[1].barriere_posees));
+                    fscanf(fic,"%d",&(joueurs[1].nbCoupAnnule));
+
+                    if(nombreJoueur==4){
+                        //3eme eventuel Joueur
+                        fscanf(fic,"%s",joueurs[2].nom);
+                        fscanf(fic,"%d",&(joueurs[2].pion));
+                        fscanf(fic,"%d",&(joueurs[2].pionM));
+                        fscanf(fic,"%d",&(joueurs[2].coordonneeMatrice.ligne));
+                        fscanf(fic,"%d",&(joueurs[2].coordonneeMatrice.colonne));
+                        fscanf(fic,"%c",&(joueurs[2].coordonneeGrille.ligne));
+                        fscanf(fic,"%d",&(joueurs[2].coordonneeGrille.colonne));
+                        fscanf(fic,"%d",&(joueurs[2].score));
+                        fscanf(fic,"%d",&(joueurs[2].barriere_posees));
+                        fscanf(fic,"%d",&(joueurs[2].nbCoupAnnule));
+
+
+                        //4eme eventuel joueur
+
+                        fscanf(fic,"%s",joueurs[3].nom);
+                        fscanf(fic,"%d",&(joueurs[3].pion));
+                        fscanf(fic,"%d",&(joueurs[3].pionM));
+                        fscanf(fic,"%d",&(joueurs[3].coordonneeMatrice.ligne));
+                        fscanf(fic,"%d",&(joueurs[3].coordonneeMatrice.colonne));
+                        fscanf(fic,"%c",&(joueurs[3].coordonneeGrille.ligne));
+                        fscanf(fic,"%d",&(joueurs[3].coordonneeGrille.colonne));
+                        fscanf(fic,"%d",&(joueurs[3].score));
+                        fscanf(fic,"%d",&(joueurs[3].barriere_posees));
+                        fscanf(fic,"%d",&(joueurs[3].nbCoupAnnule));
+                    }    
+
+                    for (int l;l<4;l++){
+                        
+                        printf("%s : %d\n",joueurs[l].nom,joueurs[l].score);
+                    }
+                }
+                do {
+                    printf("voulez vous revenir au menu ? (-1-oui -0- non) : ");
+                    scanf("%d",&revenirMenu);
+                }while ((revenirMenu!=1) && (revenirMenu!=0));
+            }
+        }
+              break;
         case 5: //
             system("cls");
             color(0,15);
