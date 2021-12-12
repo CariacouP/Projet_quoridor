@@ -52,30 +52,7 @@ int verificationDeplacement9(t_joueur joueur , t_coordonneeM coorVoulu,int matri
         printf("le pion est dans la case barriere");
         return(1);//retourne faux si le pion est dans une case barriere
     }
-    /* if (i!=i1)
-    {
-        if (abs(i-i1)>2)
-        {
-            gotoligcol(24,60);
-            printf("Le pion est deplace trop loin");
-            return(1);//le déplacement vertical est tro important
-        }
-    }
-    if (j!=j1)
-    {
-        if (abs(j-j1)>2)
-        {
-            gotoligcol(24,60);
-            printf("Le pion est deplace trop loin");
-            return(1);//le deplacement horizontal est trop important
-        }
-    }
-    if ((i!=i1)&&(j!=j1))
-    {
-        gotoligcol(24,60);
-        printf("un pion ne peut pas se deplacer en diagonale");
-        return(1);//Le pion ne se deplace pas en diagonale
-    }*/
+   
     if(sontCoteAcote(joueur.coordonneeGrille,coordoneeMatriceversCoordGrille(coorVoulu))==0){
         gotoligcol(24,60);
         printf("Les cases ne sont pas adjacentes");
@@ -103,30 +80,7 @@ int verificationDeplacement12(t_joueur joueur , t_coordonneeM coorVoulu,int matr
         printf("le pion est dans la case barriere");
         return(1);//retourne faux si le pion est dans une case barriere
     }
-   /* if (i!=i1)
-    {
-        if (abs(i-i1)>2)
-        {
-            gotoligcol(24,60);
-            printf("Le pion est deplace trop loin");
-            return(1);//le déplacement vertical est tro important
-        }
-    }
-    if (j!=j1)
-    {
-        if (abs(j-j1)>2)
-        {
-            gotoligcol(24,60);
-            printf("Le pion est deplace trop loin");
-            return(1);//le deplacement horizontal est trop important
-        }
-    }
-    if ((i!=i1)&&(j!=j1))
-    {
-        gotoligcol(24,60);
-        printf("un pion ne peut pas se deplacer en diagonale");
-        return(1);//Le pion ne se deplace pas en diagonale
-    }*/
+   
     if(sontCoteAcote(joueur.coordonneeGrille,coordoneeMatriceversCoordGrille(coorVoulu))==0){
         gotoligcol(24,60);
         printf("Les cases ne sont pas adjacentes");

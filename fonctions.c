@@ -225,7 +225,7 @@ void afficherCaseVideDepuisMatrice(t_coordonneeM coorM){
     printf(" ");
 }
 
-t_joueur creerJoueur(int iemejoueur, t_joueur joueurs[4], int taillePlateau){
+t_joueur creerJoueur(int iemejoueur, t_joueur joueurs[4], int taillePlateau,int nombreJoueur){
     // on crée la fonction qui va définir un joueur intialement et lui donner ca position initial la variable "ième joueur" sers à décider à quel poisition il débute
     
     int choixPion;
@@ -251,7 +251,7 @@ t_joueur creerJoueur(int iemejoueur, t_joueur joueurs[4], int taillePlateau){
     fflush(stdin);
     gets(joueur.nom);
     joueur.score=0;
-    joueur.barriere_posees=20;
+    joueur.barriere_posees=20/nombreJoueur;
     printf("\nchoissez un pion parmis ceux-ci :");
     for (int j=0;j<8;j++){
         printf("\n%d. %c \n",j,listePions[j]);
@@ -439,22 +439,22 @@ void lancerNouvellePartie(int nombreJoueur,int taillePlateau,t_joueur joueur[4])
     {
     case 2 :
         printf(" \n creation du 1er joueur ");
-        joueur[0]=creerJoueur(1, joueur,  taillePlateau);
+        joueur[0]=creerJoueur(1, joueur,  taillePlateau,nombreJoueur);
         printf(" \n creation du 2eme joueur ");
-        joueur[1]=creerJoueur(2, joueur,  taillePlateau);
+        joueur[1]=creerJoueur(2, joueur,  taillePlateau,nombreJoueur);
        break;
     case 4 :
         printf(" \n creation du 1er joueur ");
-        joueur[0]=creerJoueur(1, joueur,  taillePlateau);
+        joueur[0]=creerJoueur(1, joueur,  taillePlateau,nombreJoueur);
         
         printf(" \n creation du 2eme joueur ");
-        joueur[1]=creerJoueur(2, joueur,  taillePlateau);
+        joueur[1]=creerJoueur(2, joueur,  taillePlateau,nombreJoueur);
 
          printf(" \n creation du 3eme joueur ");
-        joueur[2]=creerJoueur(3, joueur,  taillePlateau);
+        joueur[2]=creerJoueur(3, joueur,  taillePlateau,nombreJoueur);
          
         printf(" \n creation du 4eme joueur ");
-        joueur[3]=creerJoueur(4, joueur,  taillePlateau);
+        joueur[3]=creerJoueur(4, joueur,  taillePlateau,nombreJoueur);
         
         break;
     default:
