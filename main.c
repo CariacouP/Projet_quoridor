@@ -287,8 +287,40 @@ int main()
             break;
 
             
-        case 2: // appel de lancerPartiesauvegardee
-            break;
+        case 2: {
+        system("cls");
+        color(0,15);
+        
+        FILE* fichierIndex;
+        char listeParties[256][256];
+        char partieACharger;
+        char tmp[256];
+        int numeroPartie;
+        int i=0;
+        strcat((getcwd(tmp, 256)),"\\Parties_sauvegardee\\indexDesParties.txt");
+        fichierIndex=fopen(tmp,"r");
+        if (fichierIndex==NULL){
+            printf("Erreur d’ouverture de fichier\n " );
+             }
+        else{
+            while (!feof(fichierIndex)){
+	            fscanf ( fichierIndex, "%s", listeParties[i]);
+                printf ("%d %s \n ",i,listeParties[i]); 
+                i++;
+                }
+            fclose(fichierIndex);
+        }
+        printf("quelle partie voulez vous continuer ? Saisissez un numero\n");
+        scanf("%d",&numeroPartie);
+        printf("%s",listeParties[numeroPartie]);
+        strcpy(*(partieACharger),*(listeParties[numeroPartie]));
+       // printf("%s",partieACharger);
+
+
+
+
+
+        }break;
         case 3: //appel de afficherAide
             break;
         case 4:  //appel de afficherScores

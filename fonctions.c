@@ -931,30 +931,32 @@ int jouerSontour12(int iemeJoueur, t_joueur joueurs[4] ,t_joueur joueurCoupPrece
 
 void enregistrerPartie9(int matrice[17][17], t_joueur joueurs[4],int nombreJoueur ){
     char nomPartie[20];
-    char tmp[256];
+    char tmp1[256];
+    char tmp2[256];
     int i,j;
     FILE *fichier ;
     FILE *fichierIndex;
-    getcwd(tmp,256);
-    strcat((getcwd(tmp, 256)),"\\Parties_sauvegardee\\");
-    printf("%s",tmp);
+    strcat((getcwd(tmp1, 256)),"\\Parties_sauvegardee\\");
+    strcat((getcwd(tmp2, 256)),"\\Parties_sauvegardee\\indexDesParties.txt");
+
+    printf("%s",tmp1);
     gotoligcol(28,60);
     printf("quel nom pour la partie  ?");
     gotoligcol(29,60);
     fflush(stdin);
     scanf("%s",nomPartie);
-    strcat(tmp,nomPartie);
-    strcat(tmp,".txt");
-    printf("%s",tmp);
-    fichierIndex=fopen("C:\\Users\\macbook\\Documents\\Projet_quoridor\\Parties_sauvegardee\\indexDesParties.txt","w");
+    strcat(tmp1,nomPartie);
+    strcat(tmp1,".txt");
+    printf("%s",tmp1);
+    fichierIndex=fopen(tmp2,"w");
     if (fichierIndex==NULL){
         printf("erreur d'ouverture du fichierIndex");
     }
     else {
-        fprintf(fichierIndex,"%s",tmp);
+        fprintf(fichierIndex,"%s",tmp1);
         fclose(fichierIndex);
     }
-    fichier=fopen( tmp,"w");
+    fichier=fopen( tmp1,"w");
     if(fichier==NULL){
         printf("erreur d'ouverture du fichier");
     }
@@ -985,20 +987,33 @@ void enregistrerPartie9(int matrice[17][17], t_joueur joueurs[4],int nombreJoueu
 
 void enregistrerPartie12(int matrice[23][23], t_joueur joueurs[4],int nombreJoueur ){
     char nomPartie[20];
-    char tmp[256];
+    char tmp1[256];
+    char tmp2[256];
     int i,j;
     FILE *fichier ;
-    getcwd(tmp,256);
-    strcat((getcwd(tmp, 256)),"\\Parties_sauvegardee\\");
-    printf("%s",tmp);
+    FILE *fichierIndex;
+    
+    strcat((getcwd(tmp1, 256)),"\\Parties_sauvegardee\\");
+    strcat((getcwd(tmp2, 256)),"\\Parties_sauvegardee\\indexDesParties.txt");
+
+    printf("%s",tmp1);
     gotoligcol(28,60);
-    printf("quel nom pour la partie (doit finir en .txt) ?");
+    printf("quel nom pour la partie  ?");
     gotoligcol(29,60);
     fflush(stdin);
     scanf("%s",nomPartie);
-    strcat(tmp,nomPartie);
-    printf("%s",tmp);
-    fichier=fopen( tmp,"w");
+    strcat(tmp1,nomPartie);
+    strcat(tmp1,".txt");
+    printf("%s",tmp1);
+    fichierIndex=fopen(tmp2,"w");
+    if (fichierIndex==NULL){
+        printf("erreur d'ouverture du fichierIndex");
+    }
+    else {
+        fprintf(fichierIndex,"%s",tmp1);
+        fclose(fichierIndex);
+    }
+    fichier=fopen( tmp1,"w");
     if(fichier==NULL){
         printf("erreur d'ouverture du fichier");
     }
@@ -1026,6 +1041,7 @@ void enregistrerPartie12(int matrice[23][23], t_joueur joueurs[4],int nombreJoue
         fclose(fichier);
     }
 }
+
 
 
 int sontCoteAcote(t_coordonneeG case1,t_coordonneeG case2){
@@ -1140,6 +1156,7 @@ t_joueur copieJoueur(t_joueur joueur){
 }
 
 t_joueur changerNbCoupAnnule(t_joueur joueur,int nouveauNbCOupAnnule){
+
     //créée la copie d'un joueur
     t_joueur joueurfin;
     joueurfin.barriere_posees=joueur.barriere_posees;
@@ -1155,3 +1172,6 @@ t_joueur changerNbCoupAnnule(t_joueur joueur,int nouveauNbCOupAnnule){
 
     return joueurfin;
 }
+
+
+
