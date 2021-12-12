@@ -282,7 +282,7 @@ int PionDansCase12(t_coordonneeM cooraVerif,int matrice[23][23])
 t_joueur deplacerPion9(t_coordonneeM coorVoulu,t_joueur joueur,int matrice[17][17])
 {
     t_joueur joueurfin;
-    int i,j,j1,i1,i2,j2;
+    int i,j,j1,i1;
     t_coordonneeM nouvellesCoor;
     i1= coorVoulu.ligne;
     j1=coorVoulu.colonne;
@@ -436,7 +436,7 @@ t_joueur deplacerPion9(t_coordonneeM coorVoulu,t_joueur joueur,int matrice[17][1
 t_joueur deplacerPion12(t_coordonneeM coorVoulu,t_joueur joueur,int matrice[23][23])
 {
     t_joueur joueurfin;
-    int i,j,j1,i1,i2,j2;
+    int i,j,j1,i1;
     t_coordonneeM nouvellesCoor;
     i1= coorVoulu.ligne;
     j1=coorVoulu.colonne;

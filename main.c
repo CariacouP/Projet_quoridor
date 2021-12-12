@@ -55,8 +55,6 @@ int main()
             int matrice12[23][23];
             int premiereSauvegardeMatrice12[23][23];
             int deuxiemeSauvegardeMatrice12[23][23];
-            t_coordonneeM coorNouvelle;
-            t_barriereG barriere;
             t_joueur joueurs[4];
             t_joueur premiereSauvegardeJoueur[4];
             t_joueur deuxiemeSauvegardeJoueur[4];
@@ -85,7 +83,7 @@ int main()
 
                     rejouer=0;
                     for (int m=0; m<nombreJoueur;m++){//on reinitialise le joueurs en gardant leur nom leur piion et leur score pour démarer une nouvelle partie
-                        joueurs[m]=reinitialiserJoueur(m+1,joueurs,nombreJoueur,taillePlateau);
+                        joueurs[m]=reinitialiserJoueur(m+1,joueurs,taillePlateau);
                     }       
 
 
@@ -293,7 +291,7 @@ int main()
         
         FILE* fichierIndex;
         char listeParties[256][256];
-        char partieACharger;
+        char partieACharger[256];
         char tmp[256];
         int numeroPartie;
         int i=0;
@@ -312,9 +310,9 @@ int main()
         }
         printf("quelle partie voulez vous continuer ? Saisissez un numero\n");
         scanf("%d",&numeroPartie);
-        printf("%s",listeParties[numeroPartie]);
+        printf("%s\n",listeParties[numeroPartie]);
         strcpy(partieACharger,listeParties[numeroPartie]);
-       // printf("%s",partieACharger);
+        printf("%s",partieACharger);
 
 
 

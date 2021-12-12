@@ -1,6 +1,6 @@
 #include "structures.h"
 
-int CheckPath( int grid[23][23], int taille, t_joueur joueur, int indexJoueur)
+int CheckPath( int grid[23][23], int taille, t_joueur joueur)
 {
     int verifGrid[taille][taille];
     for (int lig=0; lig<taille; lig++)
@@ -47,7 +47,7 @@ int CheckAllPath (int grid[23][23], int taille, t_joueur joueurs[4], int nbJoueu
     int nbBlocage=0;
     for (int i=0; i<nbJoueurs; i++)
     {
-        nbBlocage += CheckPath(grid, taille, joueurs[i], i );
+        nbBlocage += CheckPath(grid, taille, joueurs[i] );
     }
     return nbBlocage == nbJoueurs;
 }

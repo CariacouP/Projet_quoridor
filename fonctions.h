@@ -56,7 +56,7 @@ t_joueur creerJoueur(int iemejoueur, t_joueur joueurs[4], int taillePlateau);
 t_coordonneeG remplircoordonneeG(int taillePlateau);
 
 void lancerNouvellePartie(int nombreJoueur,int taillePlateau,t_joueur joueur[4]);
-t_joueur reinitialiserJoueur(int iemeJoueur, t_joueur joueurs[4],int nombreJoueur,int taillePlateau);
+t_joueur reinitialiserJoueur(int iemeJoueur, t_joueur joueurs[4],int taillePlateau);
 
 void afficherJeu9(int matrice[17][17],t_joueur listejoueurs[4]);
 void afficherJeu12(int matrice[23][23],t_joueur listejoueurs[4]);

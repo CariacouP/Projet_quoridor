@@ -227,11 +227,11 @@ void afficherCaseVideDepuisMatrice(t_coordonneeM coorM){
 
 t_joueur creerJoueur(int iemejoueur, t_joueur joueurs[4], int taillePlateau){
     // on crée la fonction qui va définir un joueur intialement et lui donner ca position initial la variable "ième joueur" sers à décider à quel poisition il débute
-    int i;
+    
     int choixPion;
     t_joueur joueur;
     int listePions[8];
-    int pion ;
+    
     listePions[0]=0x40;
     listePions[1]=0x2A;
     listePions[2]=0x23;
@@ -338,8 +338,8 @@ t_joueur creerJoueur(int iemejoueur, t_joueur joueurs[4], int taillePlateau){
     return joueur;
 }
 
-t_joueur reinitialiserJoueur(int iemeJoueur, t_joueur joueurs[4],int nombreJoueur,int taillePlateau){
-    t_coordonneeG coorG;
+t_joueur reinitialiserJoueur(int iemeJoueur, t_joueur joueurs[4],int taillePlateau){
+    
     t_coordonneeM coorM;
     t_joueur joueurfin;
     
@@ -961,9 +961,9 @@ void enregistrerPartie9(int matrice[17][17], t_joueur joueurs[4],int nombreJoueu
         printf("erreur d'ouverture du fichier");
     }
     else{
-
+        fprintf(fichier,"%d",nombreJoueur);
         for (i=0;i<nombreJoueur;i++){
-            fprintf(fichier,"%d",nombreJoueur);
+            
             fprintf(fichier,"%s\n",joueurs[i].nom);
             fprintf(fichier,"%d\n",joueurs[i].pion);
             fprintf(fichier,"%d\n",joueurs[i].pionM);
@@ -1006,12 +1006,12 @@ void enregistrerPartie12(int matrice[23][23], t_joueur joueurs[4],int nombreJoue
     strcat(tmp1,nomPartie);
     strcat(tmp1,".txt");
     printf("%s",tmp1);
-    fichierIndex=fopen(tmp2,"w");
+    fichierIndex=fopen(tmp2,"a");
     if (fichierIndex==NULL){
         printf("erreur d'ouverture du fichierIndex");
     }
     else {
-        fprintf(fichierIndex,"%s",tmp1);
+        fprintf(fichierIndex,"%s \n",tmp1);
         fclose(fichierIndex);
     }
     fichier=fopen( tmp1,"w");
@@ -1019,9 +1019,9 @@ void enregistrerPartie12(int matrice[23][23], t_joueur joueurs[4],int nombreJoue
         printf("erreur d'ouverture du fichier");
     }
     else{
-
+        fprintf(fichier,"%d",nombreJoueur);
         for (i=0;i<nombreJoueur;i++){
-            fprintf(fichier,"%d",nombreJoueur);
+            
             fprintf(fichier,"%s\n",joueurs[i].nom);
             fprintf(fichier,"%d\n",joueurs[i].pion);
             fprintf(fichier,"%d\n",joueurs[i].pionM);
